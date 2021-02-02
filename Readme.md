@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Денис Куряков](https://up.htmlacademy.ru/react/6/user/42634).
-* Наставник: `Неизвестно`.
+* Наставник: [Константин Антонов](https://htmlacademy.ru/profile/rawle51).
 
 ---
 
