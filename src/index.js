@@ -4,7 +4,6 @@ import App from "./components/app/app";
 
 const promoMovie = {
   title: `The Grand Budapest Hotel`,
-  image: `img/bg-the-grand-budapest-hotel.jpg`,
   genre: `Drama`,
   releaseDate: 2014
 };
