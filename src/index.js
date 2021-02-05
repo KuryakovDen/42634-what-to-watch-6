@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MainScreen from "./components/main/main";
+import App from "./components/app/app";
 
 ReactDOM.render(
-    <MainScreen/>,
+    <App/>,
     document.querySelector(`#root`)
 );
