@@ -10,14 +10,14 @@ App.propTypes = {
   movies: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired
+        previewImage: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
       })
   ),
   promoMovie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired
+    released: PropTypes.number.isRequired
   })
 };
 

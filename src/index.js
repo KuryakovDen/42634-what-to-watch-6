@@ -3,111 +3,111 @@ import ReactDOM from 'react-dom';
 import App from "./components/app/app";
 
 const promoMovie = {
-  title: `The Grand Budapest Hotel`,
+  name: `The Grand Budapest Hotel`,
   genre: `Drama`,
-  releaseDate: 2014
+  released: 2014
 };
 
 const movies = [
   {
     id: 1,
-    title: `Fantastic Beasts: The Crimes of Grindelwald`,
-    image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`
+    name: `Fantastic Beasts: The Crimes of Grindelwald`,
+    previewImage: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`
   },
   {
     id: 2,
-    title: `Bohemian Rhapsody`,
-    image: `img/bohemian-rhapsody.jpg`
+    name: `Bohemian Rhapsody`,
+    previewImage: `img/bohemian-rhapsody.jpg`
   },
   {
     id: 3,
-    title: `Macbeth`,
-    image: `img/macbeth.jpg`
+    name: `Macbeth`,
+    previewImage: `img/macbeth.jpg`
   },
   {
     id: 4,
-    title: `Aviator`,
-    image: `img/aviator.jpg`
+    name: `Aviator`,
+    previewImage: `img/aviator.jpg`
   },
   {
     id: 5,
-    title: `We need to talk about Kevin`,
-    image: `img/we-need-to-talk-about-kevin.jpg`
+    name: `We need to talk about Kevin`,
+    previewImage: `img/we-need-to-talk-about-kevin.jpg`
   },
   {
     id: 6,
-    title: `What We Do in the Shadows`,
-    image: `img/what-we-do-in-the-shadows.jpg`
+    name: `What We Do in the Shadows`,
+    previewImage: `img/what-we-do-in-the-shadows.jpg`
   },
   {
     id: 7,
-    title: `Revenant`,
-    image: `img/revenant.jpg`
+    name: `Revenant`,
+    previewImage: `img/revenant.jpg`
   },
   {
     id: 8,
-    title: `Johnny English`,
-    image: `img/johnny-english.jpg`
+    name: `Johnny English`,
+    previewImage: `img/johnny-english.jpg`
   },
   {
     id: 9,
-    title: `Shutter Island`,
-    image: `img/shutter-island.jpg`
+    name: `Shutter Island`,
+    previewImage: `img/shutter-island.jpg`
   },
   {
     id: 10,
-    title: `Pulp Fiction`,
-    image: `img/pulp-fiction.jpg`
+    name: `Pulp Fiction`,
+    previewImage: `img/pulp-fiction.jpg`
   },
   {
     id: 11,
-    title: `No Country for Old Men`,
-    image: `img/no-country-for-old-men.jpg`
+    name: `No Country for Old Men`,
+    previewImage: `img/no-country-for-old-men.jpg`
   },
   {
     id: 12,
-    title: `Snatch`,
-    image: `img/snatch.jpg`
+    name: `Snatch`,
+    previewImage: `img/snatch.jpg`
   },
   {
     id: 13,
-    title: `Moonrise Kingdom`,
-    image: `img/moonrise-kingdom.jpg`
+    name: `Moonrise Kingdom`,
+    previewImage: `img/moonrise-kingdom.jpg`
   },
   {
     id: 14,
-    title: `Seven Years in Tibet`,
-    image: `img/seven-years-in-tibet.jpg`
+    name: `Seven Years in Tibet`,
+    previewImage: `img/seven-years-in-tibet.jpg`
   },
   {
     id: 15,
-    title: `Midnight Special`,
-    image: `img/midnight-special.jpg`
+    name: `Midnight Special`,
+    previewImage: `img/midnight-special.jpg`
   },
   {
     id: 16,
-    title: `War of the Worlds`,
-    image: `img/war-of-the-worlds.jpg`
+    name: `War of the Worlds`,
+    previewImage: `img/war-of-the-worlds.jpg`
   },
   {
     id: 17,
-    title: `Dardjeeling Limited`,
-    image: `img/dardjeeling-limited.jpg`
+    name: `Dardjeeling Limited`,
+    previewImage: `img/dardjeeling-limited.jpg`
   },
   {
     id: 18,
-    title: `Orlando`,
-    image: `img/orlando.jpg`
+    name: `Orlando`,
+    previewImage: `img/orlando.jpg`
   },
   {
     id: 19,
-    title: `Mindhunter`,
-    image: `img/mindhunter.jpg`
+    name: `Mindhunter`,
+    previewImage: `img/mindhunter.jpg`
   },
   {
     id: 20,
-    title: `Midnight Special`,
-    image: `img/midnight-special.jpg`
+    name: `Midnight Special`,
+    previewImage: `img/midnight-special.jpg`
   }
 ];
 

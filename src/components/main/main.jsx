@@ -78,10 +78,10 @@ const MainScreen = (props = {}) => (
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{props.promoMovie.title}</h2>
+            <h2 className="movie-card__title">{props.promoMovie.name}</h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{props.promoMovie.genre}</span>
-              <span className="movie-card__year">{props.promoMovie.releaseDate}</span>
+              <span className="movie-card__year">{props.promoMovie.released}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -170,14 +170,14 @@ MainScreen.propTypes = {
   movies: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired
+        previewImage: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
       })
   ),
   promoMovie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired
+    released: PropTypes.number.isRequired
   })
 };
 
