@@ -2,7 +2,7 @@ import React from 'react';
 import MainScreen from "../main/main";
 import PropTypes from 'prop-types';
 
-const App = (props) => {
+const App = (props = {}) => {
   const {movies, promoMovie} = props;
 
   return <MainScreen

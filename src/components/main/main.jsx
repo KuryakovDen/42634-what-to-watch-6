@@ -2,8 +2,8 @@ import React from 'react';
 import MovieCard from "../movie-card/movie-card";
 import PropTypes from "prop-types";
 
-const MainScreen = (props) => {
-  return <>
+const MainScreen = (props = {}) => (
+  <>
     <div className="visually-hidden">
       <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         <symbol id="add" viewBox="0 0 19 20">
@@ -163,8 +163,8 @@ const MainScreen = (props) => {
         </div>
       </footer>
     </div>
-  </>;
-};
+  </>
+);
 
 MainScreen.propTypes = {
   movies: PropTypes.arrayOf(
