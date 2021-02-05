@@ -1,7 +1,9 @@
 import React from 'react';
 import MovieCard from "../movie-card/movie-card";
 
-const MainScreen = () => {
+const MainScreen = (props) => {
+  const {movies} = props;
+
   return <>
     <div className="visually-hidden">
       <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -140,7 +142,7 @@ const MainScreen = () => {
         </ul>
 
         <div className="catalog__movies-list">
-          <MovieCard/>
+          {props.movies.map((movie, i) => <MovieCard key={movie + i} movie={movie} />)}
         </div>
 
         <div className="catalog__more">
