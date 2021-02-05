@@ -2,14 +2,9 @@ import React from 'react';
 import MainScreen from "../main/main";
 import PropTypes from 'prop-types';
 
-const App = (props = {}) => {
-  const {movies, promoMovie} = props;
-
-  return <MainScreen
-    movies = {movies}
-    promoMovie = {promoMovie}
-  />;
-};
+const App = (props = {}) => (
+  <MainScreen {...props} />
+);
 
 App.propTypes = {
   movies: PropTypes.arrayOf(
