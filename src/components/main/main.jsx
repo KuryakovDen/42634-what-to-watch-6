@@ -2,8 +2,6 @@ import React from 'react';
 import MovieCard from "../movie-card/movie-card";
 
 const MainScreen = (props) => {
-  const {movies} = props;
-
   return <>
     <div className="visually-hidden">
       <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -79,10 +77,10 @@ const MainScreen = (props) => {
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+            <h2 className="movie-card__title">{props.promoMovie.title}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">Drama</span>
-              <span className="movie-card__year">2014</span>
+              <span className="movie-card__genre">{props.promoMovie.genre}</span>
+              <span className="movie-card__year">{props.promoMovie.releaseDate}</span>
             </p>
 
             <div className="movie-card__buttons">
