@@ -17,8 +17,18 @@ const NotFound = () => (
       </header>
 
       <div className="user-page__content">
-        <h2 className="user-page__error">404. Page Not found</h2>
-        <Link to="/">Переход на главную страницу приложения</Link>
+        <h2 style={{
+          textAlign: `center`
+        }}>404. Page Not found
+        </h2>
+        <Link to="/" style={{
+          textDecoration: `none`,
+          display: `block`,
+          textAlign: `center`,
+          color: `#c9b37e`
+        }}>
+            Переход на главную страницу приложения
+        </Link>
       </div>
 
       <footer className="page-footer">
