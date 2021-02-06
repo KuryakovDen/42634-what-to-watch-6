@@ -1,7 +1,7 @@
 import React from 'react';
 import MainScreen from "../main/main";
 import PropTypes from 'prop-types';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 import SignIn from "../sign-in/sign-in";
 import MyList from "../my-list/my-list";
 import Movie from "../movie/movie";
