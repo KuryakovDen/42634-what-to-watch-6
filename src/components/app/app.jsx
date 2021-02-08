@@ -10,12 +10,15 @@ import Review from "../review/review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
 
-const App = (props = {}) => (
+const App = ({movies = {}, promoMovie = {}}) => (
   <>
     <BrowserRouter>
       <Switch>
         <Route exact path={`/`}>
-          <MainScreen {...props} />
+          <MainScreen
+            movies = {movies}
+            promoMovie = {promoMovie}
+          />
         </Route>
         <Route exact path={`/login`}>
           <SignIn></SignIn>
