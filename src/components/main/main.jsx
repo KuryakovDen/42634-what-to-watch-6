@@ -2,7 +2,7 @@ import React from 'react';
 import MovieCard from "../movie-card/movie-card";
 import PropTypes from "prop-types";
 
-const MainScreen = (props = {}) => (
+const MainScreen = ({movies = {}, promoMovie = {}}) => (
   <>
     <div className="visually-hidden">
       <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -78,10 +78,10 @@ const MainScreen = (props = {}) => (
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{props.promoMovie.name}</h2>
+            <h2 className="movie-card__title">{promoMovie.name}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{props.promoMovie.genre}</span>
-              <span className="movie-card__year">{props.promoMovie.released}</span>
+              <span className="movie-card__genre">{promoMovie.genre}</span>
+              <span className="movie-card__year">{promoMovie.released}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -141,7 +141,7 @@ const MainScreen = (props = {}) => (
         </ul>
 
         <div className="catalog__movies-list">
-          {props.movies.map((movie, i) => <MovieCard key={movie + i} movie={movie} />)}
+          {movies.map((movie, i) => <MovieCard key={movie + i} movie={movie} />)}
         </div>
 
         <div className="catalog__more">
