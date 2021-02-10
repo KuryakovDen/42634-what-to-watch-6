@@ -5,7 +5,7 @@ const MovieCard = ({movie = {}}) => (
   <>
     <article className="small-movie-card catalog__movies-card">
       <div className="small-movie-card__image">
-        <img src={movie.previewImage}
+        <img src={movie.preview_image}
           alt={movie.name} width="280" height="175"/>
       </div>
       <h3 className="small-movie-card__title">
@@ -17,9 +17,9 @@ const MovieCard = ({movie = {}}) => (
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    previewImage: PropTypes.string.isRequired
+    "id": PropTypes.number.isRequired,
+    "name": PropTypes.string.isRequired,
+    "preview_image": PropTypes.string.isRequired
   })
 };
 
