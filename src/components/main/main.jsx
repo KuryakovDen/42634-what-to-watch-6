@@ -1,6 +1,7 @@
 import React from 'react';
-import MovieCard from "../movie-card/movie-card";
 import PropTypes from "prop-types";
+
+import MovieCard from "../movie-card/movie-card";
 
 const MainScreen = ({movies = {}, promoMovie = {}}) => (
   <>
