@@ -7,7 +7,7 @@ import reviews from "./mocks/reviews";
 ReactDOM.render(
     <App
       movies = {movies}
-      reviws = {reviews}
+      reviews = {reviews}
       promoMovie = {promoMovie}
     />,
     document.querySelector(`#root`)

@@ -10,13 +10,14 @@ import Review from "../review/review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
 
-const App = ({movies = {}, promoMovie = {}}) => (
+const App = ({movies = {}, promoMovie = {}, reviews = {}}) => (
   <>
     <BrowserRouter>
       <Switch>
         <Route exact path={`/`}>
           <MainScreen
             movies = {movies}
+            reviws = {reviews}
             promoMovie = {promoMovie}
           />
         </Route>
@@ -63,6 +64,18 @@ App.propTypes = {
         "genre": PropTypes.string.isRequired,
         "released": PropTypes.number.isRequired,
         "is_favorite": PropTypes.bool.isRequired,
+      })
+  ),
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape({
+        "id": PropTypes.number.isRequired,
+        "user": PropTypes.shape({
+          "id": PropTypes.number.isRequired,
+          "name": PropTypes.string.isRequired
+        }),
+        "rating": PropTypes.number.isRequired,
+        "comment": PropTypes.string.isRequired,
+        "date": PropTypes.string.isRequired
       })
   ),
   promoMovie: PropTypes.shape({
