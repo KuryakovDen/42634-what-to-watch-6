@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import {promoMovieValidation} from "../../validation";
 
 const MovieCard = ({movie = {}}) => (
   <>
@@ -15,12 +15,6 @@ const MovieCard = ({movie = {}}) => (
   </>
 );
 
-MovieCard.propTypes = {
-  movie: PropTypes.shape({
-    "id": PropTypes.number.isRequired,
-    "name": PropTypes.string.isRequired,
-    "preview_image": PropTypes.string.isRequired
-  })
-};
+MovieCard.propTypes = {...promoMovieValidation};
 
 export default MovieCard;
