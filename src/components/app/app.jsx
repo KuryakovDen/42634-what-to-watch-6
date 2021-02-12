@@ -10,7 +10,7 @@ import Player from "../player/player";
 import NotFound from "../not-found/not-found";
 import {moviesValidation, promoMovieValidation, reviewsValidation} from "../../validation";
 
-const App = ({movies = {}, promoMovie = {}, reviews = {}}) => (
+const App = ({movies = {}, promoMovie = {}}) => (
   <>
     <BrowserRouter>
       <Switch>
@@ -31,7 +31,7 @@ const App = ({movies = {}, promoMovie = {}, reviews = {}}) => (
         </Route>
         <Route exact path={`/films/:id/review`}>
           <Review
-            reviews = {reviews}
+            movies = {movies[0]}
           ></Review>
         </Route>
         <Route exact path={`/player/:id`}>

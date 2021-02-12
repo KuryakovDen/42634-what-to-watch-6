@@ -1,11 +1,12 @@
 import React from 'react';
+import {moviesValidation} from "../../validation";
 
-const Review = () => (
+const Review = ({movies} = {}) => (
   <>
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+          <img src={movies.background_image} alt={movies.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -22,7 +23,7 @@ const Review = () => (
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <a href="movie-page.html" className="breadcrumbs__link">{movies.name}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -38,7 +39,7 @@ const Review = () => (
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
+          <img src={movies.poster_image} alt={movies.name} width="218"
             height="327"/>
         </div>
       </div>
@@ -93,5 +94,9 @@ const Review = () => (
     </section>
   </>
 );
+
+Review.propTypes = {
+  ...moviesValidation
+};
 
 export default Review;

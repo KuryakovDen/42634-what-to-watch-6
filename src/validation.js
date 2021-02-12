@@ -4,6 +4,7 @@ const promoMovieValidation = {
   movie: PropTypes.shape({
     "id": PropTypes.number.isRequired,
     "name": PropTypes.string.isRequired,
+    "poster_image": PropTypes.string.isRequired,
     "preview_image": PropTypes.string.isRequired
   })
 };
