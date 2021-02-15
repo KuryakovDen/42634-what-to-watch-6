@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Player = () => (
+const Player = (movie = {}) => (
   <>
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={movie.movie.video_link} className="player__video" poster={movie.movie.poster_image}></video>
 
       <button type="button" className="player__exit">Exit</button>
 

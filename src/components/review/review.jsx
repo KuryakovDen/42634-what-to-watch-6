@@ -1,12 +1,12 @@
 import React from 'react';
 import {moviesValidation} from "../../validation";
 
-const Review = ({movies} = {}) => (
+const Review = ({movie} = {}) => (
   <>
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src={movies.background_image} alt={movies.name}/>
+          <img src={movie.background_image} alt={movie.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -23,7 +23,7 @@ const Review = ({movies} = {}) => (
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">{movies.name}</a>
+                <a href="movie-page.html" className="breadcrumbs__link">{movie.name}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -39,7 +39,7 @@ const Review = ({movies} = {}) => (
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src={movies.poster_image} alt={movies.name} width="218"
+          <img src={movie.poster_image} alt={movie.name} width="218"
             height="327"/>
         </div>
       </div>

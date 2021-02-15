@@ -33,11 +33,13 @@ const App = ({movies = {}, promoMovie = {}}) => (
         </Route>
         <Route exact path={`/films/:id/review`}>
           <Review
-            movies = {movies[0]}
+            movie = {movies[0]}
           ></Review>
         </Route>
         <Route exact path={`/player/:id`}>
-          <Player></Player>
+          <Player
+            movie = {movies[0]}
+          ></Player>
         </Route>
         <Route>
           <NotFound></NotFound>
