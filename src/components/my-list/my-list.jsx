@@ -1,8 +1,10 @@
 import React from 'react';
-import MovieCard from "../movie-card/movie-card";
 
-const MyList = (movies = {}) => {
-  const favoriteMovies = movies.movies.filter((movie) => movie.is_favorite);
+import MovieCard from "../movie-card/movie-card";
+import {moviesValidation} from "../../validation";
+
+const MyList = ({movies} = {}) => {
+  const favoriteMovies = movies.filter((movie) => movie.is_favorite);
   const [activeMovieCard, setActiveMovieCard] = React.useState(undefined);
 
   return (
@@ -50,6 +52,10 @@ const MyList = (movies = {}) => {
       </div>
     </>
   );
+};
+
+MyList.propTypes = {
+  ...moviesValidation
 };
 
 export default MyList;

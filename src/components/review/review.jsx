@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {moviesValidation} from "../../validation";
 
 const Review = ({movie} = {}) => (

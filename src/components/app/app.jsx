@@ -29,7 +29,9 @@ const App = ({movies = {}, promoMovie = {}}) => (
           ></MyList>
         </Route>
         <Route exact path={`/films/:id`}>
-          <Movie></Movie>
+          <Movie
+            movie = {movies[0]}
+          ></Movie>
         </Route>
         <Route exact path={`/films/:id/review`}>
           <Review

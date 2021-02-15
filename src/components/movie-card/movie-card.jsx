@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {promoMovieValidation} from "../../validation";
 
 const MovieCard = ({movie = {}, cardHoverHandler = {}}) => (
