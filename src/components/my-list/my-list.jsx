@@ -2,6 +2,7 @@ import React from 'react';
 import MovieCard from "../movie-card/movie-card";
 
 const MyList = (movies = {}) => {
+  const favoriteMovies = movies.movies.filter((movie) => movie.is_favorite);
   const [activeMovieCard, setActiveMovieCard] = React.useState(undefined);
 
   return (
@@ -29,7 +30,7 @@ const MyList = (movies = {}) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <div className="catalog__movies-list">
-            {movies.movies.map((movie) => <MovieCard key={movie.id} movie={movie} cardHoverHandler={setActiveMovieCard}/>)}
+            {favoriteMovies.map((movie) => <MovieCard key={movie.id} movie={movie} cardHoverHandler={setActiveMovieCard}/>)}
           </div>
         </section>
 

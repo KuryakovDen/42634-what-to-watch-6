@@ -54,7 +54,7 @@ const movies = [
     "run_time": 99,
     "genre": `Comedy`,
     "released": 2014,
-    "is_favorite": false
+    "is_favorite": true
   },
   {
     "id": 4,
@@ -111,7 +111,7 @@ const movies = [
     "run_time": 99,
     "genre": `Comedy`,
     "released": 2014,
-    "is_favorite": false
+    "is_favorite": true
   },
   {
     "id": 7,
@@ -149,7 +149,7 @@ const movies = [
     "run_time": 99,
     "genre": `Comedy`,
     "released": 2014,
-    "is_favorite": false
+    "is_favorite": true
   }
 ];
 
