@@ -1,9 +1,11 @@
 import React from 'react';
 import {promoMovieValidation} from "../../validation";
 
-const MovieCard = ({movie = {}}) => (
+const MovieCard = ({movie = {}, cardHoverHandler = {}}) => (
   <>
-    <article className="small-movie-card catalog__movies-card">
+    <article className="small-movie-card catalog__movies-card" onMouseOver={() => {
+      cardHoverHandler(movie.id);
+    }}>
       <div className="small-movie-card__image">
         <img src={movie.preview_image}
           alt={movie.name} width="280" height="175"/>

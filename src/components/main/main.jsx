@@ -1,7 +1,7 @@
 import React from 'react';
 
-import MovieCard from "../movie-card/movie-card";
 import {moviesValidation, promoMovieValidation} from "../../validation";
+import MoviesList from "../movie-list/movie-list";
 
 const MainScreen = ({movies = {}, promoMovie = {}}) => (
   <>
@@ -141,9 +141,9 @@ const MainScreen = ({movies = {}, promoMovie = {}}) => (
           </li>
         </ul>
 
-        <div className="catalog__movies-list">
-          {movies.map((movie, i) => <MovieCard key={movie + i} movie={movie} />)}
-        </div>
+        <MoviesList
+          movies={movies}
+        ></MoviesList>
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
