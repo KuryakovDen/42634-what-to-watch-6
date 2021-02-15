@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 import {promoMovieValidation} from "../../validation";
 
@@ -12,7 +13,7 @@ const MovieCard = ({movie = {}, cardHoverHandler = {}}) => (
           alt={movie.name} width="280" height="175"/>
       </div>
       <h3 className="small-movie-card__title">
-        <a className="small-movie-card__link" href="movie-page.html">{movie.name}</a>
+        <Link className="small-movie-card__link" to={`/films/1`}>{movie.name}</Link>
       </h3>
     </article>
   </>
