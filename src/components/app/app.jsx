@@ -24,7 +24,9 @@ const App = ({movies = {}, promoMovie = {}}) => (
           <SignIn></SignIn>
         </Route>
         <Route exact path={`/mylist`}>
-          <MyList></MyList>
+          <MyList
+            movies = {movies}
+          ></MyList>
         </Route>
         <Route exact path={`/films/:id`}>
           <Movie></Movie>
