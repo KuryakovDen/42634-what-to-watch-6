@@ -1,11 +1,26 @@
 import React from 'react';
 
 const CommentForm = () => {
+  const [commentForm, submitCommentForm] = React.useState({
+    rating: 0,
+    comment: ``
+  });
+
+  const setRating = (evt) => {
+    return submitCommentForm({...commentForm, rating: evt.target.value});
+  };
+
+  const setComment = (evt) => {
+    return submitCommentForm({...commentForm, comment: evt.target.value});
+  };
+
+  const handleSubmit = (evt) => evt.preventDefault();
+
   return (
     <>
-      <form action="#" className="add-review__form">
+      <form onSubmit={handleSubmit} action="#" className="add-review__form">
         <div className="rating">
-          <div className="rating__stars">
+          <div onChange={setRating} className="rating__stars">
             <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
             <label className="rating__label" htmlFor="star-1">Rating 1</label>
 
@@ -39,7 +54,7 @@ const CommentForm = () => {
         </div>
 
         <div className="add-review__text">
-          <textarea className="add-review__textarea" name="review-text" id="review-text"
+          <textarea onChange={setComment} className="add-review__textarea" name="review-text" id="review-text"
             placeholder="Review text"></textarea>
           <div className="add-review__submit">
             <button className="add-review__btn" type="submit">Post</button>
