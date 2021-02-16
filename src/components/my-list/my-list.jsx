@@ -6,7 +6,7 @@ import {moviesValidation} from "../../validation";
 
 const MyList = ({movies} = {}) => {
   const favoriteMovies = movies.filter((movie) => movie.is_favorite);
-  const [activeMovieCard, setActiveMovieCard] = React.useState(undefined);
+  const [, setActiveMovieCard] = React.useState(undefined);
 
   return (
     <>

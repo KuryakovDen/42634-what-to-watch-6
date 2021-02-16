@@ -1,9 +1,10 @@
 import React from "react";
+
 import MovieCard from "../movie-card/movie-card";
 import {moviesValidation} from "../../validation";
 
 const MoviesList = ({movies} = {}) => {
-  const [activeMovieCard, setActiveMovieCard] = React.useState(undefined);
+  const [, setActiveMovieCard] = React.useState(undefined);
   return (
     <>
       <div className="catalog__movies-list">
