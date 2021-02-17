@@ -5,7 +5,6 @@ const CommentForm = () => {
     rating: 0,
     comment: ``
   });
-
   const setField = ({target}) => {
     return submitCommentForm(commentForm, {[target.name]: target.value});
   };

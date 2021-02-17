@@ -1,11 +1,9 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {useHistory} from "react-router-dom";
 
 import {moviesType} from "../../validation";
 
-const Movie = ({movie = {}}) => {
-  const history = useHistory();
+const Movie = ({movie = {}, history = {}}) => {
   return (
     <>
       <section className="movie-card movie-card--full">
