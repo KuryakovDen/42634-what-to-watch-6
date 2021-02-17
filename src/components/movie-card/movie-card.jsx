@@ -30,4 +30,5 @@ const MovieCard = ({movie = {}, cardHoverHandler = {}}) => {
 };
 
 MovieCard.propTypes = {...promoMovieType};
+
 export default MovieCard;

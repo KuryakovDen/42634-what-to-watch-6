@@ -165,4 +165,5 @@ const Movie = ({movie = {}, history = {}}) => {
 Movie.propTypes = {
   ...moviesType
 };
+
 export default Movie;

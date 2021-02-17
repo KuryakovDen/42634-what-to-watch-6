@@ -58,4 +58,5 @@ const Review = ({movie = {}}) => (
 Review.propTypes = {
   ...moviesType
 };
+
 export default Review;

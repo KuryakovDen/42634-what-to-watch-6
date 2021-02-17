@@ -45,4 +45,5 @@ const Player = ({movie = {}}) => (
 Player.propTypes = {
   ...moviesType
 };
+
 export default Player;
