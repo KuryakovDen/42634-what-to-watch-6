@@ -1,6 +1,7 @@
 import React from 'react';
-import MovieCard from "../movie-card/movie-card";
-import PropTypes from "prop-types";
+
+import {moviesType, promoMovieType} from "../../validation";
+import MoviesList from "../movie-list/movie-list";
 
 const MainScreen = ({movies = {}, promoMovie = {}}) => (
   <>
@@ -140,9 +141,9 @@ const MainScreen = ({movies = {}, promoMovie = {}}) => (
           </li>
         </ul>
 
-        <div className="catalog__movies-list">
-          {movies.map((movie, i) => <MovieCard key={movie + i} movie={movie} />)}
-        </div>
+        <MoviesList
+          movies={movies}
+        ></MoviesList>
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
@@ -167,18 +168,7 @@ const MainScreen = ({movies = {}, promoMovie = {}}) => (
 );
 
 MainScreen.propTypes = {
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        previewImage: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired
-      })
-  ),
-  promoMovie: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    released: PropTypes.number.isRequired
-  })
+  ...moviesType,
+  ...promoMovieType
 };
-
 export default MainScreen;

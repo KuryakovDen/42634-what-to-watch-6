@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {createBrowserHistory} from 'history';
 
 import MainScreen from "../main/main";
 import SignIn from "../sign-in/sign-in";
@@ -9,6 +9,7 @@ import Movie from "../movie/movie";
 import Review from "../review/review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
+import {moviesType, promoMovieType, reviewsType} from "../../validation";
 
 const App = ({movies = {}, promoMovie = {}}) => (
   <>
@@ -24,16 +25,25 @@ const App = ({movies = {}, promoMovie = {}}) => (
           <SignIn></SignIn>
         </Route>
         <Route exact path={`/mylist`}>
-          <MyList></MyList>
+          <MyList
+            movies = {movies}
+          ></MyList>
         </Route>
         <Route exact path={`/films/:id`}>
-          <Movie></Movie>
+          <Movie
+            movie = {movies[0]}
+            history = {createBrowserHistory()}
+          ></Movie>
         </Route>
         <Route exact path={`/films/:id/review`}>
-          <Review></Review>
+          <Review
+            movie = {movies[0]}
+          ></Review>
         </Route>
         <Route exact path={`/player/:id`}>
-          <Player></Player>
+          <Player
+            movie = {movies[0]}
+          ></Player>
         </Route>
         <Route>
           <NotFound></NotFound>
@@ -44,18 +54,8 @@ const App = ({movies = {}, promoMovie = {}}) => (
 );
 
 App.propTypes = {
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        previewImage: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired
-      })
-  ),
-  promoMovie: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    released: PropTypes.number.isRequired
-  })
+  ...moviesType,
+  ...promoMovieType,
+  ...reviewsType
 };
-
 export default App;
