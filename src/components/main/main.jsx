@@ -171,5 +171,4 @@ MainScreen.propTypes = {
   ...moviesValidation,
   ...promoMovieValidation
 };
-
 export default MainScreen;

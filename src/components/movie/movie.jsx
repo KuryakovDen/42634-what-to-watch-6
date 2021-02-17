@@ -167,5 +167,4 @@ const Movie = ({movie} = {}) => {
 Movie.propTypes = {
   ...moviesValidation
 };
-
 export default Movie;

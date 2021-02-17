@@ -58,5 +58,4 @@ const MyList = ({movies} = {}) => {
 MyList.propTypes = {
   ...moviesValidation
 };
-
 export default MyList;

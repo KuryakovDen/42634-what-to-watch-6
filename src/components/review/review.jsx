@@ -58,5 +58,4 @@ const Review = ({movie} = {}) => (
 Review.propTypes = {
   ...moviesValidation
 };
-
 export default Review;

@@ -56,5 +56,4 @@ App.propTypes = {
   ...promoMovieValidation,
   ...reviewsValidation
 };
-
 export default App;

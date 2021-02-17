@@ -45,5 +45,4 @@ const Player = ({movie} = {}) => (
 Player.propTypes = {
   ...moviesValidation
 };
-
 export default Player;
