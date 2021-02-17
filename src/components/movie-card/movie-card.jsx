@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {useHistory} from "react-router-dom";
 
-import {promoMovieValidation} from "../../validation";
+import {promoMovieType} from "../../validation";
 
 const MovieCard = ({movie = {}, cardHoverHandler = {}}) => {
   const history = useHistory();
@@ -29,5 +29,5 @@ const MovieCard = ({movie = {}, cardHoverHandler = {}}) => {
   );
 };
 
-MovieCard.propTypes = {...promoMovieValidation};
+MovieCard.propTypes = {...promoMovieType};
 export default MovieCard;

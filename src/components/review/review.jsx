@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-import {moviesValidation} from "../../validation";
+import {moviesType} from "../../validation";
 import CommentForm from "../comment-form/comment-form";
 
-const Review = ({movie} = {}) => (
+const Review = ({movie = {}}) => (
   <>
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
@@ -56,6 +56,6 @@ const Review = ({movie} = {}) => (
 );
 
 Review.propTypes = {
-  ...moviesValidation
+  ...moviesType
 };
 export default Review;

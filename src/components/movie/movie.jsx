@@ -2,9 +2,9 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {useHistory} from "react-router-dom";
 
-import {moviesValidation} from "../../validation";
+import {moviesType} from "../../validation";
 
-const Movie = ({movie} = {}) => {
+const Movie = ({movie = {}}) => {
   const history = useHistory();
   return (
     <>
@@ -165,6 +165,6 @@ const Movie = ({movie} = {}) => {
 };
 
 Movie.propTypes = {
-  ...moviesValidation
+  ...moviesType
 };
 export default Movie;

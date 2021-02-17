@@ -1,10 +1,10 @@
 import React from "react";
 
 import MovieCard from "../movie-card/movie-card";
-import {moviesValidation} from "../../validation";
+import {moviesType} from "../../validation";
 
 const MoviesList = ({movies} = {}) => {
-  const [, setActiveMovieCard] = React.useState(undefined);
+  const [, setActiveMovieCard] = React.useState(null);
   return (
     <>
       <div className="catalog__movies-list">
@@ -15,6 +15,6 @@ const MoviesList = ({movies} = {}) => {
 };
 
 MoviesList.propTypes = {
-  ...moviesValidation
+  ...moviesType
 };
 export default MoviesList;

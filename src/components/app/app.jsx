@@ -8,7 +8,7 @@ import Movie from "../movie/movie";
 import Review from "../review/review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
-import {moviesValidation, promoMovieValidation, reviewsValidation} from "../../validation";
+import {moviesType, promoMovieType, reviewsType} from "../../validation";
 
 const App = ({movies = {}, promoMovie = {}}) => (
   <>
@@ -52,8 +52,8 @@ const App = ({movies = {}, promoMovie = {}}) => (
 );
 
 App.propTypes = {
-  ...moviesValidation,
-  ...promoMovieValidation,
-  ...reviewsValidation
+  ...moviesType,
+  ...promoMovieType,
+  ...reviewsType
 };
 export default App;

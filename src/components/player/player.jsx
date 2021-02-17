@@ -1,7 +1,7 @@
 import React from 'react';
-import {moviesValidation} from "../../validation";
+import {moviesType} from "../../validation";
 
-const Player = ({movie} = {}) => (
+const Player = ({movie = {}}) => (
   <>
     <div className="player">
       <video src={movie.video_link} className="player__video" poster={movie.poster_image}></video>
@@ -43,6 +43,6 @@ const Player = ({movie} = {}) => (
 );
 
 Player.propTypes = {
-  ...moviesValidation
+  ...moviesType
 };
 export default Player;

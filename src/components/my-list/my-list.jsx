@@ -2,11 +2,11 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 import MovieCard from "../movie-card/movie-card";
-import {moviesValidation} from "../../validation";
+import {moviesType} from "../../validation";
 
 const MyList = ({movies} = {}) => {
   const favoriteMovies = movies.filter((movie) => movie.is_favorite);
-  const [, setActiveMovieCard] = React.useState(undefined);
+  const [, setActiveMovieCard] = React.useState(null);
 
   return (
     <>
@@ -56,6 +56,6 @@ const MyList = ({movies} = {}) => {
 };
 
 MyList.propTypes = {
-  ...moviesValidation
+  ...moviesType
 };
 export default MyList;

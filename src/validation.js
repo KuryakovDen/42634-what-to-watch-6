@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const promoMovieValidation = {
+const promoMovieType = {
   movie: PropTypes.shape({
     "id": PropTypes.number.isRequired,
     "name": PropTypes.string.isRequired,
@@ -9,7 +9,7 @@ const promoMovieValidation = {
   })
 };
 
-const moviesValidation = {
+const moviesType = {
   movies: PropTypes.arrayOf(
       PropTypes.shape({
         "id": PropTypes.number.isRequired,
@@ -33,7 +33,7 @@ const moviesValidation = {
   )
 };
 
-const reviewsValidation = {
+const reviewsType = {
   reviews: PropTypes.arrayOf(
       PropTypes.shape({
         "id": PropTypes.number.isRequired,
@@ -48,4 +48,4 @@ const reviewsValidation = {
   )
 };
 
-export {promoMovieValidation, moviesValidation, reviewsValidation};
+export {promoMovieType, moviesType, reviewsType};

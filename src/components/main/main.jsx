@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {moviesValidation, promoMovieValidation} from "../../validation";
+import {moviesType, promoMovieType} from "../../validation";
 import MoviesList from "../movie-list/movie-list";
 
 const MainScreen = ({movies = {}, promoMovie = {}}) => (
@@ -168,7 +168,7 @@ const MainScreen = ({movies = {}, promoMovie = {}}) => (
 );
 
 MainScreen.propTypes = {
-  ...moviesValidation,
-  ...promoMovieValidation
+  ...moviesType,
+  ...promoMovieType
 };
 export default MainScreen;
