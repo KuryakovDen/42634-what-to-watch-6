@@ -9,13 +9,6 @@ const VideoSettings = {
 
 const videoRef = React.createRef();
 
-const handlePlay = () => {
-  setTimeout(() => {
-    console.log(videoRef.current);
-    // ref.current.classList.add(`visually-hidden`);
-  }, VideoSettings.VIDEOPLAYER_DELAY);
-};
-
 const Videoplayer = ({movie = {}}) => {
   return (
     <>
@@ -23,7 +16,6 @@ const Videoplayer = ({movie = {}}) => {
         src={movie.video_link}
         className="player__video"
         poster={movie.poster_image}
-        onMouseOver={handlePlay}
         ref={videoRef}
         muted={VideoSettings.IS_MUTED}
         autoPlay={VideoSettings.IS_AUTOPLAY}
