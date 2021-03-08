@@ -26,8 +26,6 @@ const MovieCard = ({movie = {}, cardHoverHandler = {}}) => {
   };
 
   const mouseLeaveHandler = () => {
-    cardHoverHandler(-1);
-
     clearTimeout(timer);
     setActiveVideo(false);
   };
@@ -38,8 +36,7 @@ const MovieCard = ({movie = {}, cardHoverHandler = {}}) => {
         onMouseEnter={mouseEnterHandler}
         onMouseLeave={mouseLeaveHandler}>
         <div className="small-movie-card__image">
-          {isVideoActive ? <Videoplayer movie={movie}></Videoplayer> : <img src={movie.preview_image}
-            alt={movie.name} width="280" height="175"/>}
+          {isVideoActive ? <Videoplayer movie={movie}></Videoplayer> : <video poster={movie.preview_image} width="280" height="175"/>}
         </div>
         <h3 className="small-movie-card__title">
           <Link className="small-movie-card__link" to={`/films/${movie.id}`} onClick={(evt) => movieClickHandler(evt)}>{movie.name}</Link>

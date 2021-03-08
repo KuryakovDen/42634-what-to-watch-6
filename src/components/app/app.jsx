@@ -10,7 +10,6 @@ import Review from "../review/review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
 import {moviesType, promoMovieType, reviewsType} from "../../validation";
-import Videoplayer from "../videoplayer/videoplayer";
 
 const App = ({movies = {}, promoMovie = {}}) => (
   <>
@@ -45,11 +44,6 @@ const App = ({movies = {}, promoMovie = {}}) => (
           <Player
             movie = {movies[0]}
           ></Player>
-        </Route>
-        <Route exact path={`/video`}>
-          <Videoplayer
-            movie = {movies[0]}
-          ></Videoplayer>
         </Route>
         <Route>
           <NotFound></NotFound>
