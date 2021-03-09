@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 
 import {moviesType} from "../../validation";
 import Tabs from "../tabs/tabs";
+import reviews from "../../mocks/reviews";
 
 const Movie = ({movie = {}, history = {}}) => {
   return (
@@ -65,7 +66,7 @@ const Movie = ({movie = {}, history = {}}) => {
                 height="327"/>
             </div>
 
-            <Tabs/>
+            <Tabs movie={movie} review={reviews}/>
           </div>
         </div>
       </section>
