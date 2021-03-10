@@ -4,8 +4,10 @@ import {moviesType} from "../../validation";
 import MovieCard from "../movie-card/movie-card";
 
 const MoreMovies = ({movies = {}, currentMovie = {}}) => {
-  const MAX_LIKE_MOVIES = 4;
-  const moreLikeThisMovies = movies.filter((movie) => movie.genre === currentMovie.genre && movie.name !== currentMovie.name).slice(0, MAX_LIKE_MOVIES);
+  const MAX_LIKE_MOVIES_LENGTH = 4;
+  const moreLikeThisMovies = movies
+    .filter((movie) => movie.genre === currentMovie.genre && movie.name !== currentMovie.name)
+    .slice(0, MAX_LIKE_MOVIES_LENGTH);
 
   return (
     <>
