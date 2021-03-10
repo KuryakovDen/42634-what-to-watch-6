@@ -1,6 +1,7 @@
 import React from "react";
 
 import {moviesType} from "../../validation";
+import {getRatingName} from "../../utils";
 
 const MovieOverview = ({movie = {}}) => {
   return (
@@ -8,7 +9,7 @@ const MovieOverview = ({movie = {}}) => {
       <div className="movie-rating">
         <div className="movie-rating__score">{movie.rating}</div>
         <p className="movie-rating__meta">
-          <span className="movie-rating__level">Very good</span>
+          <span className="movie-rating__level">{getRatingName(movie.rating)}</span>
           <span className="movie-rating__count">{movie.scores_count} ratings</span>
         </p>
       </div>

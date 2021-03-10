@@ -1,6 +1,7 @@
 import React from "react";
 
 import {moviesType} from "../../validation";
+import {getMovieRuntime} from "../../utils";
 
 const MovieDetails = ({movie = {}}) => {
   return (
@@ -20,7 +21,7 @@ const MovieDetails = ({movie = {}}) => {
         <div className="movie-card__text-col">
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Run Time</strong>
-            <span className="movie-card__details-value">{movie.run_time}</span>
+            <span className="movie-card__details-value">{getMovieRuntime(movie.run_time)}</span>
           </p>
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Genre</strong>

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import {reviewsType} from "../../validation";
+import {convertReviewDate} from "../../utils";
 
 const MovieReview = ({review = {}}) => {
   return (
@@ -10,7 +12,7 @@ const MovieReview = ({review = {}}) => {
 
           <footer className="review__details">
             <cite className="review__author">{review.user.name}</cite>
-            <time className="review__date" dateTime="2016-12-24">{review.date}</time>
+            <time className="review__date" dateTime="2016-12-24">{convertReviewDate(review.date)}</time>
           </footer>
         </blockquote>
 
