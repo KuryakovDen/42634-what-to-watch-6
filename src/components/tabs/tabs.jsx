@@ -52,7 +52,7 @@ const Tabs = ({movie = {}, reviews = {}}) => {
 
         <div className="movie-card__reviews movie-card__row">
           <div className="movie-card__reviews-col">
-            {reviews.map((review) => <MovieReview key={review.id} review={review}/>)}
+            {/*{reviews.map((review) => <MovieReview key={review.id} review={review}/>)}*/}
           </div>
         </div>
       </div>
