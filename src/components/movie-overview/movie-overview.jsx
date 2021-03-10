@@ -1,35 +1,21 @@
 import React from "react";
+
 import {moviesType} from "../../validation";
 
 const MovieOverview = ({movie = {}}) => {
   return (
     <>
-      <div className="movie-card__text movie-card__row">
-        <div className="movie-card__text-col">
-          <p className="movie-card__details-item">
-            <strong className="movie-card__details-name">Director</strong>
-            <span className="movie-card__details-value">{movie.director}</span>
-          </p>
-          <p className="movie-card__details-item">
-            <strong className="movie-card__details-name">Starring</strong>
-            <span className="movie-card__details-value">{movie.starring.join(`, `)}</span>
-          </p>
-        </div>
-
-        <div className="movie-card__text-col">
-          <p className="movie-card__details-item">
-            <strong className="movie-card__details-name">Run Time</strong>
-            <span className="movie-card__details-value">{movie.run_time}</span>
-          </p>
-          <p className="movie-card__details-item">
-            <strong className="movie-card__details-name">Genre</strong>
-            <span className="movie-card__details-value">{movie.genre}</span>
-          </p>
-          <p className="movie-card__details-item">
-            <strong className="movie-card__details-name">Released</strong>
-            <span className="movie-card__details-value">{movie.released}</span>
-          </p>
-        </div>
+      <div className="movie-rating">
+        <div className="movie-rating__score">{movie.rating}</div>
+        <p className="movie-rating__meta">
+          <span className="movie-rating__level">Very good</span>
+          <span className="movie-rating__count">{movie.scores_count} ratings</span>
+        </p>
+      </div>
+      <div className="movie-card__text">
+        <p>{movie.description}</p>
+        <p className="movie-card__director"><strong>Director: {movie.director}</strong></p>
+        <p className="movie-card__starring"><strong>Starring: {movie.starring.join(`, `)}</strong></p>
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import {moviesType} from "../../validation";
 import MovieOverview from "../movie-overview/movie-overview";
+import MovieDetails from "../movie-details/movie-details";
 
 const Tabs = ({movie = {}}) => {
   return (
@@ -20,6 +21,7 @@ const Tabs = ({movie = {}}) => {
           </ul>
         </nav>
         <MovieOverview movie={movie}/>
+        {/*<MovieDetails movie={movie}/>*/}
       </div>
     </>
   );
