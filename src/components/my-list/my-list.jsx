@@ -58,4 +58,5 @@ const MyList = ({movies} = {}) => {
 MyList.propTypes = {
   ...moviesType
 };
+
 export default MyList;

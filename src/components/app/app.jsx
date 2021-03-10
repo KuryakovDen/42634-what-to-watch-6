@@ -58,4 +58,5 @@ App.propTypes = {
   ...promoMovieType,
   ...reviewsType
 };
+
 export default App;

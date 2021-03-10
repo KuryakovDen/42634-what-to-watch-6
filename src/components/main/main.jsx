@@ -171,4 +171,5 @@ MainScreen.propTypes = {
   ...moviesType,
   ...promoMovieType
 };
+
 export default MainScreen;

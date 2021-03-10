@@ -17,4 +17,5 @@ const MoviesList = ({movies} = {}) => {
 MoviesList.propTypes = {
   ...moviesType
 };
+
 export default MoviesList;
