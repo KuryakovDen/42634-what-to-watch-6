@@ -68,7 +68,7 @@ const Movie = ({movie = {}, history = {}}) => {
                 height="327"/>
             </div>
 
-            <Tabs movie={movie} review={reviews}/>
+            <Tabs movie={movie} reviews={reviews}/>
           </div>
         </div>
       </section>
