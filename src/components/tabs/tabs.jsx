@@ -1,7 +1,10 @@
 import React from "react";
+
 import {moviesType} from "../../validation";
 import MovieOverview from "../movie-overview/movie-overview";
 import MovieDetails from "../movie-details/movie-details";
+import MovieReviews from "../movie-reviews/movie-reviews";
+import reviews from "../../mocks/reviews";
 
 const Tabs = ({movie = {}}) => {
   return (
@@ -20,8 +23,9 @@ const Tabs = ({movie = {}}) => {
             </li>
           </ul>
         </nav>
-        <MovieOverview movie={movie}/>
+        {/*<MovieOverview movie={movie}/>*/}
         {/*<MovieDetails movie={movie}/>*/}
+        <MovieReviews reviews = {reviews} />
       </div>
     </>
   );

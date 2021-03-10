@@ -15,7 +15,7 @@ const reviews = [
       "id": 4,
       "name": `Kate Muir`
     },
-    "rating": 8.9,
+    "rating": 3.3,
     "comment": `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
     "date": `2019-05-08T14:13:56.569Z`
   },
@@ -35,7 +35,7 @@ const reviews = [
       "id": 4,
       "name": `Kate Muir`
     },
-    "rating": 8.9,
+    "rating": 5.4,
     "comment": `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
     "date": `2019-05-08T14:13:56.569Z`
   },
@@ -45,7 +45,7 @@ const reviews = [
       "id": 4,
       "name": `Kate Muir`
     },
-    "rating": 8.9,
+    "rating": 6.2,
     "comment": `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
     "date": `2019-05-08T14:13:56.569Z`
   },

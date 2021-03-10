@@ -1,4 +1,5 @@
 import React from "react";
+
 import {moviesType} from "../../validation";
 
 const MovieDetails = ({movie = {}}) => {
