@@ -7,26 +7,20 @@ import Videoplayer from "../videoplayer/videoplayer";
 
 const MovieCard = ({movie = {}, cardHoverHandler = {}}) => {
   const history = useHistory();
-  const DELAY_VIDEO = 1000;
 
   const movieClickHandler = (evt) => {
     evt.preventDefault();
     history.push(`/films/${movie.id}`);
   };
 
-  const [isVideoActive, setActiveVideo] = React.useState(false);
-  let timer = React.useRef(null);
+  const [isPlaying, setActiveVideo] = React.useState(false);
 
   const mouseEnterHandler = () => {
     cardHoverHandler(movie.id);
-
-    timer = setTimeout(() => {
-      setActiveVideo(true);
-    }, DELAY_VIDEO);
+    setActiveVideo(true);
   };
 
   const mouseLeaveHandler = () => {
-    clearTimeout(timer);
     setActiveVideo(false);
   };
 
@@ -36,7 +30,7 @@ const MovieCard = ({movie = {}, cardHoverHandler = {}}) => {
         onMouseEnter={mouseEnterHandler}
         onMouseLeave={mouseLeaveHandler}>
         <div className="small-movie-card__image">
-          {isVideoActive ? <Videoplayer movie={movie}></Videoplayer> : <video poster={movie.preview_image} width="280" height="175"/>}
+          {isPlaying ? <Videoplayer movie={movie} isPlaying = {isPlaying}></Videoplayer> : <video poster={movie.preview_image} width="280" height="175"/>}
         </div>
         <h3 className="small-movie-card__title">
           <Link className="small-movie-card__link" to={`/films/${movie.id}`} onClick={(evt) => movieClickHandler(evt)}>{movie.name}</Link>

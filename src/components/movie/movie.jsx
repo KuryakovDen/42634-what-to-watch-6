@@ -76,7 +76,6 @@ const Movie = ({movie = {}, history = {}}) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
           <MoreMovies movies={movies} currentMovie={movie}></MoreMovies>
         </section>
 
