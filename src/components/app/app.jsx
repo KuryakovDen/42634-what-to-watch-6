@@ -31,7 +31,7 @@ const App = ({movies = {}, promoMovie = {}}) => (
         </Route>
         <Route exact path={`/films/:id`}>
           <Movie
-            movie = {movies[0]}
+            movie = {movies[1]}
             history = {createBrowserHistory()}
           ></Movie>
         </Route>

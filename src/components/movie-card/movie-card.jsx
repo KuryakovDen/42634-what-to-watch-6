@@ -5,10 +5,9 @@ import {useHistory} from "react-router-dom";
 import {promoMovieType} from "../../validation";
 import Videoplayer from "../videoplayer/videoplayer";
 
-const [isPlaying, setActiveVideo] = useState(false);
-
 const MovieCard = ({movie = {}}) => {
   const history = useHistory();
+  const [isPlaying, setActiveVideo] = useState(false);
 
   const movieClickHandler = (evt) => {
     evt.preventDefault();
