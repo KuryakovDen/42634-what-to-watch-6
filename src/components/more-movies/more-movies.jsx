@@ -2,11 +2,9 @@ import React from 'react';
 
 import {moviesType} from "../../validation";
 import MovieCard from "../movie-card/movie-card";
+import {MAX_LIKE_MOVIES_LENGTH} from "../../const";
 
 const MoreMovies = ({movies = {}, currentMovie = {}}) => {
-  const [, setActiveMovieCard] = React.useState(null);
-
-  const MAX_LIKE_MOVIES_LENGTH = 4;
   const moreLikeThisMovies = movies
     .filter((movie) => movie.genre === currentMovie.genre && movie.name !== currentMovie.name)
     .slice(0, MAX_LIKE_MOVIES_LENGTH);
@@ -14,7 +12,7 @@ const MoreMovies = ({movies = {}, currentMovie = {}}) => {
   return (
     <>
       <div className="catalog__movies-list">
-        {moreLikeThisMovies.map((movie) => <MovieCard key={movie.id} movie={movie} cardHoverHandler={setActiveMovieCard}/>)}
+        {moreLikeThisMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
       </div>
     </>
   );
