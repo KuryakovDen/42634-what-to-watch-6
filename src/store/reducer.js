@@ -2,17 +2,13 @@ import {movies} from "../mocks/movies";
 import {ActionType} from "./action";
 
 const initialState = {
-  genre: ``,
+  genre: `All genres`,
   moviesList: movies
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.CHANGE_GENRE:
-      return {
-        ...state
-      };
-    case ActionType.GET_MOVIE_ON_GENRE:
+    case ActionType.GET_MOVIES_ON_GENRE:
       return {
         ...state
       };
