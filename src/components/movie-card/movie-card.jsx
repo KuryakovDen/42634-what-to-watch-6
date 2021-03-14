@@ -1,22 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import {useHistory} from "react-router-dom";
 
 import {promoMovieType} from "../../validation";
 import Videoplayer from "../videoplayer/videoplayer";
 
-const MovieCard = ({movie = {}, cardHoverHandler = {}}) => {
+const MovieCard = ({movie = {}}) => {
   const history = useHistory();
+  const [isPlaying, setActiveVideo] = useState(false);
 
   const movieClickHandler = (evt) => {
     evt.preventDefault();
     history.push(`/films/${movie.id}`);
   };
 
-  const [isPlaying, setActiveVideo] = React.useState(false);
-
   const mouseEnterHandler = () => {
-    cardHoverHandler(movie.id);
     setActiveVideo(true);
   };
 

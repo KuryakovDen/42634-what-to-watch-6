@@ -2,8 +2,10 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 import {moviesType} from "../../validation";
+import Tabs from "../tabs/tabs";
+import reviews from "../../mocks/reviews";
+import MoreMovies from "../more-movies/more-movies";
 import {movies} from "../../mocks/movies";
-import MoviesList from "../movie-list/movie-list";
 
 const Movie = ({movie = {}, history = {}}) => {
   return (
@@ -66,37 +68,7 @@ const Movie = ({movie = {}, history = {}}) => {
                 height="327"/>
             </div>
 
-            <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="movie-rating">
-                <div className="movie-rating__score">{movie.rating}</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">{movie.scores_count}</span>
-                </p>
-              </div>
-
-              <div className="movie-card__text">
-                <p>{movie.description}</p>
-
-                <p className="movie-card__director"><strong>{movie.director}</strong></p>
-
-                <p className="movie-card__starring"><strong>{movie.starring.join(`, `)}</strong></p>
-              </div>
-            </div>
+            <Tabs movie={movie} reviews={reviews}/>
           </div>
         </div>
       </section>
@@ -104,10 +76,7 @@ const Movie = ({movie = {}, history = {}}) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          <MoviesList
-            movies={movies}
-          ></MoviesList>
+          <MoreMovies movies={movies} currentMovie={movie}></MoreMovies>
         </section>
 
         <footer className="page-footer">
