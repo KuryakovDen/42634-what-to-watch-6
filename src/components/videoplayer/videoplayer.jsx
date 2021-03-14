@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
+
 import {moviesType} from "../../validation";
+import {DELAY_VIDEO} from "../../const";
 
 const videoRef = React.createRef();
 
 const Videoplayer = ({movie = {}, isMuted = true, isAutoPlay = true, isPlaying}) => {
-  const DELAY_VIDEO = 1000;
-
   useEffect(() => {
     let timeoutId;
 

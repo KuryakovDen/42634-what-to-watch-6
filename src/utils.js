@@ -1,16 +1,19 @@
 const getRatingName = (rating) => {
   let ratingName = ``;
-  if (rating > 0 && rating <= 3) {
-    ratingName = `Bad`;
-  } else if (rating > 3 && rating <= 5) {
-    ratingName = `Normal`;
-  } else if (rating > 5 && rating <= 8) {
-    ratingName = `Good`;
-  } else if (rating > 8 && rating < 10) {
-    ratingName = `Very good`;
-  } else {
-    ratingName = `Awesome`;
+
+  switch (true) {
+    case rating > 0 && rating <= 3: ratingName = `Bad`;
+      break;
+    case rating > 3 && rating <= 5: ratingName = `Normal`;
+      break;
+    case rating > 5 && rating <= 8: ratingName = `Good`;
+      break;
+    case rating > 8 && rating < 10: ratingName = `Very good`;
+      break;
+
+    default: ratingName = `Awesome`;
   }
+
   return ratingName;
 };
 
