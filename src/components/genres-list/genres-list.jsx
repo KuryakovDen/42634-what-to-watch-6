@@ -3,8 +3,8 @@ import MoviesList from "../movie-list/movie-list";
 import {moviesType} from "../../validation";
 
 const GenresList = ({movies = {}}) => {
-  const uniqueMovieGenres = new Set(movies.map((movie) => movie.genre));
-  const genres = [`All movies`].concat(Array.from(uniqueMovieGenres).sort());
+  const uniqueMovieGenres = Array.from(new Set(movies.map((movie) => movie.genre))).sort();
+  const genres = [`All movies`].concat(uniqueMovieGenres);
 
   const [activeGenre, setActiveGenre] = useState(`All movies`);
 
