@@ -33,7 +33,7 @@ const movies = [
     "director": `Wes Andreson`,
     "starring": [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
     "run_time": 99,
-    "genre": `Comedy`,
+    "genre": `Romance`,
     "released": 2018,
     "is_favorite": false
   },
@@ -147,7 +147,7 @@ const movies = [
     "director": `Wes Andreson`,
     "starring": [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
     "run_time": 99,
-    "genre": `Horror`,
+    "genre": `Thrillers`,
     "released": 2014,
     "is_favorite": true
   }
