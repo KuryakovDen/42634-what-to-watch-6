@@ -1,10 +1,10 @@
 const ActionType = {
-  GET_MOVIES_ON_GENRE: `movie/getMoviesOnGenre`
+  GET_MOVIES_FOR_GENRE: `movie/getMoviesForGenre`
 };
 
 const ActionCreator = {
-  getMoviesOnGenre: (genre) => ({
-    type: ActionType.GET_MOVIES_ON_GENRE,
+  getMoviesForGenre: (genre) => ({
+    type: ActionType.GET_MOVIES_FOR_GENRE,
     payload: genre
   })
 };

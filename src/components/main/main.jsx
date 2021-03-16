@@ -4,7 +4,7 @@ import {moviesType, promoMovieType} from "../../validation";
 import MoviesList from "../movie-list/movie-list";
 import GenresList from "../genres-list/genres-list";
 
-const MainScreen = ({movies = {}, promoMovie = {}}) => (
+const MainScreen = ({promoMovie = {}}) => (
   <>
     <div className="visually-hidden">
       <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -108,7 +108,8 @@ const MainScreen = ({movies = {}, promoMovie = {}}) => (
     <div className="page-content">
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <GenresList movies={movies}/>
+        <GenresList/>
+        <MoviesList/>
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
         </div>

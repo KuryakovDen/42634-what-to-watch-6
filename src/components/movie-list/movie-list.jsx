@@ -1,21 +1,26 @@
 import React from "react";
+import {connect} from 'react-redux';
 
 import MovieCard from "../movie-card/movie-card";
 import {moviesType} from "../../validation";
 
-const MoviesList = ({movies} = {}) => {
-  const [, setActiveMovieCard] = React.useState(null);
+const MoviesList = ({genreMoviesList} = {}) => {
   return (
     <>
       <div className="catalog__movies-list">
-        {movies.map((movie) => <MovieCard key={movie.id} movie={movie} cardHoverHandler={setActiveMovieCard}/>)}
+        {genreMoviesList.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
       </div>
     </>
   );
 };
 
+const mapStateToProps = (state) => ({
+  genreMoviesList: state.genreMoviesList,
+});
+
 MoviesList.propTypes = {
   ...moviesType
 };
 
-export default MoviesList;
+export {MoviesList};
+export default connect(mapStateToProps, null)(MoviesList);

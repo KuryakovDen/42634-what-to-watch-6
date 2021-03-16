@@ -17,7 +17,6 @@ const App = ({movies = {}, promoMovie = {}}) => (
       <Switch>
         <Route exact path={`/`}>
           <MainScreen
-            movies = {movies}
             promoMovie = {promoMovie}
           />
         </Route>
