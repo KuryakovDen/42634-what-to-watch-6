@@ -8,22 +8,20 @@ import {DEFAULT_ACTIVE_GENRE} from "../../const";
 const GenresList = ({genres = [], activeGenre = DEFAULT_ACTIVE_GENRE, onClickGenre = {}}) => {
 
   return (
-    <>
-      <ul className="catalog__genres-list">
-        {
-          genres.map((genre) => {
-            const genreHandler = (evt) => {
-              evt.preventDefault();
-              onClickGenre(genre);
-            };
+    <ul className="catalog__genres-list">
+      {
+        genres.map((genre) => {
+          const genreHandler = (evt) => {
+            evt.preventDefault();
+            onClickGenre(genre);
+          };
 
-            return <li key={genre} className={genre === activeGenre ? `catalog__genres-item--active` : `catalog__genres-item`}>
-              <a href="#" className="catalog__genres-link" onClick={genreHandler}>{genre}</a>
-            </li>;
-          })
-        }
-      </ul>
-    </>
+          return <li key={genre} className={genre === activeGenre ? `catalog__genres-item--active` : `catalog__genres-item`}>
+            <a href="#" className="catalog__genres-link" onClick={genreHandler}>{genre}</a>
+          </li>;
+        })
+      }
+    </ul>
   );
 };
 

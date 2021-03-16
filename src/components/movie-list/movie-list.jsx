@@ -6,11 +6,9 @@ import {moviesType} from "../../validation";
 
 const MoviesList = ({genreMoviesList} = {}) => {
   return (
-    <>
-      <div className="catalog__movies-list">
-        {genreMoviesList.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
-      </div>
-    </>
+    <div className="catalog__movies-list">
+      {genreMoviesList.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
+    </div>
   );
 };
 
