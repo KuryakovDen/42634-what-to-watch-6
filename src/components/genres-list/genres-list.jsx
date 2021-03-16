@@ -12,7 +12,6 @@ const GenresList = ({genres = [], activeGenre = DEFAULT_ACTIVE_GENRE, onClickGen
       <ul className="catalog__genres-list">
         {
           genres.map((genre) => {
-
             const genreHandler = (evt) => {
               evt.preventDefault();
               onClickGenre(genre);

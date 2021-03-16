@@ -2,7 +2,7 @@ import {movies} from "../mocks/movies";
 import {ActionType} from "./action";
 import {DEFAULT_ACTIVE_GENRE} from "../const";
 
-const getGenres = (movieList) => {
+const getAllGenres = (movieList) => {
   const uniqueMovieGenres = Array.from(new Set(movieList.map((movie) => movie.genre))).sort();
   return [DEFAULT_ACTIVE_GENRE].concat(uniqueMovieGenres);
 };
@@ -10,7 +10,7 @@ const getGenres = (movieList) => {
 const initialState = {
   activeGenre: DEFAULT_ACTIVE_GENRE,
   moviesList: movies,
-  genres: getGenres(movies),
+  genres: getAllGenres(movies),
   genreMoviesList: movies
 };
 
