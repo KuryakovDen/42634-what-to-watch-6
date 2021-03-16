@@ -6,7 +6,6 @@ import {ActionCreator} from "../../store/action";
 import {DEFAULT_ACTIVE_GENRE} from "../../const";
 
 const GenresList = ({genres = [], activeGenre = DEFAULT_ACTIVE_GENRE, onClickGenre = {}}) => {
-
   return (
     <ul className="catalog__genres-list">
       {

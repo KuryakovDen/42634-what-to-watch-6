@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         activeGenre: action.payload,
         genreMoviesList: action.payload === DEFAULT_ACTIVE_GENRE
-          ? movies
+          ? initialState.moviesList
           : initialState.moviesList.filter((movie) => movie.genre === action.payload)
       };
   }
