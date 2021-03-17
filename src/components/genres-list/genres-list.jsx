@@ -1,11 +1,23 @@
 import React from "react";
 import {connect} from 'react-redux';
 
-import {moviesType} from "../../validation";
+import {genresType, moviesType} from "../../validation";
 import {ActionCreator} from "../../store/action";
 import {DEFAULT_GENRE} from "../../const";
 
-const GenresList = ({genres = [], activeGenre = DEFAULT_GENRE, onClickGenre = {}}) => {
+const GenresList = (
+    {activeGenre = DEFAULT_GENRE,
+      genres = [activeGenre],
+      movies = [],
+      onClickGenre = {}}
+) => {
+  const getAllGenres = (movieList) => {
+    const uniqueMovieGenres = Array.from(new Set(movieList.map((movie) => movie.genre))).sort();
+    return [DEFAULT_GENRE].concat(uniqueMovieGenres);
+  };
+
+  genres = getAllGenres(movies);
+
   return (
     <ul className="catalog__genres-list">
       {
@@ -37,7 +49,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 GenresList.propTypes = {
-  ...moviesType
+  ...moviesType,
+  ...genresType
 };
 
 export {GenresList};
