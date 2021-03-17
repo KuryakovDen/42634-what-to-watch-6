@@ -1,9 +1,9 @@
 const MAX_LIKE_MOVIES_LENGTH = 4;
 const DELAY_VIDEO = 1000;
-const DEFAULT_ACTIVE_GENRE = `All genres`;
+const DEFAULT_GENRE = `All genres`;
 
 export {
   MAX_LIKE_MOVIES_LENGTH,
   DELAY_VIDEO,
-  DEFAULT_ACTIVE_GENRE
+  DEFAULT_GENRE
 };

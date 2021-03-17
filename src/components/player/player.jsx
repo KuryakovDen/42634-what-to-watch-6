@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from "react-redux";
+
 import {moviesType} from "../../validation";
 
 const Player = ({movie = {}}) => (
@@ -42,8 +44,13 @@ const Player = ({movie = {}}) => (
   </>
 );
 
+const mapStateToProps = (state) => ({
+  movie: state.moviesList[0]
+});
+
 Player.propTypes = {
   ...moviesType
 };
 
-export default Player;
+export {Player};
+export default connect(mapStateToProps, null)(Player);

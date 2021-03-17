@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 import {moviesType} from "../../validation";
 import Tabs from "../tabs/tabs";
@@ -97,8 +98,13 @@ const Movie = ({movie = {}, history = {}}) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  movie: state.moviesList[0]
+});
+
 Movie.propTypes = {
   ...moviesType
 };
 
-export default Movie;
+export {Movie};
+export default connect(mapStateToProps, null)(Movie);

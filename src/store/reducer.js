@@ -1,14 +1,14 @@
 import {movies} from "../mocks/movies";
 import {ActionType} from "./action";
-import {DEFAULT_ACTIVE_GENRE} from "../const";
+import {DEFAULT_GENRE} from "../const";
 
 const getAllGenres = (movieList) => {
   const uniqueMovieGenres = Array.from(new Set(movieList.map((movie) => movie.genre))).sort();
-  return [DEFAULT_ACTIVE_GENRE].concat(uniqueMovieGenres);
+  return [DEFAULT_GENRE].concat(uniqueMovieGenres);
 };
 
 const initialState = {
-  activeGenre: DEFAULT_ACTIVE_GENRE,
+  activeGenre: DEFAULT_GENRE,
   moviesList: movies,
   genres: getAllGenres(movies),
   genreMoviesList: movies
@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         activeGenre: action.payload,
-        genreMoviesList: action.payload === DEFAULT_ACTIVE_GENRE
+        genreMoviesList: action.payload === DEFAULT_GENRE
           ? initialState.moviesList
           : initialState.moviesList.filter((movie) => movie.genre === action.payload)
       };

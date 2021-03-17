@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 import {moviesType} from "../../validation";
 import CommentForm from "../comment-form/comment-form";
@@ -55,8 +56,13 @@ const Review = ({movie = {}}) => (
   </>
 );
 
+const mapStateToProps = (state) => ({
+  movie: state.moviesList[0]
+});
+
 Review.propTypes = {
   ...moviesType
 };
 
-export default Review;
+export {Review};
+export default connect(mapStateToProps, null)(Review);
