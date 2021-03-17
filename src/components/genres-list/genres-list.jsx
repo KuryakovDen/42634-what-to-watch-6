@@ -14,17 +14,20 @@ const GenresList = ({activeGenre = DEFAULT_GENRE, setGenreAction = {}}) => {
 
   const genres = getAllGenres(movies);
 
+  const genreHandler = (evt, currentGenre) => {
+    evt.preventDefault();
+    setGenreAction(currentGenre);
+  };
+
   return (
     <ul className="catalog__genres-list">
       {
         genres.map((genre) => {
-          const genreHandler = (evt) => {
-            evt.preventDefault();
-            setGenreAction(genre);
-          };
 
           return <li key={genre} className={genre === activeGenre ? `catalog__genres-item--active` : `catalog__genres-item`}>
-            <a href="#" className="catalog__genres-link" onClick={genreHandler}>{genre}</a>
+            <a href="#" className="catalog__genres-link" onClick={(evt) => {
+              genreHandler(evt, genre);
+            }}>{genre}</a>
           </li>;
         })
       }
@@ -33,8 +36,7 @@ const GenresList = ({activeGenre = DEFAULT_GENRE, setGenreAction = {}}) => {
 };
 
 const mapStateToProps = (state) => ({
-  activeGenre: state.activeGenre,
-  movies: state.moviesList
+  activeGenre: state.activeGenre
 });
 
 const mapDispatchToProps = (dispatch) => ({
