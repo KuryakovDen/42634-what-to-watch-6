@@ -23,7 +23,6 @@ const GenresList = ({activeGenre = DEFAULT_GENRE, setGenreAction = {}}) => {
     <ul className="catalog__genres-list">
       {
         genres.map((genre) => {
-
           return <li key={genre} className={genre === activeGenre ? `catalog__genres-item--active` : `catalog__genres-item`}>
             <a href="#" className="catalog__genres-link" onClick={(evt) => {
               genreHandler(evt, genre);
