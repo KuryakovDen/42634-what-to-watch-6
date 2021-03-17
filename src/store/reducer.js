@@ -1,11 +1,11 @@
 import {movies} from "../mocks/movies";
 import {ActionType} from "./action";
 import {DEFAULT_GENRE} from "../const";
+import {filterMoviesOnGenre} from "../utils";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
-  moviesList: movies,
-  genreMoviesList: movies
+  moviesList: movies
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,9 +14,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         activeGenre: action.payload,
-        genreMoviesList: action.payload === DEFAULT_GENRE
-          ? initialState.moviesList
-          : initialState.moviesList.filter((movie) => movie.genre === action.payload)
+        moviesList: filterMoviesOnGenre(movies, action.payload)
       };
   }
 
