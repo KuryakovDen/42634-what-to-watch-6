@@ -8,15 +8,12 @@ import Movie from "../movie/movie";
 import Review from "../review/review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
-import {promoMovieType, reviewsType} from "../../validation";
 
-const App = ({promoMovie = {}}) => (
+const App = () => (
   <>
     <BrowserRouter>
       <Switch>
-        <Route exact path={`/`}>
-          <MainScreen promoMovie = {promoMovie}/>
-        </Route>
+        <Route exact path={`/`} component = {MainScreen}/>
         <Route exact path={`/login`} component = {SignIn}/>
         <Route exact path={`/mylist`} component = {MyList}/>
         <Route exact path={`/films/:id`} component = {Movie}/>
@@ -27,10 +24,5 @@ const App = ({promoMovie = {}}) => (
     </BrowserRouter>
   </>
 );
-
-App.propTypes = {
-  ...promoMovieType,
-  ...reviewsType
-};
 
 export default App;

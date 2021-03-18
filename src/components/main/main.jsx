@@ -3,6 +3,7 @@ import React from 'react';
 import {moviesType, promoMovieType} from "../../validation";
 import MoviesList from "../movie-list/movie-list";
 import GenresList from "../genres-list/genres-list";
+import {connect} from "react-redux";
 
 const MainScreen = ({promoMovie = {}}) => (
   <>
@@ -132,9 +133,14 @@ const MainScreen = ({promoMovie = {}}) => (
   </>
 );
 
+const mapStateToProps = (state) => ({
+  promoMovie: state.moviesList[0]
+});
+
 MainScreen.propTypes = {
   ...moviesType,
   ...promoMovieType
 };
 
-export default MainScreen;
+export {MainScreen};
+export default connect(mapStateToProps, null)(MainScreen);
