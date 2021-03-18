@@ -1,6 +1,5 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route} from "react-router-dom";
-import {createBrowserHistory} from 'history';
 
 import MainScreen from "../main/main";
 import SignIn from "../sign-in/sign-in";
@@ -18,24 +17,12 @@ const App = ({promoMovie = {}}) => (
         <Route exact path={`/`}>
           <MainScreen promoMovie = {promoMovie}/>
         </Route>
-        <Route exact path={`/login`}>
-          <SignIn></SignIn>
-        </Route>
-        <Route exact path={`/mylist`}>
-          <MyList></MyList>
-        </Route>
-        <Route exact path={`/films/:id`}>
-          <Movie history = {createBrowserHistory()}></Movie>
-        </Route>
-        <Route exact path={`/films/:id/review`}>
-          <Review></Review>
-        </Route>
-        <Route exact path={`/player/:id`}>
-          <Player></Player>
-        </Route>
-        <Route>
-          <NotFound></NotFound>
-        </Route>
+        <Route exact path={`/login`} component = {SignIn}/>
+        <Route exact path={`/mylist`} component = {MyList}/>
+        <Route exact path={`/films/:id`} component = {Movie}/>
+        <Route exact path={`/films/:id/review`} component = {Review}/>
+        <Route exact path={`/player/:id`} component = {Player}/>
+        <Route component = {NotFound}/>
       </Switch>
     </BrowserRouter>
   </>
