@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from "react-redux";
 
 import {moviesType} from "../../validation";
 import MovieOverview from "../movie-overview/movie-overview";
@@ -50,8 +51,13 @@ const Tabs = ({movie = {}, reviews = {}}) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  movie: state.moviesList[0]
+});
+
 Tabs.propTypes = {
   ...moviesType
 };
 
-export default Tabs;
+export {Tabs};
+export default connect(mapStateToProps, null)(Tabs);

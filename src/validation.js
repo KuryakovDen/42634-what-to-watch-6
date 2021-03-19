@@ -33,6 +33,10 @@ const moviesType = {
   )
 };
 
+const genresType = {
+  genres: PropTypes.arrayOf(PropTypes.string.isRequired)
+};
+
 const reviewsType = {
   reviews: PropTypes.arrayOf(
       PropTypes.shape({
@@ -48,4 +52,4 @@ const reviewsType = {
   )
 };
 
-export {promoMovieType, moviesType, reviewsType};
+export {promoMovieType, moviesType, genresType, reviewsType};

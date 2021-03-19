@@ -1,3 +1,5 @@
+import {DEFAULT_GENRE} from "./const";
+
 const getRatingName = (rating) => {
   let ratingName = ``;
 
@@ -52,4 +54,18 @@ const convertReviewDate = (date) => {
   return convertedDate;
 };
 
-export {getRatingName, getMovieRuntime, convertReviewDate};
+const filterMoviesOnGenre = (movies, genre) => {
+  return genre === DEFAULT_GENRE ? movies : movies.filter((movie) => movie.genre === genre);
+};
+
+const getAllGenres = (movieList) => {
+  return [DEFAULT_GENRE, ...new Set(movieList.map((movie) => movie.genre))];
+};
+
+export {
+  getRatingName,
+  getMovieRuntime,
+  convertReviewDate,
+  filterMoviesOnGenre,
+  getAllGenres
+};

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 import MovieCard from "../movie-card/movie-card";
 import {moviesType} from "../../validation";
@@ -55,8 +56,13 @@ const MyList = ({movies} = {}) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  movies: state.moviesList
+});
+
 MyList.propTypes = {
   ...moviesType
 };
 
-export default MyList;
+export {MyList};
+export default connect(mapStateToProps, null)(MyList);
