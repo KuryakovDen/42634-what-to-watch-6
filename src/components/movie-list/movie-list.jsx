@@ -5,13 +5,13 @@ import MovieCard from "../movie-card/movie-card";
 import ShowMore from "../show-more/show-more";
 import {moviesType} from "../../validation";
 import {filterMoviesOnGenre} from "../../utils";
-import {DEFAULT_MOVIES_COUNT} from "../../const";
+import {DEFAULT_MOVIES_COUNT, DEFAULT_PAGE} from "../../const";
 
 const MoviesList = ({movies = [], genre}) => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    setPage(1);
+    setPage(DEFAULT_PAGE);
   }, [genre]);
 
   const showMoreHandler = (evt) => {
@@ -36,7 +36,7 @@ const MoviesList = ({movies = [], genre}) => {
       <div className="catalog__movies-list">
         {showedMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
       </div>
-      {isShowingButton ? <ShowMore showMoreHandler = {showMoreHandler}/> : <></>}
+      {isShowingButton && <ShowMore showMoreHandler = {showMoreHandler}/>}
     </>
   );
 };
