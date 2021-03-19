@@ -18,19 +18,20 @@ const MoviesList = ({movies = [], genre}) => {
   let isShowingButton = true;
 
   const renderedMoviesCount = page * DEFAULT_MOVIES_COUNT;
-  const filteredMovies = filterMoviesOnGenre(movies, genre)
+  const allGenreMoviesCount = filterMoviesOnGenre(movies, genre).length;
+
+  const showedMovies = filterMoviesOnGenre(movies, genre)
     .slice(0, renderedMoviesCount > movies.length ? movies.length : renderedMoviesCount);
 
-  if (filteredMovies.length === filterMoviesOnGenre(movies, genre).length) {
+  if (showedMovies.length === allGenreMoviesCount) {
     isShowingButton = false;
   }
 
   return (
     <>
       <div className="catalog__movies-list">
-        {filteredMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
+        {showedMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
       </div>
-
       {isShowingButton ? <ShowMore showMoreHandler = {showMoreHandler}/> : <></>}
     </>
   );
