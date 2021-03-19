@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {connect} from 'react-redux';
 
 import MovieCard from "../movie-card/movie-card";
@@ -8,11 +8,15 @@ import {filterMoviesOnGenre} from "../../utils";
 import {DEFAULT_MOVIES_COUNT} from "../../const";
 
 const MoviesList = ({movies = [], genre}) => {
-  const [page, incrementPage] = useState(1);
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    setPage(1);
+  }, [genre]);
 
   const showMoreHandler = (evt) => {
     evt.preventDefault();
-    incrementPage(page + 1);
+    setPage(page + 1);
   };
 
   let isShowingButton = true;
