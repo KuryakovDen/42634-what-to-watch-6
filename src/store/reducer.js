@@ -1,7 +1,6 @@
 import {movies} from "../mocks/movies";
 import {ActionType} from "./action";
 import {DEFAULT_GENRE} from "../const";
-import {filterMoviesOnGenre} from "../utils";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
@@ -13,8 +12,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.GET_MOVIES_FOR_GENRE:
       return {
         ...state,
-        activeGenre: action.payload,
-        moviesList: filterMoviesOnGenre(movies, action.payload)
+        activeGenre: action.payload
       };
   }
 
