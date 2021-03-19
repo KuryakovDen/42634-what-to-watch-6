@@ -112,7 +112,6 @@ const MainScreen = ({promoMovie = {}}) => (
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <GenresList/>
         <MoviesList/>
-        <ShowMore/>
       </section>
 
       <footer className="page-footer">

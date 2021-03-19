@@ -1,11 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
+import {showMoreType} from "../../validation";
+import {DEFAULT_MOVIES_COUNT} from "../../const";
 
-const ShowMore = () => {
+const ShowMore = ({filteredMovies}) => {
+  let [page, incrementPage] = useState(1);
+
+  const showMoreHandler = (evt) => {
+    evt.preventDefault();
+    incrementPage(page += 1);
+  };
+
   return (
-    <div className="catalog__more">
-      <button className="catalog__button" type="button">Show more</button>
+    <div className={filteredMovies < DEFAULT_MOVIES_COUNT ? `visually-hidden` : `catalog__more`}>
+      <button className="catalog__button" type="button" onClick={showMoreHandler}>Show more</button>
     </div>
   );
 };
 
-export default ShowMore;
+ShowMore.propTypes = {
+  ...showMoreType
+};
+
+export default {ShowMore};
