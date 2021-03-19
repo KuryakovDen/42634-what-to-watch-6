@@ -3,7 +3,6 @@ import React from 'react';
 import {moviesType, promoMovieType} from "../../validation";
 import MoviesList from "../movie-list/movie-list";
 import GenresList from "../genres-list/genres-list";
-import ShowMore from "../show-more/show-more";
 import {connect} from "react-redux";
 
 const MainScreen = ({promoMovie = {}}) => (

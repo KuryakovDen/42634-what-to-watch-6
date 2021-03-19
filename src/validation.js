@@ -53,7 +53,7 @@ const reviewsType = {
 };
 
 const showMoreType = {
-  filteredMoviesCount: PropTypes.number.isRequired,
+  filteredMoviesCount: PropTypes.func,
 };
 
 export {promoMovieType, moviesType, genresType, reviewsType, showMoreType};

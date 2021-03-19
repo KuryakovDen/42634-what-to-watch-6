@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {connect} from 'react-redux';
 
 import MovieCard from "../movie-card/movie-card";
@@ -7,18 +7,31 @@ import {moviesType} from "../../validation";
 import {filterMoviesOnGenre} from "../../utils";
 import {DEFAULT_MOVIES_COUNT} from "../../const";
 
-const MoviesList = ({movies = [], genre, page = 1}) => {
+const MoviesList = ({movies = [], genre}) => {
+  const [page, incrementPage] = useState(1);
+
+  const showMoreHandler = (evt) => {
+    evt.preventDefault();
+    incrementPage(page + 1);
+  };
+
+  let isShowingButton = true;
+
   const renderedMoviesCount = page * DEFAULT_MOVIES_COUNT;
   const filteredMovies = filterMoviesOnGenre(movies, genre)
     .slice(0, renderedMoviesCount > movies.length ? movies.length : renderedMoviesCount);
-  const filteredMoviesCount = filteredMovies.length;
+
+  if (filteredMovies.length === filterMoviesOnGenre(movies, genre).length) {
+    isShowingButton = false;
+  }
 
   return (
     <>
       <div className="catalog__movies-list">
         {filteredMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
       </div>
-      <ShowMore filteredMoviesCount = {filteredMoviesCount}/>
+
+      {isShowingButton ? <ShowMore showMoreHandler = {showMoreHandler}/> : <></>}
     </>
   );
 };
