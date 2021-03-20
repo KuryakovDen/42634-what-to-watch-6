@@ -7,7 +7,7 @@ import {moviesType} from "../../validation";
 import {filterMoviesOnGenre} from "../../utils";
 import {DEFAULT_MOVIES_COUNT, DEFAULT_PAGE} from "../../const";
 
-const MoviesList = ({movies = [], genre}) => {
+const MoviesList = ({movies, genre}) => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -19,22 +19,13 @@ const MoviesList = ({movies = [], genre}) => {
     setPage(page + 1);
   };
 
-  let isShowingButton = true;
-
-  const renderedMoviesCount = page * DEFAULT_MOVIES_COUNT;
-  const allGenreMoviesCount = filterMoviesOnGenre(movies, genre).length;
-
-  const showedMovies = filterMoviesOnGenre(movies, genre)
-    .slice(0, renderedMoviesCount > movies.length ? movies.length : renderedMoviesCount);
-
-  if (showedMovies.length === allGenreMoviesCount) {
-    isShowingButton = false;
-  }
+  const preparedMovies = movies.slice(0, (page * DEFAULT_MOVIES_COUNT));
+  const isShowingButton = !(preparedMovies.length >= movies.length);
 
   return (
     <>
       <div className="catalog__movies-list">
-        {showedMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
+        {preparedMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
       </div>
       {isShowingButton && <ShowMore showMoreHandler = {showMoreHandler}/>}
     </>
@@ -43,7 +34,7 @@ const MoviesList = ({movies = [], genre}) => {
 
 const mapStateToProps = (state) => ({
   genre: state.activeGenre,
-  movies: state.moviesList
+  movies: filterMoviesOnGenre(state.moviesList, state.activeGenre)
 });
 
 MoviesList.propTypes = {
