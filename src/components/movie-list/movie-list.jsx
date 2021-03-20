@@ -1,23 +1,40 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {connect} from 'react-redux';
 
 import MovieCard from "../movie-card/movie-card";
+import ShowMore from "../show-more/show-more";
 import {moviesType} from "../../validation";
 import {filterMoviesOnGenre} from "../../utils";
+import {DEFAULT_MOVIES_COUNT, DEFAULT_PAGE} from "../../const";
 
-const MoviesList = ({movies = [], genre}) => {
-  const filteredMovies = filterMoviesOnGenre(movies, genre);
+const MoviesList = ({movies, genre}) => {
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    setPage(DEFAULT_PAGE);
+  }, [genre]);
+
+  const showMoreHandler = (evt) => {
+    evt.preventDefault();
+    setPage(page + 1);
+  };
+
+  const preparedMovies = movies.slice(0, (page * DEFAULT_MOVIES_COUNT));
+  const isShowingButton = !(preparedMovies.length >= movies.length);
 
   return (
-    <div className="catalog__movies-list">
-      {filteredMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
-    </div>
+    <>
+      <div className="catalog__movies-list">
+        {preparedMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
+      </div>
+      {isShowingButton && <ShowMore showMoreHandler = {showMoreHandler}/>}
+    </>
   );
 };
 
 const mapStateToProps = (state) => ({
   genre: state.activeGenre,
-  movies: state.moviesList
+  movies: filterMoviesOnGenre(state.moviesList, state.activeGenre)
 });
 
 MoviesList.propTypes = {

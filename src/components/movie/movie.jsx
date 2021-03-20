@@ -8,7 +8,7 @@ import reviews from "../../mocks/reviews";
 import MoreMovies from "../more-movies/more-movies";
 import {movies} from "../../mocks/movies";
 
-const Movie = ({movie = {}, history = {}}) => {
+const Movie = ({movie = {}, history}) => {
   return (
     <>
       <section className="movie-card movie-card--full">

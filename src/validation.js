@@ -52,4 +52,8 @@ const reviewsType = {
   )
 };
 
-export {promoMovieType, moviesType, genresType, reviewsType};
+const showMoreType = {
+  filteredMoviesCount: PropTypes.func,
+};
+
+export {promoMovieType, moviesType, genresType, reviewsType, showMoreType};
