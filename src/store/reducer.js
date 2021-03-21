@@ -3,7 +3,8 @@ import {DEFAULT_GENRE} from "../const";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
-  moviesList: []
+  moviesList: [],
+  isDataLoaded: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,7 +17,8 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_MOVIES:
       return {
         ...state,
-        moviesList: action.payload
+        moviesList: action.payload,
+        isDataLoaded: true
       };
   }
 
