@@ -13,6 +13,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         activeGenre: action.payload
       };
+    case ActionType.LOAD_MOVIES:
+      return {
+        ...state,
+        moviesList: action.payload
+      };
   }
 
   return state;
