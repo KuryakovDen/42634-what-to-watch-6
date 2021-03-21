@@ -4,9 +4,7 @@ import {connect} from "react-redux";
 
 import {moviesType} from "../../validation";
 import Tabs from "../tabs/tabs";
-import reviews from "../../mocks/reviews";
 import MoreMovies from "../more-movies/more-movies";
-import {movies} from "../../mocks/movies";
 
 const Movie = ({movie = {}, history}) => {
   return (
@@ -69,7 +67,7 @@ const Movie = ({movie = {}, history}) => {
                 height="327"/>
             </div>
 
-            <Tabs movie={movie} reviews={reviews}/>
+            <Tabs movie={movie}/>
           </div>
         </div>
       </section>
@@ -77,7 +75,7 @@ const Movie = ({movie = {}, history}) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <MoreMovies movies={movies} currentMovie={movie}></MoreMovies>
+          <MoreMovies currentMovie={movie}></MoreMovies>
         </section>
 
         <footer className="page-footer">
@@ -99,7 +97,7 @@ const Movie = ({movie = {}, history}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movie: state.moviesList[0]
+  movie: state.moviesList[0],
 });
 
 Movie.propTypes = {

@@ -1,10 +1,9 @@
-import {movies} from "../mocks/movies";
 import {ActionType} from "./action";
 import {DEFAULT_GENRE} from "../const";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
-  moviesList: movies
+  moviesList: []
 };
 
 const reducer = (state = initialState, action) => {

@@ -3,10 +3,9 @@ import {connect} from 'react-redux';
 
 import {genresType, moviesType} from "../../validation";
 import {ActionCreator} from "../../store/action";
-import {movies} from "../../mocks/movies";
 import {getAllGenres} from "../../utils";
 
-const GenresList = ({activeGenre, setGenreAction = {}}) => {
+const GenresList = ({activeGenre, movies, setGenreAction = {}}) => {
   const genres = getAllGenres(movies);
 
   const genreHandler = (evt, currentGenre) => {
@@ -30,7 +29,8 @@ const GenresList = ({activeGenre, setGenreAction = {}}) => {
 };
 
 const mapStateToProps = (state) => ({
-  activeGenre: state.activeGenre
+  activeGenre: state.activeGenre,
+  movies: state.moviesList
 });
 
 const mapDispatchToProps = (dispatch) => ({
