@@ -9,7 +9,7 @@ const ActionCreator = {
     payload: genre
   }),
   loadMovies: (movies) => ({
-    type: ActionType.GET_MOVIES_FOR_GENRE,
+    type: ActionType.LOAD_MOVIES,
     payload: movies
   })
 };

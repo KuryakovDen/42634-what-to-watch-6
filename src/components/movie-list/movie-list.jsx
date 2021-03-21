@@ -5,13 +5,13 @@ import MovieCard from "../movie-card/movie-card";
 import ShowMore from "../show-more/show-more";
 import {moviesType} from "../../validation";
 import {filterMoviesOnGenre} from "../../utils";
-import {DEFAULT_MOVIES_COUNT, DEFAULT_PAGE} from "../../const";
+import {DEFAULT_MOVIES_COUNT, DEFAULT_PAGE_COUNT} from "../../const";
 
 const MoviesList = ({movies, genre}) => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(DEFAULT_PAGE_COUNT);
 
   useEffect(() => {
-    setPage(DEFAULT_PAGE);
+    setPage(DEFAULT_PAGE_COUNT);
   }, [genre]);
 
   const showMoreHandler = (evt) => {
