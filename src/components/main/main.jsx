@@ -7,16 +7,18 @@ import {connect} from "react-redux";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchMoviesList} from "../../store/api-actions";
 
-const MainScreen = ({promoMovie = {}, isDataLoaded, onLoadData}) => {
+const MainScreen = ({movies, isLoaded, onLoadData}) => {
   useEffect(() => {
-    if (!isDataLoaded) {
+    if (!isLoaded) {
       onLoadData();
     }
-  }, [isDataLoaded]);
+  }, [isLoaded]);
 
-  if (!isDataLoaded) {
+  if (!isLoaded) {
     return <LoadingScreen/>;
   }
+
+  const promoMovie = movies[0];
 
   return (
     <>
@@ -145,8 +147,8 @@ const MainScreen = ({promoMovie = {}, isDataLoaded, onLoadData}) => {
 };
 
 const mapStateToProps = (state) => ({
-  promoMovie: state.moviesList[0],
-  isDataLoaded: state.isDataLoaded
+  movies: state.data,
+  isLoaded: state.isLoaded
 });
 
 const mapDispatchToProps = (dispatch) => ({

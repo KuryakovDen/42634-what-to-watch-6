@@ -57,7 +57,7 @@ const MyList = ({movies} = {}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.moviesList
+  movies: state.data
 });
 
 MyList.propTypes = {

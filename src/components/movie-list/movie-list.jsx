@@ -34,7 +34,7 @@ const MoviesList = ({movies, genre}) => {
 
 const mapStateToProps = (state) => ({
   genre: state.activeGenre,
-  movies: filterMoviesOnGenre(state.moviesList, state.activeGenre)
+  movies: filterMoviesOnGenre(state.data, state.activeGenre)
 });
 
 MoviesList.propTypes = {

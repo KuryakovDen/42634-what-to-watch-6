@@ -30,7 +30,7 @@ const GenresList = ({activeGenre, movies, setGenreAction = {}}) => {
 
 const mapStateToProps = (state) => ({
   activeGenre: state.activeGenre,
-  movies: state.moviesList
+  movies: state.data
 });
 
 const mapDispatchToProps = (dispatch) => ({

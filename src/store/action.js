@@ -1,6 +1,6 @@
 const ActionType = {
   GET_MOVIES_FOR_GENRE: `movie/getMoviesForGenre`,
-  LOAD_MOVIES: `data/loadMovies`
+  SET_MOVIES: `data/setMovies`
 };
 
 const ActionCreator = {
@@ -8,8 +8,8 @@ const ActionCreator = {
     type: ActionType.GET_MOVIES_FOR_GENRE,
     payload: genre
   }),
-  loadMovies: (movies) => ({
-    type: ActionType.LOAD_MOVIES,
+  setMovies: (movies) => ({
+    type: ActionType.SET_MOVIES,
     payload: movies
   })
 };
