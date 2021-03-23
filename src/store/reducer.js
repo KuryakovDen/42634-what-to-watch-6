@@ -4,9 +4,14 @@ import {DEFAULT_GENRE} from "../const";
 const initialState = {
   activeGenre: DEFAULT_GENRE,
   movies: {
-    isFetching: false,
+    isFetching: true,
     isLoaded: false,
     data: []
+  },
+  promoMovie: {
+    isFetching: true,
+    isLoaded: false,
+    data: {}
   }
 };
 

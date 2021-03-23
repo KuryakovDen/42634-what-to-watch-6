@@ -1,6 +1,7 @@
 const ActionType = {
   GET_MOVIES_FOR_GENRE: `movie/getMoviesForGenre`,
-  SET_MOVIES: `data/setMovies`
+  SET_MOVIES: `data/setMovies`,
+  SET_PROMO_MOVIE: `data/setPromoMovie`
 };
 
 const ActionCreator = {
