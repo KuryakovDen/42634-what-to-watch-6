@@ -4,8 +4,8 @@ import {DEFAULT_GENRE} from "../const";
 const initialState = {
   activeGenre: DEFAULT_GENRE,
   movies: {
-    isLoaded: false,
     isFetching: false,
+    isLoaded: false,
     data: []
   }
 };
