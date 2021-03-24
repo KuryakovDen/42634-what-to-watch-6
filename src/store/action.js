@@ -1,6 +1,7 @@
 const ActionType = {
   GET_MOVIES_FOR_GENRE: `movie/getMoviesForGenre`,
-  SET_MOVIES: `data/setMovies`
+  SET_MOVIES: `data/setMovies`,
+  REQUIRE_AUTH: `user/requireAuth`
 };
 
 const ActionCreator = {
@@ -11,6 +12,10 @@ const ActionCreator = {
   setMovies: ({isFetching, isLoaded, data}) => ({
     type: ActionType.SET_MOVIES,
     payload: {isFetching, isLoaded, data}
+  }),
+  requireAuth: (status) => ({
+    type: ActionType.SET_MOVIES,
+    payload: status
   })
 };
 

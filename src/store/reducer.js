@@ -23,6 +23,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         movies: action.payload
       };
+    case ActionType.REQUIRE_AUTH:
+      return {
+        ...state,
+        authorizationStatus: action.payload
+      };
   }
 
   return state;
