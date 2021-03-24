@@ -1,8 +1,9 @@
 import {ActionType} from "./action";
-import {DEFAULT_GENRE} from "../const";
+import {AuthorizationStatus, DEFAULT_GENRE} from "../const";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
   movies: {
     isFetching: true,
     isLoaded: false,
