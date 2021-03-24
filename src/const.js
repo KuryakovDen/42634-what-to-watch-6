@@ -7,6 +7,10 @@ const DEFAULT_TIMEOUT = 5000;
 const DEFAULT_GENRE = `All genres`;
 const BACKEND_URL = `https://6.react.pages.academy/wtw`;
 
+const HttpCode = {
+  UNAUTHORIZED: 401
+};
+
 const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`
@@ -20,5 +24,6 @@ export {
   DEFAULT_TIMEOUT,
   DEFAULT_GENRE,
   BACKEND_URL,
+  HttpCode,
   AuthorizationStatus
 };

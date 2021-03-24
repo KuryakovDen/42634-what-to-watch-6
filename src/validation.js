@@ -60,7 +60,7 @@ const privateRouteType = {
   render: PropTypes.func,
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,
-  authorizationStatus: PropTypes.string.isRequired
+  authorizationStatus: PropTypes.string
 };
 
 export {promoMovieType, moviesType, genresType, reviewsType, showMoreType, privateRouteType};
