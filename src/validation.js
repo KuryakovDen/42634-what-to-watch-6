@@ -56,4 +56,11 @@ const showMoreType = {
   filteredMoviesCount: PropTypes.func,
 };
 
-export {promoMovieType, moviesType, genresType, reviewsType, showMoreType};
+const privateRouteType = {
+  render: PropTypes.func,
+  path: PropTypes.string.isRequired,
+  exact: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired
+};
+
+export {promoMovieType, moviesType, genresType, reviewsType, showMoreType, privateRouteType};
