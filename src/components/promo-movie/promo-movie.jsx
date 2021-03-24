@@ -15,7 +15,7 @@ const PromoMovie = () => {
     "rating": 8.9,
     "scores_count": 240,
     "director": "Wes Andreson",
-    "starring": ["Bill Murray", "Edward Norton", "Jude Law", "Willem Dafoe", "Saoirse Ronan"],
+    "starring": ["Bill Murray", "Edward Norton", "Jude Law", "Willem Dafoe", `Saoirse Ronan`],
     "run_time": 99,
     "genre": "Comedy",
     "released": 2014,
