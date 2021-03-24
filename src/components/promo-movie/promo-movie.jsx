@@ -1,27 +1,6 @@
 import React from 'react';
-import {connect} from "react-redux";
 
 const PromoMovie = () => {
-  const promoMovie = {
-    "id": 1,
-    "name": `The Grand Budapest Hotel`,
-    "poster_image": `img/the-grand-budapest-hotel-poster.jpg`,
-    "preview_image": `img/the-grand-budapest-hotel.jpg`,
-    "background_image": `img/the-grand-budapest-hotel-bg.jpg`,
-    "background_color": `#ffffff`,
-    "video_link": `https://some-link`,
-    "preview_video_link": `https://some-link`,
-    "description": `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
-    "rating": 8.9,
-    "scores_count": 240,
-    "director": `Wes Andreson`,
-    "starring": [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
-    "run_time": 99,
-    "genre": `Comedy`,
-    "released": 2014,
-    "is_favorite": false
-  };
-
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -54,10 +33,10 @@ const PromoMovie = () => {
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{promoMovie.name}</h2>
+            <h2 className="movie-card__title">The Grand Budapest Hotel poster</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{promoMovie.genre}</span>
-              <span className="movie-card__year">{promoMovie.released}</span>
+              <span className="movie-card__genre">Comedy</span>
+              <span className="movie-card__year">2014</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -81,9 +60,4 @@ const PromoMovie = () => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.data
-});
-
 export {PromoMovie};
-export default connect(mapStateToProps, null)(PromoMovie);
