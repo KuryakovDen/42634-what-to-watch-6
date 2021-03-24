@@ -90,7 +90,7 @@ const MainScreen = ({isLoaded, onLoadData}) => {
 };
 
 const mapStateToProps = (state) => ({
-  isLoaded: state.isLoaded
+  isLoaded: state.movies.isLoaded
 });
 
 const mapDispatchToProps = (dispatch) => ({
