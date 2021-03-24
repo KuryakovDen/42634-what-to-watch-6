@@ -52,7 +52,7 @@ const Tabs = ({movie = {}, reviews = {}}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movie: state.data[0]
+  movie: state.movies.data[0]
 });
 
 Tabs.propTypes = {

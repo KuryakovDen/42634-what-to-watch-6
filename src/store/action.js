@@ -14,7 +14,7 @@ const ActionCreator = {
     payload: {isFetching, isLoaded, data}
   }),
   requireAuth: (status) => ({
-    type: ActionType.SET_MOVIES,
+    type: ActionType.REQUIRE_AUTH,
     payload: status
   })
 };
