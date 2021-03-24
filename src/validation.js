@@ -56,6 +56,10 @@ const showMoreType = {
   filteredMoviesCount: PropTypes.func,
 };
 
+const authType = {
+  authorizationStatus: PropTypes.string,
+};
+
 const signInType = {
   onSubmit: PropTypes.func,
 };
@@ -67,4 +71,4 @@ const privateRouteType = {
   authorizationStatus: PropTypes.string
 };
 
-export {promoMovieType, moviesType, genresType, reviewsType, showMoreType, signInType, privateRouteType};
+export {promoMovieType, moviesType, genresType, reviewsType, showMoreType, authType, signInType, privateRouteType};
