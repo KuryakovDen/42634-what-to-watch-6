@@ -57,7 +57,7 @@ const Review = ({movie = {}}) => (
 );
 
 const mapStateToProps = (state) => ({
-  movie: state.moviesList[0]
+  movie: state.data[0]
 });
 
 Review.propTypes = {

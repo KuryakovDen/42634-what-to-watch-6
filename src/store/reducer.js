@@ -1,10 +1,13 @@
-import {movies} from "../mocks/movies";
 import {ActionType} from "./action";
 import {DEFAULT_GENRE} from "../const";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
-  moviesList: movies
+  movies: {
+    isFetching: true,
+    isLoaded: false,
+    data: []
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,6 +16,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         activeGenre: action.payload
+      };
+    case ActionType.SET_MOVIES:
+      return {
+        ...state,
+        movies: action.payload
       };
   }
 

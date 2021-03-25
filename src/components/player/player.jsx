@@ -45,7 +45,7 @@ const Player = ({movie = {}}) => (
 );
 
 const mapStateToProps = (state) => ({
-  movie: state.moviesList[0]
+  movie: state.data[0]
 });
 
 Player.propTypes = {
