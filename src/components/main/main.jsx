@@ -6,7 +6,7 @@ import GenresList from "../genres-list/genres-list";
 import {connect} from "react-redux";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchMoviesList} from "../../store/api-actions";
-import {PromoMovie} from "../promo-movie/promo-movie";
+import PromoMovie from "../promo-movie/promo-movie";
 
 const MainScreen = ({isLoaded, onLoadData}) => {
   useEffect(() => {

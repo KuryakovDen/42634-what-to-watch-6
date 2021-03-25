@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {AuthorizationStatus} from "../../const";
 import {Link} from "react-router-dom";
+
+import {AuthorizationStatus} from "../../const";
 import {userType} from "../../validation";
 
 const User = ({authStatus}) => {

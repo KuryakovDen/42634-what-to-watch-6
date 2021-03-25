@@ -1,5 +1,7 @@
 import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
+import {connect} from "react-redux";
+
 import {AuthorizationStatus} from "../../const";
 import {privateRouteType} from "../../validation";
 
@@ -19,8 +21,13 @@ const PrivateRoute = ({render, path, exact, authorizationStatus}) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  authorizationStatus: state.authorizationStatus
+});
+
 PrivateRoute.propTypes = {
   ...privateRouteType
 };
 
-export default PrivateRoute;
+export {PrivateRoute};
+export default connect(mapStateToProps, null)(PrivateRoute);

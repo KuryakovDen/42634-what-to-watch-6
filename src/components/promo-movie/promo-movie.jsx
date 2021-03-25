@@ -60,4 +60,4 @@ const PromoMovie = () => {
   );
 };
 
-export {PromoMovie};
+export default PromoMovie;
