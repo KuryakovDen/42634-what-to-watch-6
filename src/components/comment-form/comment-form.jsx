@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {MIN_REVIEW_LENGTH, MAX_REVIEW_LENGTH} from "../../const";
+
 const CommentForm = () => {
   const [commentForm, submitCommentForm] = React.useState({
     rating: 0,
@@ -49,8 +51,15 @@ const CommentForm = () => {
         </div>
 
         <div className="add-review__text">
-          <textarea onChange={setField} className="add-review__textarea" name="review-text" id="review-text"
-            placeholder="Review text"></textarea>
+          <textarea
+            className="add-review__textarea"
+            minLength={MIN_REVIEW_LENGTH}
+            maxLength={MAX_REVIEW_LENGTH}
+            onChange={setField}
+            name="review-text"
+            id="review-text"
+            placeholder="Review text"
+          ></textarea>
           <div className="add-review__submit">
             <button className="add-review__btn" type="submit">Post</button>
           </div>

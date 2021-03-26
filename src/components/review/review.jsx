@@ -28,7 +28,7 @@ const Review = ({movie}) => {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to="/films/1" className="breadcrumbs__link">{movie.name}</Link>
+                  <Link to={`/films/${movie.id}`} className="breadcrumbs__link">{movie.name}</Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
