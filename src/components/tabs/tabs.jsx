@@ -3,8 +3,9 @@ import React from "react";
 import MovieOverview from "../movie-overview/movie-overview";
 import MovieDetails from "../movie-details/movie-details";
 import MovieReviews from "../movie-reviews/movie-reviews";
+import {tabsMovieType} from "../../validation";
 
-const Tabs = () => {
+const Tabs = ({match}) => {
   const TabTitles = {
     "OVERVIEW": `Overview`,
     "DETAILS": `Details`,
@@ -21,7 +22,7 @@ const Tabs = () => {
   const getActualTabComponent = (currentTab) => {
     switch (currentTab) {
       case TabTitles.DETAILS: return <MovieDetails/>;
-      case TabTitles.REVIEWS: return <MovieReviews/>;
+      case TabTitles.REVIEWS: return <MovieReviews match={match}/>;
 
       default: return <MovieOverview/>;
     }
@@ -47,6 +48,10 @@ const Tabs = () => {
       {getActualTabComponent(activeTab)}
     </div>
   );
+};
+
+Tabs.propTypes = {
+  ...tabsMovieType
 };
 
 export default Tabs;

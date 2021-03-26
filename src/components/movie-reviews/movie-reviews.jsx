@@ -6,10 +6,12 @@ import {reviewsType} from "../../validation";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchCommentsList} from "../../store/api-actions";
 
-const MovieReviews = ({isLoaded, reviews, onLoadReviews}) => {
+const MovieReviews = ({isLoaded, reviews, onLoadReviews, match}) => {
+  const movieId = match.params.id;
+
   useEffect(() => {
     if (!isLoaded) {
-      onLoadReviews();
+      onLoadReviews(movieId);
     }
   }, [isLoaded]);
 
@@ -34,12 +36,13 @@ const MovieReviews = ({isLoaded, reviews, onLoadReviews}) => {
 
 const mapStateToProps = (state) => ({
   isLoaded: state.comments.isLoaded,
-  reviews: state.comments.data
+  reviews: state.comments.data,
+  movie: state.currentMovie.data.id
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadReviews() {
-    dispatch(fetchCommentsList());
+  onLoadReviews(movieId) {
+    dispatch(fetchCommentsList(movieId));
   }
 });
 

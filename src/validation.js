@@ -65,6 +65,14 @@ const signInType = {
   onSubmit: PropTypes.func,
 };
 
+const tabsMovieType = {
+  match: PropTypes.shape({
+    "params": PropTypes.shape({
+      "id": PropTypes.string.isRequired
+    })
+  })
+};
+
 const privateRouteType = {
   render: PropTypes.func,
   path: PropTypes.string.isRequired,
@@ -72,4 +80,14 @@ const privateRouteType = {
   authorizationStatus: PropTypes.string
 };
 
-export {promoMovieType, moviesType, genresType, reviewsType, showMoreType, userType, signInType, privateRouteType};
+export {
+  promoMovieType,
+  moviesType,
+  genresType,
+  reviewsType,
+  showMoreType,
+  userType,
+  signInType,
+  tabsMovieType,
+  privateRouteType
+};

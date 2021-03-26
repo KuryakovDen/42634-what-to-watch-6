@@ -19,7 +19,7 @@ const fetchCurrentMovie = (movieId) => (dispatch, _getState, api) => (
     .catch(() => dispatch(ActionCreator.setCurrentMovie({isFetching: false, isLoaded: false, data: null})))
 );
 
-const fetchCommentsList = (movieId = 5) => (dispatch, _getState, api) => (
+const fetchCommentsList = (movieId) => (dispatch, _getState, api) => (
   api.get(`/comments/${movieId}`)
     .then(({data}) => dispatch(ActionCreator.setCommentsMovie({isFetching: false, isLoaded: true, data})))
     .catch(() => dispatch(ActionCreator.setCommentsMovie({isFetching: false, isLoaded: false, data: null})))

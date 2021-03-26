@@ -83,7 +83,7 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus, match}) => {
                 height="327"/>
             </div>
 
-            <Tabs movie={movie}/>
+            <Tabs movie={movie} match={match}/>
           </div>
         </div>
       </section>
