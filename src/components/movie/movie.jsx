@@ -7,11 +7,12 @@ import Tabs from "../tabs/tabs";
 import MoreMovies from "../more-movies/more-movies";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchCurrentMovie} from "../../store/api-actions";
+import {AuthorizationStatus} from "../../const";
 
-const Movie = ({isLoaded, onLoadMovie, movie, history}) => {
+const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus}) => {
   useEffect(() => {
     if (!isLoaded) {
-      onLoadMovie(1);
+      onLoadMovie();
     }
   }, [isLoaded]);
 
@@ -66,7 +67,7 @@ const Movie = ({isLoaded, onLoadMovie, movie, history}) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to={`${history.location.pathname}/review`} className="btn movie-card__button">Add review</Link>
+                {authStatus === AuthorizationStatus.AUTH && <Link to={`${history.location.pathname}/review`} className="btn movie-card__button">Add review</Link>}
               </div>
             </div>
           </div>
@@ -110,12 +111,13 @@ const Movie = ({isLoaded, onLoadMovie, movie, history}) => {
 
 const mapStateToProps = (state) => ({
   isLoaded: state.currentMovie.isLoaded,
-  movie: state.currentMovie.data
+  movie: state.currentMovie.data,
+  authStatus: state.authorizationStatus
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadMovie(movieId) {
-    dispatch(fetchCurrentMovie(movieId));
+  onLoadMovie() {
+    dispatch(fetchCurrentMovie());
   }
 });
 
