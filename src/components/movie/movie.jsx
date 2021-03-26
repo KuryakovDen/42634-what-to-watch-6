@@ -91,7 +91,7 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus, match}) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <MoreMovies currentMovie={movie}></MoreMovies>
+          <MoreMovies></MoreMovies>
         </section>
 
         <footer className="page-footer">
