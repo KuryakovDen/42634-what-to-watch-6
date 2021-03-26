@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 
 import {moviesType} from "../../validation";
 
-const Player = ({movie = {}}) => (
-  <>
+const Player = ({movie}) => {
+  return (
     <div className="player">
       <video src={movie.video_link} className="player__video" poster={movie.poster_image}></video>
 
@@ -18,7 +18,8 @@ const Player = ({movie = {}}) => (
               style={{
                 left: `30%`
               }}
-            >Toggler</div>
+            >Toggler
+            </div>
           </div>
           <div className="player__time-value">1:30:29</div>
         </div>
@@ -41,11 +42,11 @@ const Player = ({movie = {}}) => (
         </div>
       </div>
     </div>
-  </>
-);
+  );
+};
 
 const mapStateToProps = (state) => ({
-  movie: state.movies.data[0]
+  movie: state.currentMovie.data
 });
 
 Player.propTypes = {
