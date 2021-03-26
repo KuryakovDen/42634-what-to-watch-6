@@ -1,12 +1,24 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {moviesType} from "../../validation";
 import Tabs from "../tabs/tabs";
 import MoreMovies from "../more-movies/more-movies";
+import LoadingScreen from "../loading-screen/loading-screen";
+import {fetchCurrentMovie} from "../../store/api-actions";
 
-const Movie = ({movie = {}, history}) => {
+const Movie = ({isLoaded, onLoadMovie, movie, history}) => {
+  useEffect(() => {
+    if (!isLoaded) {
+      onLoadMovie(1);
+    }
+  }, [isLoaded]);
+
+  if (!isLoaded) {
+    return <LoadingScreen/>;
+  }
+
   return (
     <>
       <section className="movie-card movie-card--full">
@@ -97,7 +109,14 @@ const Movie = ({movie = {}, history}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movie: state.movies.data[0],
+  isLoaded: state.currentMovie.isLoaded,
+  movie: state.currentMovie.data
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadMovie(movieId) {
+    dispatch(fetchCurrentMovie(movieId));
+  }
 });
 
 Movie.propTypes = {
@@ -105,4 +124,4 @@ Movie.propTypes = {
 };
 
 export {Movie};
-export default connect(mapStateToProps, null)(Movie);
+export default connect(mapStateToProps, mapDispatchToProps)(Movie);

@@ -20,7 +20,7 @@ const MoreMovies = ({movies, currentMovie = {}}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.data
+  movies: state.movies.data
 });
 
 MoreMovies.propTypes = {

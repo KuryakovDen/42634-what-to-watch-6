@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from "react-redux";
 
 import {moviesType} from "../../validation";
 import {getMovieRuntime} from "../../utils";
@@ -37,8 +38,13 @@ const MovieDetails = ({movie = {}}) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  movie: state.currentMovie.data
+});
+
 MovieDetails.propTypes = {
   ...moviesType
 };
 
-export default MovieDetails;
+export {MovieDetails};
+export default connect(mapStateToProps, null)(MovieDetails);
