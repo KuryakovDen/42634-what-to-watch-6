@@ -10,10 +10,11 @@ import {fetchCurrentMovie} from "../../store/api-actions";
 import {AuthorizationStatus} from "../../const";
 import {User} from "../user/user";
 
-const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus}) => {
+const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus, match}) => {
+  const movieId = match.params.id;
   useEffect(() => {
     if (!isLoaded) {
-      onLoadMovie();
+      onLoadMovie(movieId);
     }
   }, [isLoaded]);
 
@@ -118,8 +119,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadMovie() {
-    dispatch(fetchCurrentMovie());
+  onLoadMovie(movieId) {
+    dispatch(fetchCurrentMovie(movieId));
   }
 });
 

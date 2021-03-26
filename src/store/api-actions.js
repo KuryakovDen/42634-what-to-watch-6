@@ -7,7 +7,7 @@ const fetchMoviesList = () => (dispatch, _getState, api) => (
     .catch(() => dispatch(ActionCreator.setMovies({isFetching: false, isLoaded: false, data: null})))
 );
 
-const fetchCurrentMovie = (movieId = 5) => (dispatch, _getState, api) => (
+const fetchCurrentMovie = (movieId) => (dispatch, _getState, api) => (
   api.get(`/films/${movieId}`)
     .then(({data}) => dispatch(ActionCreator.setCurrentMovie({isFetching: false, isLoaded: true, data})))
     .catch(() => dispatch(ActionCreator.setCurrentMovie({isFetching: false, isLoaded: false, data: null})))

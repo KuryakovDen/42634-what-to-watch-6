@@ -18,7 +18,7 @@ const App = () => (
         <Route exact path={`/login`} component = {SignIn}/>
         <PrivateRoute exact path={`/mylist`} render={() => <MyList/>}/>
         <Route exact path={`/films/:id`} component = {Movie}/>
-        <PrivateRoute exact path={`/films/:id/review`} render={() => <Review/>}/>
+        <PrivateRoute exact path={`/films/:id/review`} render={() => <Review/>} match/>
         <Route exact path={`/player/:id`} component = {Player}/>
         <Route component = {NotFound}/>
       </Switch>
