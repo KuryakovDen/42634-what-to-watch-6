@@ -2,6 +2,7 @@ const ActionType = {
   GET_MOVIES_FOR_GENRE: `movie/getMoviesForGenre`,
   SET_MOVIES: `data/setMovies`,
   SET_CURRENT_MOVIE: `data/setCurrentMovie`,
+  SET_COMMENTS_MOVIE: `data/setCommentsMovie`,
   REQUIRE_AUTH: `user/requireAuth`
 };
 
@@ -16,6 +17,10 @@ const ActionCreator = {
   }),
   setCurrentMovie: ({isFetching, isLoaded, data}) => ({
     type: ActionType.SET_CURRENT_MOVIE,
+    payload: {isFetching, isLoaded, data}
+  }),
+  setCommentsMovie: ({isFetching, isLoaded, data}) => ({
+    type: ActionType.SET_COMMENTS_MOVIE,
     payload: {isFetching, isLoaded, data}
   }),
   requireAuth: (status) => ({

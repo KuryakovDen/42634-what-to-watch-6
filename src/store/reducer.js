@@ -13,6 +13,11 @@ const initialState = {
     isFetching: true,
     isLoaded: false,
     data: {}
+  },
+  comments: {
+    isFetching: true,
+    isLoaded: false,
+    data: []
   }
 };
 
@@ -32,6 +37,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentMovie: action.payload
+      };
+    case ActionType.SET_COMMENTS_MOVIE:
+      return {
+        ...state,
+        comments: action.payload
       };
     case ActionType.REQUIRE_AUTH:
       return {

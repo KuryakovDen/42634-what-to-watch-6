@@ -8,6 +8,7 @@ import MoreMovies from "../more-movies/more-movies";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchCurrentMovie} from "../../store/api-actions";
 import {AuthorizationStatus} from "../../const";
+import {User} from "../user/user";
 
 const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus}) => {
   useEffect(() => {
@@ -40,9 +41,7 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus}) => {
             </div>
 
             <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
+              <User/>
             </div>
           </header>
 
@@ -67,7 +66,10 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus}) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                {authStatus === AuthorizationStatus.AUTH && <Link to={`${history.location.pathname}/review`} className="btn movie-card__button">Add review</Link>}
+                {
+                  authStatus === AuthorizationStatus.AUTH &&
+                  <Link to={`${history.location.pathname}/review`} className="btn movie-card__button">Add review</Link>
+                }
               </div>
             </div>
           </div>

@@ -7,10 +7,16 @@ const fetchMoviesList = () => (dispatch, _getState, api) => (
     .catch(() => dispatch(ActionCreator.setMovies({isFetching: false, isLoaded: false, data: null})))
 );
 
-const fetchCurrentMovie = () => (dispatch, _getState, api) => (
-  api.get(`/films/1`)
+const fetchCurrentMovie = (movieId = 5) => (dispatch, _getState, api) => (
+  api.get(`/films/${movieId}`)
     .then(({data}) => dispatch(ActionCreator.setCurrentMovie({isFetching: false, isLoaded: true, data})))
     .catch(() => dispatch(ActionCreator.setCurrentMovie({isFetching: false, isLoaded: false, data: null})))
+);
+
+const fetchCommentsList = (movieId = 5) => (dispatch, _getState, api) => (
+  api.get(`/comments/${movieId}`)
+    .then(({data}) => dispatch(ActionCreator.setCommentsMovie({isFetching: false, isLoaded: true, data})))
+    .catch(() => dispatch(ActionCreator.setCommentsMovie({isFetching: false, isLoaded: false, data: null})))
 );
 
 const checkAuth = () => (dispatch, _getState, api) => (
@@ -24,4 +30,4 @@ const login = ({email, password}) => (dispatch, _getState, api) => (
     .then(() => dispatch(ActionCreator.requireAuth(AuthorizationStatus.AUTH)))
 );
 
-export {fetchMoviesList, fetchCurrentMovie, checkAuth, login};
+export {fetchMoviesList, fetchCurrentMovie, fetchCommentsList, checkAuth, login};
