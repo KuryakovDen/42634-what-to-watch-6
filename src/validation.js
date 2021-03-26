@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 
 const promoMovieType = {
-  movie: PropTypes.shape({
-    "id": PropTypes.number.isRequired,
-    "name": PropTypes.string.isRequired,
-    "poster_image": PropTypes.string.isRequired,
-    "preview_image": PropTypes.string.isRequired
+  isLoaded: PropTypes.bool,
+  onLoadPromo: PropTypes.func,
+  promo: PropTypes.shape({
+    "name": PropTypes.string,
+    "poster_image": PropTypes.string,
+    "preview_image": PropTypes.string
   })
 };
 

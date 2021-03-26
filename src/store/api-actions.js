@@ -7,6 +7,12 @@ const fetchMoviesList = () => (dispatch, _getState, api) => (
     .catch(() => dispatch(ActionCreator.setMovies({isFetching: false, isLoaded: false, data: null})))
 );
 
+const fetchPromoMovie = () => (dispatch, _getState, api) => (
+  api.get(`/films/promo`)
+    .then(({data}) => dispatch(ActionCreator.setPromoMovie({isFetching: false, isLoaded: true, data})))
+    .catch(() => dispatch(ActionCreator.setPromoMovie({isFetching: false, isLoaded: false, data: null})))
+);
+
 const fetchCurrentMovie = (movieId) => (dispatch, _getState, api) => (
   api.get(`/films/${movieId}`)
     .then(({data}) => dispatch(ActionCreator.setCurrentMovie({isFetching: false, isLoaded: true, data})))
@@ -30,4 +36,11 @@ const login = ({email, password}) => (dispatch, _getState, api) => (
     .then(() => dispatch(ActionCreator.requireAuth(AuthorizationStatus.AUTH)))
 );
 
-export {fetchMoviesList, fetchCurrentMovie, fetchCommentsList, checkAuth, login};
+export {
+  fetchMoviesList,
+  fetchPromoMovie,
+  fetchCurrentMovie,
+  fetchCommentsList,
+  checkAuth,
+  login
+};

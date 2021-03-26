@@ -9,6 +9,11 @@ const initialState = {
     isLoaded: false,
     data: []
   },
+  promo: {
+    isFetching: true,
+    isLoaded: false,
+    data: {}
+  },
   currentMovie: {
     isFetching: true,
     isLoaded: false,
@@ -32,6 +37,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         movies: action.payload
+      };
+    case ActionType.SET_PROMO_MOVIE:
+      return {
+        ...state,
+        promo: action.payload
       };
     case ActionType.SET_CURRENT_MOVIE:
       return {
