@@ -1,9 +1,9 @@
 import {ActionType} from "./action";
-import {AuthorizationStatus, DEFAULT_GENRE} from "../const";
+import {DEFAULT_GENRE} from "../const";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
-  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  isAuthorized: true,
   movies: {
     isFetching: true,
     isLoaded: false,
@@ -26,7 +26,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.REQUIRE_AUTH:
       return {
         ...state,
-        authorizationStatus: action.payload
+        isAuthorized: action.payload
       };
   }
 

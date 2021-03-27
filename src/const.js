@@ -11,11 +11,6 @@ const HttpCode = {
   UNAUTHORIZED: 401
 };
 
-const AuthorizationStatus = {
-  AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`
-};
-
 export {
   MAX_LIKE_MOVIES_LENGTH,
   DELAY_VIDEO,
@@ -24,6 +19,5 @@ export {
   DEFAULT_TIMEOUT,
   DEFAULT_GENRE,
   BACKEND_URL,
-  HttpCode,
-  AuthorizationStatus
+  HttpCode
 };

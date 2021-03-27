@@ -1,5 +1,4 @@
 import {ActionCreator} from "./action";
-import {AuthorizationStatus} from "../const";
 
 const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
@@ -9,13 +8,13 @@ const fetchMoviesList = () => (dispatch, _getState, api) => (
 
 const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
-    .then(() => dispatch(ActionCreator.requireAuth(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(ActionCreator.requireAuth(true)))
     .catch(() => {})
 );
 
 const login = ({email, password}) => (dispatch, _getState, api) => (
   api.post(`/login`, {email, password})
-    .then(() => dispatch(ActionCreator.requireAuth(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(ActionCreator.requireAuth(true)))
 );
 
 export {fetchMoviesList, checkAuth, login};
