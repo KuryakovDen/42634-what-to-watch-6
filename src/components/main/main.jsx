@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
+import {connect} from "react-redux";
 
 import {moviesType, promoMovieType} from "../../validation";
 import MoviesList from "../movie-list/movie-list";
 import GenresList from "../genres-list/genres-list";
-import {connect} from "react-redux";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchMoviesList} from "../../store/api-actions";
 import PromoMovie from "../promo-movie/promo-movie";
