@@ -15,6 +15,7 @@ const checkAuth = () => (dispatch, _getState, api) => (
 const login = ({email, password}) => (dispatch, _getState, api) => (
   api.post(`/login`, {email, password})
     .then(() => dispatch(ActionCreator.requireAuth(true)))
+    .then(() => (window.location.href = `/`))
 );
 
 export {fetchMoviesList, checkAuth, login};

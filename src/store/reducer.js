@@ -3,7 +3,7 @@ import {DEFAULT_GENRE} from "../const";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
-  isAuthorized: true,
+  isAuthorized: false,
   movies: {
     isFetching: true,
     isLoaded: false,
