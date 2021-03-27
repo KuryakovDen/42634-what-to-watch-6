@@ -1,8 +1,9 @@
 import React from 'react';
 
 import {User} from "../user/user";
+import {userType} from "../../validation";
 
-const PromoMovie = () => {
+const PromoMovie = ({isAuthorized = false}) => {
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -21,7 +22,7 @@ const PromoMovie = () => {
         </div>
 
         <div className="user-block">
-          <User/>
+          <User isAuthorized={isAuthorized}/>
         </div>
       </header>
 
@@ -59,5 +60,10 @@ const PromoMovie = () => {
     </section>
   );
 };
+
+PromoMovie.propTypes = {
+  ...userType
+};
+
 
 export default PromoMovie;

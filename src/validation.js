@@ -57,7 +57,7 @@ const showMoreType = {
 };
 
 const userType = {
-  authStatus: PropTypes.string,
+  isAuthorized: PropTypes.bool.isRequired,
 };
 
 const signInType = {

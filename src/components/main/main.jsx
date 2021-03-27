@@ -8,7 +8,7 @@ import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchMoviesList} from "../../store/api-actions";
 import PromoMovie from "../promo-movie/promo-movie";
 
-const MainScreen = ({isLoaded, onLoadData}) => {
+const MainScreen = ({isLoaded, onLoadData, isAuthorized}) => {
   useEffect(() => {
     if (!isLoaded) {
       onLoadData();
@@ -63,7 +63,7 @@ const MainScreen = ({isLoaded, onLoadData}) => {
           </symbol>
         </svg>
       </div>
-      <PromoMovie/>
+      <PromoMovie isAuthorized={isAuthorized}/>
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
@@ -90,7 +90,8 @@ const MainScreen = ({isLoaded, onLoadData}) => {
 };
 
 const mapStateToProps = (state) => ({
-  isLoaded: state.movies.isLoaded
+  isLoaded: state.movies.isLoaded,
+  isAuthorized: state.isAuthorized
 });
 
 const mapDispatchToProps = (dispatch) => ({
