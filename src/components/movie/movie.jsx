@@ -9,7 +9,7 @@ import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchCurrentMovie} from "../../store/api-actions";
 import User from "../user/user";
 
-const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus, match}) => {
+const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match}) => {
   const movieId = match.params.id;
   useEffect(() => {
     if (!isLoaded) {
@@ -45,7 +45,7 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus, match}) => {
             </div>
 
             <div className="user-block">
-              <User/>
+              <User isAuthorized={isAuthorized}/>
             </div>
           </header>
 
@@ -71,7 +71,7 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus, match}) => {
                   <span>My list</span>
                 </button>
                 {
-                  authStatus &&
+                  isAuthorized &&
                   <Link to={`${history.location.pathname}/review`} className="btn movie-card__button">Add review</Link>
                 }
               </div>
@@ -118,7 +118,7 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus, match}) => {
 const mapStateToProps = (state) => ({
   isLoaded: state.currentMovie.isLoaded,
   movie: state.currentMovie.data,
-  authStatus: state.isAuthorized
+  isAuthorized: state.isAuthorized
 });
 
 const mapDispatchToProps = (dispatch) => ({
