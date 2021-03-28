@@ -7,8 +7,7 @@ import Tabs from "../tabs/tabs";
 import MoreMovies from "../more-movies/more-movies";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchCurrentMovie} from "../../store/api-actions";
-import {AuthorizationStatus} from "../../const";
-import {User} from "../user/user";
+import User from "../user/user";
 
 const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus, match}) => {
   const movieId = match.params.id;
@@ -68,7 +67,7 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus, match}) => {
                   <span>My list</span>
                 </button>
                 {
-                  authStatus === AuthorizationStatus.AUTH &&
+                  authStatus &&
                   <Link to={`${history.location.pathname}/review`} className="btn movie-card__button">Add review</Link>
                 }
               </div>
@@ -115,7 +114,7 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus, match}) => {
 const mapStateToProps = (state) => ({
   isLoaded: state.currentMovie.isLoaded,
   movie: state.currentMovie.data,
-  authStatus: state.authorizationStatus
+  authStatus: state.isAuthorized
 });
 
 const mapDispatchToProps = (dispatch) => ({

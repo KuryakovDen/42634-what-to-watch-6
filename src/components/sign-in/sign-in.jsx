@@ -1,14 +1,13 @@
 import React, {useRef} from 'react';
-import {Link, useHistory} from "react-router-dom";
-import {signInType} from "../../validation";
+import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+
+import {signInType} from "../../validation";
 import {login} from "../../store/api-actions";
 
 const SignIn = ({onSubmit}) => {
   const emailRef = useRef();
   const passwordRef = useRef();
-
-  const history = useHistory();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -17,8 +16,6 @@ const SignIn = ({onSubmit}) => {
       email: emailRef.current.value,
       password: passwordRef.current.value
     };
-
-    history.push(`/`);
 
     onSubmit(authData);
   };

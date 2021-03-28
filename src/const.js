@@ -9,16 +9,6 @@ const MAX_REVIEW_LENGTH = 400;
 const DEFAULT_GENRE = `All genres`;
 const BACKEND_URL = `https://6.react.pages.academy/wtw`;
 
-const HttpCode = {
-  UNAUTHORIZED: 401,
-  NOT_FOUND: 404
-};
-
-const AuthorizationStatus = {
-  AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`
-};
-
 export {
   MAX_LIKE_MOVIES_LENGTH,
   DELAY_VIDEO,
@@ -28,7 +18,5 @@ export {
   MIN_REVIEW_LENGTH,
   MAX_REVIEW_LENGTH,
   DEFAULT_GENRE,
-  BACKEND_URL,
-  HttpCode,
-  AuthorizationStatus
+  BACKEND_URL
 };

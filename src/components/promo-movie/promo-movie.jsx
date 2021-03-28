@@ -1,17 +1,16 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 
-import {User} from "../user/user";
+import User from "../user/user";
 import {fetchPromoMovie} from "../../store/api-actions";
 import {promoMovieType} from "../../validation";
 
-const PromoMovie = ({isLoaded, onLoadPromo, promo}) => {
+const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized}) => {
   useEffect(() => {
     if (!isLoaded) {
       onLoadPromo();
     }
   }, [isLoaded]);
-
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -30,7 +29,7 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo}) => {
         </div>
 
         <div className="user-block">
-          <User/>
+          <User isAuthorized={isAuthorized}/>
         </div>
       </header>
 
@@ -69,9 +68,11 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo}) => {
   );
 };
 
+
 const mapStateToProps = (state) => ({
   isLoaded: state.promo.isLoaded,
-  promo: state.promo.data
+  promo: state.promo.data,
+  isAuthorized: state.isAuthorized
 });
 
 const mapDispatchToProps = (dispatch) => ({
