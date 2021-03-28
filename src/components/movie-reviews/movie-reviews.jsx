@@ -15,6 +15,10 @@ const MovieReviews = ({isLoaded, reviews, onLoadReviews, match}) => {
     }
   }, [isLoaded]);
 
+  useEffect(() => {
+    onLoadReviews(movieId);
+  }, [movieId]);
+
   if (!isLoaded) {
     return <LoadingScreen/>;
   }
