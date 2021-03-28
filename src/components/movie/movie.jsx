@@ -17,6 +17,10 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, authStatus, match}) => {
     }
   }, [isLoaded]);
 
+  useEffect(() => {
+    onLoadMovie(movieId);
+  }, [movieId]);
+
   if (!isLoaded) {
     return <LoadingScreen/>;
   }
