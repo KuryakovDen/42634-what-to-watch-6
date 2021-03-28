@@ -1,6 +1,9 @@
 import React from 'react';
 
-const PromoMovie = () => {
+import {User} from "../user/user";
+import {userType} from "../../validation";
+
+const PromoMovie = ({isAuthorized = false}) => {
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -19,9 +22,7 @@ const PromoMovie = () => {
         </div>
 
         <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-          </div>
+          <User isAuthorized={isAuthorized}/>
         </div>
       </header>
 
@@ -60,4 +61,9 @@ const PromoMovie = () => {
   );
 };
 
-export {PromoMovie};
+PromoMovie.propTypes = {
+  ...userType
+};
+
+
+export default PromoMovie;

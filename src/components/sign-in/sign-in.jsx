@@ -1,8 +1,26 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
-const SignIn = () => (
-  <>
+import {signInType} from "../../validation";
+import {login} from "../../store/api-actions";
+
+const SignIn = ({onSubmit}) => {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
+    const authData = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value
+    };
+
+    onSubmit(authData);
+  };
+
+  return (
     <div className="user-page">
       <header className="page-header user-page__head">
         <div className="logo">
@@ -17,15 +35,25 @@ const SignIn = () => (
       </header>
 
       <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form">
+        <form action="#" className="sign-in__form" onSubmit={handleSubmit}>
           <div className="sign-in__fields">
             <div className="sign-in__field">
-              <input className="sign-in__input" type="email" placeholder="Email address" name="user-email"
+              <input
+                className="sign-in__input"
+                ref={emailRef}
+                type="email"
+                placeholder="Email address"
+                name="user-email"
                 id="user-email"/>
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
             <div className="sign-in__field">
-              <input className="sign-in__input" type="password" placeholder="Password" name="user-password"
+              <input
+                className="sign-in__input"
+                ref={passwordRef}
+                type="password"
+                placeholder="Password"
+                name="user-password"
                 id="user-password"/>
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
@@ -50,7 +78,17 @@ const SignIn = () => (
         </div>
       </footer>
     </div>
-  </>
-);
+  );
+};
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(authData) {
+    dispatch(login(authData));
+  }
+});
 
-export default SignIn;
+SignIn.propTypes = {
+  ...signInType
+};
+
+export {SignIn};
+export default connect(null, mapDispatchToProps)(SignIn);

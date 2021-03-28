@@ -3,6 +3,7 @@ import {DEFAULT_GENRE} from "../const";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
+  isAuthorized: false,
   movies: {
     isFetching: true,
     isLoaded: false,
@@ -21,6 +22,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         movies: action.payload
+      };
+    case ActionType.REQUIRE_AUTH:
+      return {
+        ...state,
+        isAuthorized: action.payload
       };
   }
 

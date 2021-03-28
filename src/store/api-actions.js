@@ -6,4 +6,16 @@ const fetchMoviesList = () => (dispatch, _getState, api) => (
     .catch(() => dispatch(ActionCreator.setMovies({isFetching: false, isLoaded: false, data: null})))
 );
 
-export {fetchMoviesList};
+const checkAuth = () => (dispatch, _getState, api) => (
+  api.get(`/login`)
+    .then(() => dispatch(ActionCreator.requireAuth(true)))
+    .catch(() => {})
+);
+
+const login = ({email, password}) => (dispatch, _getState, api) => (
+  api.post(`/login`, {email, password})
+    .then(() => dispatch(ActionCreator.requireAuth(true)))
+    .then(() => (window.location.href = `/`))
+);
+
+export {fetchMoviesList, checkAuth, login};

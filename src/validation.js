@@ -56,4 +56,19 @@ const showMoreType = {
   filteredMoviesCount: PropTypes.func,
 };
 
-export {promoMovieType, moviesType, genresType, reviewsType, showMoreType};
+const userType = {
+  isAuthorized: PropTypes.bool.isRequired,
+};
+
+const signInType = {
+  onSubmit: PropTypes.func,
+};
+
+const privateRouteType = {
+  render: PropTypes.func,
+  path: PropTypes.string.isRequired,
+  exact: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string
+};
+
+export {promoMovieType, moviesType, genresType, reviewsType, showMoreType, userType, signInType, privateRouteType};
