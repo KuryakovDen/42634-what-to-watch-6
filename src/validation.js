@@ -63,6 +63,11 @@ const userType = {
 
 const signInType = {
   onSubmit: PropTypes.func,
+  id: PropTypes.number
+};
+
+const commentFormType = {
+  onSubmit: PropTypes.func,
 };
 
 const tabsMovieType = {
@@ -88,6 +93,7 @@ export {
   showMoreType,
   userType,
   signInType,
+  commentFormType,
   tabsMovieType,
   privateRouteType
 };

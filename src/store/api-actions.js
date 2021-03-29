@@ -30,6 +30,12 @@ const checkAuth = () => (dispatch, _getState, api) => (
     .catch(() => {})
 );
 
+const sendComment = ({id, rating, comment}) => (dispatch, _getState, api) => (
+  api.post(`comments/${id}`, {rating, comment})
+    .then(() => dispatch(ActionCreator.requireAuth(true)))
+    .then(() => (window.location.href = `/films/${id}`))
+);
+
 const login = ({email, password}) => (dispatch, _getState, api) => (
   api.post(`/login`, {email, password})
     .then(() => dispatch(ActionCreator.requireAuth(true)))
@@ -42,5 +48,6 @@ export {
   fetchCurrentMovie,
   fetchCommentsList,
   checkAuth,
+  sendComment,
   login
 };
