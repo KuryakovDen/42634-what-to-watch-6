@@ -1,4 +1,5 @@
 import {ActionCreator} from "./action";
+import {browserHistory} from "../utils";
 
 const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
@@ -15,7 +16,13 @@ const fetchPromoMovie = () => (dispatch, _getState, api) => (
 const fetchCurrentMovie = (movieId) => (dispatch, _getState, api) => (
   api.get(`/films/${movieId}`)
     .then(({data}) => dispatch(ActionCreator.setCurrentMovie({isFetching: false, isLoaded: true, data})))
-    .catch(() => dispatch(ActionCreator.setCurrentMovie({isFetching: false, isLoaded: false, data: null})))
+    .catch((error) => {
+      if (error.response.status === 404) {
+        browserHistory.push(`/not-found`);
+      }
+
+      return error;
+    })
 );
 
 const fetchCommentsList = (movieId) => (dispatch, _getState, api) => (

@@ -9,10 +9,11 @@ import Review from "../review/review";
 import Player from "../player/player";
 import NotFound from "../not-found/not-found";
 import PrivateRoute from "../private-route/private-route";
+import {browserHistory} from "../../utils";
 
 const App = () => (
   <>
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path={`/`} component = {MainScreen}/>
         <Route exact path={`/login`} component = {SignIn}/>
