@@ -9,6 +9,10 @@ const MAX_REVIEW_LENGTH = 400;
 const DEFAULT_GENRE = `All genres`;
 const BACKEND_URL = `https://6.react.pages.academy/wtw`;
 
+const HttpCode = {
+  NOT_FOUND: 404
+};
+
 export {
   MAX_LIKE_MOVIES_LENGTH,
   DELAY_VIDEO,
@@ -18,5 +22,6 @@ export {
   MIN_REVIEW_LENGTH,
   MAX_REVIEW_LENGTH,
   DEFAULT_GENRE,
-  BACKEND_URL
+  BACKEND_URL,
+  HttpCode
 };

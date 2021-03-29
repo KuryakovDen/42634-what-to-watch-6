@@ -1,5 +1,6 @@
 import {ActionCreator} from "./action";
 import {browserHistory} from "../utils";
+import {HttpCode} from "../const";
 
 const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
@@ -17,7 +18,7 @@ const fetchCurrentMovie = (movieId) => (dispatch, _getState, api) => (
   api.get(`/films/${movieId}`)
     .then(({data}) => dispatch(ActionCreator.setCurrentMovie({isFetching: false, isLoaded: true, data})))
     .catch((error) => {
-      if (error.response.status === 404) {
+      if (error.response.status === HttpCode.NOT_FOUND) {
         browserHistory.push(`/not-found`);
       }
 
