@@ -32,8 +32,8 @@ const checkAuth = () => (dispatch, _getState, api) => (
 
 const sendComment = ({id, rating, comment}) => (dispatch, _getState, api) => (
   api.post(`comments/${id}`, {rating, comment})
-    .then(() => dispatch(ActionCreator.requireAuth(true)))
     .then(() => (window.location.href = `/films/${id}`))
+    .catch(({error}) => error)
 );
 
 const login = ({email, password}) => (dispatch, _getState, api) => (
