@@ -8,6 +8,8 @@ import MoreMovies from "../more-movies/more-movies";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchCurrentMovie} from "../../store/api-actions";
 import User from "../user/user";
+import {checkLoadingMovie, getMovie} from "../../store/data/selectors";
+import {checkUserAuth} from "../../store/user/selectors";
 
 const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match}) => {
   const movieId = match.params.id;
@@ -115,10 +117,10 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match}) => 
   );
 };
 
-const mapStateToProps = ({DATA, USER}) => ({
-  isLoaded: DATA.currentMovie.isLoaded,
-  movie: DATA.currentMovie.data,
-  isAuthorized: USER.isAuthorized
+const mapStateToProps = (state) => ({
+  isLoaded: checkLoadingMovie(state),
+  movie: getMovie(state),
+  isAuthorized: checkUserAuth(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

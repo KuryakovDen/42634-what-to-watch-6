@@ -5,8 +5,9 @@ import {moviesType, promoMovieType} from "../../validation";
 import MoviesList from "../movie-list/movie-list";
 import GenresList from "../genres-list/genres-list";
 import LoadingScreen from "../loading-screen/loading-screen";
-import {fetchMoviesList} from "../../store/api-actions";
+import {checkAuth, fetchMoviesList} from "../../store/api-actions";
 import PromoMovie from "../promo-movie/promo-movie";
+import {checkLoadingMovie} from "../../store/data/selectors";
 
 const MainScreen = ({isLoaded, onLoadData, isAuthorized}) => {
   useEffect(() => {
@@ -89,9 +90,9 @@ const MainScreen = ({isLoaded, onLoadData, isAuthorized}) => {
   );
 };
 
-const mapStateToProps = ({DATA, USER}) => ({
-  isLoaded: DATA.movies.isLoaded,
-  isAuthorized: USER.isAuthorized
+const mapStateToProps = (state) => ({
+  isLoaded: checkLoadingMovie(state),
+  isAuthorized: checkAuth(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

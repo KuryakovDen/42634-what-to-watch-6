@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 import User from "../user/user";
 import {fetchPromoMovie} from "../../store/api-actions";
 import {promoMovieType} from "../../validation";
+import {checkLoadingPromo, getPromo} from "../../store/data/selectors";
+import {checkUserAuth} from "../../store/user/selectors";
 
 const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized}) => {
   useEffect(() => {
@@ -69,10 +71,10 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized}) => {
 };
 
 
-const mapStateToProps = ({DATA, USER}) => ({
-  isLoaded: DATA.promo.isLoaded,
-  promo: DATA.promo.data,
-  isAuthorized: USER.isAuthorized
+const mapStateToProps = (state) => ({
+  isLoaded: checkLoadingPromo(state),
+  promo: getPromo(state),
+  isAuthorized: checkUserAuth(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

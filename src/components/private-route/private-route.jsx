@@ -3,6 +3,7 @@ import {Route, Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 
 import {privateRouteType} from "../../validation";
+import {checkUserAuth} from "../../store/user/selectors";
 
 const PrivateRoute = ({render, path, exact, isAuthorized}) => {
   return (
@@ -18,8 +19,8 @@ const PrivateRoute = ({render, path, exact, isAuthorized}) => {
   );
 };
 
-const mapStateToProps = ({USER}) => ({
-  isAuthorized: USER.isAuthorized
+const mapStateToProps = (state) => ({
+  isAuthorized: checkUserAuth(state)
 });
 
 PrivateRoute.propTypes = {

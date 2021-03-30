@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 
 import {moviesType} from "../../validation";
 import {getMovieRuntime} from "../../utils";
+import {getMovie} from "../../store/data/selectors";
 
 const MovieDetails = ({movie = {}}) => {
   return (
@@ -38,8 +39,8 @@ const MovieDetails = ({movie = {}}) => {
   );
 };
 
-const mapStateToProps = ({DATA}) => ({
-  movie: DATA.currentMovie.data
+const mapStateToProps = (state) => ({
+  movie: getMovie(state)
 });
 
 MovieDetails.propTypes = {

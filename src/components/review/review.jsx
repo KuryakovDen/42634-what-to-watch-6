@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 
 import {moviesType} from "../../validation";
 import CommentForm from "../comment-form/comment-form";
+import {getMovie} from "../../store/data/selectors";
 
 const Review = ({movie}) => {
   return (
@@ -55,8 +56,8 @@ const Review = ({movie}) => {
   );
 };
 
-const mapStateToProps = ({DATA}) => ({
-  movie: DATA.currentMovie.data
+const mapStateToProps = (state) => ({
+  movie: getMovie(state)
 });
 
 Review.propTypes = {
