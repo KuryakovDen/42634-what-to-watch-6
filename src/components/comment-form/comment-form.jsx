@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {MIN_REVIEW_LENGTH, MAX_REVIEW_LENGTH} from "../../const";
 import {sendComment} from "../../store/api-actions";
 import {commentFormType} from "../../validation";
+import {getMovieId} from "../../store/data/selectors";
 
 const CommentForm = ({onSubmit, id}) => {
   const [commentForm, submitCommentForm] = React.useState({
@@ -80,8 +81,8 @@ const CommentForm = ({onSubmit, id}) => {
   );
 };
 
-const mapStateToProps = ({DATA}) => ({
-  id: DATA.currentMovie.data.id
+const mapStateToProps = (state) => ({
+  id: getMovieId(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

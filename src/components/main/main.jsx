@@ -5,9 +5,10 @@ import {moviesType, promoMovieType} from "../../validation";
 import MoviesList from "../movie-list/movie-list";
 import GenresList from "../genres-list/genres-list";
 import LoadingScreen from "../loading-screen/loading-screen";
-import {checkAuth, fetchMoviesList} from "../../store/api-actions";
+import {fetchMoviesList} from "../../store/api-actions";
 import PromoMovie from "../promo-movie/promo-movie";
-import {checkLoadingMovie} from "../../store/data/selectors";
+import {checkLoadingMovies} from "../../store/data/selectors";
+import {checkUserAuth} from "../../store/user/selectors";
 
 const MainScreen = ({isLoaded, onLoadData, isAuthorized}) => {
   useEffect(() => {
@@ -91,8 +92,8 @@ const MainScreen = ({isLoaded, onLoadData, isAuthorized}) => {
 };
 
 const mapStateToProps = (state) => ({
-  isLoaded: checkLoadingMovie(state),
-  isAuthorized: checkAuth(state)
+  isLoaded: checkLoadingMovies(state),
+  isAuthorized: checkUserAuth(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
