@@ -115,10 +115,10 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match}) => 
   );
 };
 
-const mapStateToProps = (state) => ({
-  isLoaded: state.currentMovie.isLoaded,
-  movie: state.currentMovie.data,
-  isAuthorized: state.isAuthorized
+const mapStateToProps = ({DATA, USER}) => ({
+  isLoaded: DATA.currentMovie.isLoaded,
+  movie: DATA.currentMovie.data,
+  isAuthorized: USER.isAuthorized
 });
 
 const mapDispatchToProps = (dispatch) => ({

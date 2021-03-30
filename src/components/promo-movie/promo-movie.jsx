@@ -69,10 +69,10 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized}) => {
 };
 
 
-const mapStateToProps = (state) => ({
-  isLoaded: state.promo.isLoaded,
-  promo: state.promo.data,
-  isAuthorized: state.isAuthorized
+const mapStateToProps = ({DATA, USER}) => ({
+  isLoaded: DATA.promo.isLoaded,
+  promo: DATA.promo.data,
+  isAuthorized: USER.isAuthorized
 });
 
 const mapDispatchToProps = (dispatch) => ({

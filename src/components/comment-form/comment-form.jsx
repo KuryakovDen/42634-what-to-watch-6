@@ -80,8 +80,8 @@ const CommentForm = ({onSubmit, id}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  id: state.currentMovie.data.id
+const mapStateToProps = ({DATA}) => ({
+  id: DATA.currentMovie.data.id
 });
 
 const mapDispatchToProps = (dispatch) => ({

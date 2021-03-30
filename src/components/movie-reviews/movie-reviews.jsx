@@ -38,10 +38,10 @@ const MovieReviews = ({isLoaded, reviews, onLoadReviews, match}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  isLoaded: state.comments.isLoaded,
-  reviews: state.comments.data,
-  movie: state.currentMovie.data.id
+const mapStateToProps = ({DATA}) => ({
+  isLoaded: DATA.comments.isLoaded,
+  reviews: DATA.comments.data,
+  movie: DATA.currentMovie.data.id
 });
 
 const mapDispatchToProps = (dispatch) => ({

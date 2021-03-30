@@ -38,8 +38,8 @@ const MovieDetails = ({movie = {}}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  movie: state.currentMovie.data
+const mapStateToProps = ({DATA}) => ({
+  movie: DATA.currentMovie.data
 });
 
 MovieDetails.propTypes = {

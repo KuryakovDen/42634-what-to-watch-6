@@ -28,9 +28,9 @@ const GenresList = ({activeGenre, movies, setGenreAction = {}}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  activeGenre: state.activeGenre,
-  movies: state.movies.data
+const mapStateToProps = ({MOVIE, DATA}) => ({
+  activeGenre: MOVIE.activeGenre,
+  movies: DATA.movies.data
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -89,9 +89,9 @@ const MainScreen = ({isLoaded, onLoadData, isAuthorized}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  isLoaded: state.movies.isLoaded,
-  isAuthorized: state.isAuthorized
+const mapStateToProps = ({DATA, USER}) => ({
+  isLoaded: DATA.movies.isLoaded,
+  isAuthorized: USER.isAuthorized
 });
 
 const mapDispatchToProps = (dispatch) => ({

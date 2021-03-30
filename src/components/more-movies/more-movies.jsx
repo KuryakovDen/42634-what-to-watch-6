@@ -19,9 +19,9 @@ const MoreMovies = ({movies, currentMovie}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.movies.data,
-  currentMovie: state.currentMovie.data
+const mapStateToProps = ({DATA}) => ({
+  movies: DATA.movies.data,
+  currentMovie: DATA.currentMovie.data
 });
 
 MoreMovies.propTypes = {

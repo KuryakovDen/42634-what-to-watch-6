@@ -32,9 +32,9 @@ const MoviesList = ({movies, genre}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  genre: state.activeGenre,
-  movies: filterMoviesOnGenre(state.movies.data, state.activeGenre)
+const mapStateToProps = ({MOVIE, DATA}) => ({
+  genre: MOVIE.activeGenre,
+  movies: filterMoviesOnGenre(DATA.movies.data, MOVIE.activeGenre)
 });
 
 MoviesList.propTypes = {

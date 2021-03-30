@@ -18,8 +18,8 @@ const PrivateRoute = ({render, path, exact, isAuthorized}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  isAuthorized: state.isAuthorized
+const mapStateToProps = ({USER}) => ({
+  isAuthorized: USER.isAuthorized
 });
 
 PrivateRoute.propTypes = {
