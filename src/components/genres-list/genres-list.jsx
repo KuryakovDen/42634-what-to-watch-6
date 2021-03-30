@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from 'react-redux';
 
 import {genresType, moviesType} from "../../validation";
-import {ActionCreator} from "../../store/action";
+import {getMoviesForGenre} from "../../store/action";
 import {getAllGenres} from "../../utils";
 
 const GenresList = ({activeGenre, movies, setGenreAction = {}}) => {
@@ -35,7 +35,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setGenreAction(genre) {
-    dispatch(ActionCreator.getMoviesForGenre(genre));
+    dispatch(getMoviesForGenre(genre));
   }
 });
 
