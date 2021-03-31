@@ -17,7 +17,7 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized}) => {
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src={promo.preview_image} alt={promo.name}/>
+        <img src={promo.background_image} alt={promo.name}/>
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
