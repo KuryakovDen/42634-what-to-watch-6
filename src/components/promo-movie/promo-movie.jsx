@@ -13,6 +13,7 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized}) => {
       onLoadPromo();
     }
   }, [isLoaded]);
+
   return (
     <section className="movie-card">
       <div className="movie-card__bg">

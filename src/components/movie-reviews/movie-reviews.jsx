@@ -10,14 +10,10 @@ import {checkLoadingReviews, getMovieId, getReviews} from "../../store/data/sele
 const MovieReviews = ({isLoaded, reviews, onLoadReviews, match}) => {
   const movieId = match.params.id;
 
-  useEffect(() => {
-    if (!isLoaded) {
+  useEffect((isLoad) => {
+    if (!isLoad) {
       onLoadReviews(movieId);
     }
-  }, [isLoaded]);
-
-  useEffect(() => {
-    onLoadReviews(movieId);
   }, [movieId]);
 
   if (!isLoaded) {

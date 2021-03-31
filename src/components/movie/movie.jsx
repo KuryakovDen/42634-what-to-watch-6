@@ -13,14 +13,11 @@ import {checkUserAuth} from "../../store/user/selectors";
 
 const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match}) => {
   const movieId = match.params.id;
-  useEffect(() => {
-    if (!isLoaded) {
+
+  useEffect((isLoad) => {
+    if (!isLoad) {
       onLoadMovie(movieId);
     }
-  }, [isLoaded]);
-
-  useEffect(() => {
-    onLoadMovie(movieId);
   }, [movieId]);
 
   if (!isLoaded) {
