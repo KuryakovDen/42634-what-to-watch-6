@@ -32,10 +32,10 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match, isNo
 
   return (
     <>
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full" style={{background: `${movie.background_color}`}}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={movie.preview_image} alt={movie.name}/>
+            <img src={movie.background_image} alt={movie.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
