@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
 import {userType} from "../../validation";
@@ -8,7 +7,9 @@ const User = ({isAuthorized}) => {
   if (isAuthorized) {
     return (
       <div className="user-block__avatar">
-        <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+        <Link to={`/mylist`}>
+          <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+        </Link>
       </div>
     );
   }
@@ -20,13 +21,8 @@ const User = ({isAuthorized}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  isAuthorized: state.isAuthorized
-});
-
 User.propTypes = {
   ...userType
 };
 
-export {User};
-export default connect(mapStateToProps, null)(User);
+export default User;

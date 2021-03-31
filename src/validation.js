@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 
 const promoMovieType = {
-  movie: PropTypes.shape({
-    "id": PropTypes.number.isRequired,
-    "name": PropTypes.string.isRequired,
-    "poster_image": PropTypes.string.isRequired,
-    "preview_image": PropTypes.string.isRequired
+  isLoaded: PropTypes.bool,
+  onLoadPromo: PropTypes.func,
+  promo: PropTypes.shape({
+    "name": PropTypes.string,
+    "poster_image": PropTypes.string,
+    "preview_image": PropTypes.string
   })
 };
 
@@ -57,11 +58,24 @@ const showMoreType = {
 };
 
 const userType = {
-  isAuthorized: PropTypes.bool.isRequired,
+  isAuthorized: PropTypes.bool,
 };
 
 const signInType = {
   onSubmit: PropTypes.func,
+  id: PropTypes.number
+};
+
+const commentFormType = {
+  onSubmit: PropTypes.func,
+};
+
+const tabsMovieType = {
+  match: PropTypes.shape({
+    "params": PropTypes.shape({
+      "id": PropTypes.string.isRequired
+    })
+  })
 };
 
 const privateRouteType = {
@@ -71,4 +85,15 @@ const privateRouteType = {
   authorizationStatus: PropTypes.string
 };
 
-export {promoMovieType, moviesType, genresType, reviewsType, showMoreType, userType, signInType, privateRouteType};
+export {
+  promoMovieType,
+  moviesType,
+  genresType,
+  reviewsType,
+  showMoreType,
+  userType,
+  signInType,
+  commentFormType,
+  tabsMovieType,
+  privateRouteType
+};

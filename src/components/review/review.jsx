@@ -5,8 +5,8 @@ import {connect} from "react-redux";
 import {moviesType} from "../../validation";
 import CommentForm from "../comment-form/comment-form";
 
-const Review = ({movie = {}}) => (
-  <>
+const Review = ({movie}) => {
+  return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
@@ -27,7 +27,7 @@ const Review = ({movie = {}}) => (
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to="/films/1" className="breadcrumbs__link">{movie.name}</Link>
+                <Link to={`/films/${movie.id}`} className="breadcrumbs__link">{movie.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -51,13 +51,12 @@ const Review = ({movie = {}}) => (
       <div className="add-review">
         <CommentForm></CommentForm>
       </div>
-
     </section>
-  </>
-);
+  );
+};
 
 const mapStateToProps = (state) => ({
-  movie: state.movies.data[0]
+  movie: state.currentMovie.data
 });
 
 Review.propTypes = {

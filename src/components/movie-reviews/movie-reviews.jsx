@@ -1,9 +1,24 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {connect} from "react-redux";
 
 import MovieReview from "../movie-review/movie-review";
 import {reviewsType} from "../../validation";
+import LoadingScreen from "../loading-screen/loading-screen";
+import {fetchCommentsList} from "../../store/api-actions";
 
-const MovieReviews = ({reviews = {}}) => {
+const MovieReviews = ({isLoaded, reviews, onLoadReviews, match}) => {
+  const movieId = match.params.id;
+
+  useEffect((isLoad) => {
+    if (!isLoad) {
+      onLoadReviews(movieId);
+    }
+  }, [movieId]);
+
+  if (!isLoaded) {
+    return <LoadingScreen/>;
+  }
+
   const firstReviewColumn = reviews.slice(0, Math.round(reviews.length / 2));
   const secondReviewColumn = reviews.slice(Math.round(reviews.length / 2));
 
@@ -19,8 +34,21 @@ const MovieReviews = ({reviews = {}}) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  isLoaded: state.comments.isLoaded,
+  reviews: state.comments.data,
+  movie: state.currentMovie.data.id
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadReviews(movieId) {
+    dispatch(fetchCommentsList(movieId));
+  }
+});
+
 MovieReviews.propTypes = {
   ...reviewsType
 };
 
-export default MovieReviews;
+export {MovieReviews};
+export default connect(mapStateToProps, mapDispatchToProps)(MovieReviews);

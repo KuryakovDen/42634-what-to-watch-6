@@ -1,12 +1,11 @@
 import React from "react";
-import {connect} from "react-redux";
 
-import {moviesType} from "../../validation";
 import MovieOverview from "../movie-overview/movie-overview";
 import MovieDetails from "../movie-details/movie-details";
 import MovieReviews from "../movie-reviews/movie-reviews";
+import {tabsMovieType} from "../../validation";
 
-const Tabs = ({movie = {}, reviews = {}}) => {
+const Tabs = ({match}) => {
   const TabTitles = {
     "OVERVIEW": `Overview`,
     "DETAILS": `Details`,
@@ -22,10 +21,10 @@ const Tabs = ({movie = {}, reviews = {}}) => {
 
   const getActualTabComponent = (currentTab) => {
     switch (currentTab) {
-      case TabTitles.DETAILS: return <MovieDetails movie={movie}/>;
-      case TabTitles.REVIEWS: return <MovieReviews reviews={reviews}/>;
+      case TabTitles.DETAILS: return <MovieDetails/>;
+      case TabTitles.REVIEWS: return <MovieReviews match={match}/>;
 
-      default: return <MovieOverview movie={movie}/>;
+      default: return <MovieOverview/>;
     }
   };
 
@@ -51,13 +50,8 @@ const Tabs = ({movie = {}, reviews = {}}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  movie: state.movies.data[0]
-});
-
 Tabs.propTypes = {
-  ...moviesType
+  ...tabsMovieType
 };
 
-export {Tabs};
-export default connect(mapStateToProps, null)(Tabs);
+export default Tabs;

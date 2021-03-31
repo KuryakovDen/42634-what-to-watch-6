@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {connect} from "react-redux";
 
-import {User} from "../user/user";
-import {userType} from "../../validation";
+import User from "../user/user";
+import {fetchPromoMovie} from "../../store/api-actions";
+import {promoMovieType} from "../../validation";
 
-const PromoMovie = ({isAuthorized = false}) => {
+const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized}) => {
+  useEffect(() => {
+    if (!isLoaded) {
+      onLoadPromo();
+    }
+  }, [isLoaded]);
+
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+        <img src={promo.preview_image} alt={promo.name}/>
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -29,15 +37,15 @@ const PromoMovie = ({isAuthorized = false}) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
+            <img src={promo.poster_image} alt={promo.name} width="218"
               height="327"/>
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">The Grand Budapest Hotel poster</h2>
+            <h2 className="movie-card__title">{promo.name}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">Comedy</span>
-              <span className="movie-card__year">2014</span>
+              <span className="movie-card__genre">{promo.genre}</span>
+              <span className="movie-card__year">{promo.released}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -61,9 +69,22 @@ const PromoMovie = ({isAuthorized = false}) => {
   );
 };
 
+
+const mapStateToProps = (state) => ({
+  isLoaded: state.promo.isLoaded,
+  promo: state.promo.data,
+  isAuthorized: state.isAuthorized
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadPromo() {
+    dispatch(fetchPromoMovie());
+  }
+});
+
 PromoMovie.propTypes = {
-  ...userType
+  ...promoMovieType
 };
 
-
-export default PromoMovie;
+export {PromoMovie};
+export default connect(mapStateToProps, mapDispatchToProps)(PromoMovie);

@@ -1,4 +1,5 @@
 import {DEFAULT_GENRE} from "./const";
+import {createBrowserHistory} from "history";
 
 const getRatingName = (rating) => {
   let ratingName = ``;
@@ -62,10 +63,13 @@ const getAllGenres = (movieList) => {
   return [DEFAULT_GENRE, ...new Set(movieList.map((movie) => movie.genre))];
 };
 
+const browserHistory = createBrowserHistory();
+
 export {
   getRatingName,
   getMovieRuntime,
   convertReviewDate,
   filterMoviesOnGenre,
-  getAllGenres
+  getAllGenres,
+  browserHistory
 };

@@ -1,63 +1,84 @@
-import React from 'react';
+import React, {Fragment, useRef} from 'react';
+import {connect} from "react-redux";
 
-const CommentForm = () => {
+import {MIN_REVIEW_LENGTH, MAX_REVIEW_LENGTH, RATING_STARS_COUNT} from "../../const";
+import {sendComment} from "../../store/api-actions";
+import {commentFormType} from "../../validation";
+
+const CommentForm = ({onSubmit, id}) => {
   const [commentForm, submitCommentForm] = React.useState({
     rating: 0,
     comment: ``
   });
-  const setField = ({target}) => {
-    return submitCommentForm(commentForm, {[target.name]: target.value});
+
+  const commentRef = useRef();
+  const setField = ({target}) => submitCommentForm((prevState) => ({...prevState, [target.name]: target.value}));
+
+  const ratingStars = new Array(RATING_STARS_COUNT).fill().map((el, index) => {
+    return (
+      <Fragment key={`star-${index}`}>
+        <input
+          className="rating__input"
+          id={`star-${index}`}
+          type="radio" name="rating"
+          value={index + 1}
+          defaultChecked={index === 0}
+          onChange={setField}
+        />
+        <label className="rating__label" htmlFor={`star-${index}`}>Rating {index + 1} </label>
+      </Fragment>
+    );
+  });
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
+    const movieComment = {
+      id,
+      rating: commentForm.rating,
+      comment: commentRef.current.value
+    };
+
+    onSubmit(movieComment);
   };
 
-  const handleSubmit = (evt) => evt.preventDefault();
-
   return (
-    <>
-      <form onSubmit={handleSubmit} action="#" className="add-review__form">
-        <div className="rating">
-          <div onChange={setField} className="rating__stars">
-            <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
-            <label className="rating__label" htmlFor="star-1">Rating 1</label>
+    <form onSubmit={handleSubmit} action="#" className="add-review__form">
+      <div className="rating">
+        <div className="rating__stars">{ratingStars}</div>
+      </div>
 
-            <input className="rating__input" id="star-2" type="radio" name="rating" value="2"/>
-            <label className="rating__label" htmlFor="star-2">Rating 2</label>
-
-            <input className="rating__input" id="star-3" type="radio" name="rating" value="3" defaultChecked/>
-            <label className="rating__label" htmlFor="star-3">Rating 3</label>
-
-            <input className="rating__input" id="star-4" type="radio" name="rating" value="4"/>
-            <label className="rating__label" htmlFor="star-4">Rating 4</label>
-
-            <input className="rating__input" id="star-5" type="radio" name="rating" value="5"/>
-            <label className="rating__label" htmlFor="star-5">Rating 5</label>
-
-            <input className="rating__input" id="star-6" type="radio" name="rating" value="6"/>
-            <label className="rating__label" htmlFor="star-6">Rating 6</label>
-
-            <input className="rating__input" id="star-7" type="radio" name="rating" value="7"/>
-            <label className="rating__label" htmlFor="star-7">Rating 7</label>
-
-            <input className="rating__input" id="star-8" type="radio" name="rating" value="8" defaultChecked/>
-            <label className="rating__label" htmlFor="star-8">Rating 8</label>
-
-            <input className="rating__input" id="star-9" type="radio" name="rating" value="9"/>
-            <label className="rating__label" htmlFor="star-9">Rating 9</label>
-
-            <input className="rating__input" id="star-10" type="radio" name="rating" value="10"/>
-            <label className="rating__label" htmlFor="star-10">Rating 10</label>
-          </div>
+      <div className="add-review__text">
+        <textarea
+          className="add-review__textarea"
+          ref={commentRef}
+          minLength={MIN_REVIEW_LENGTH}
+          maxLength={MAX_REVIEW_LENGTH}
+          name="review-text"
+          id="review-text"
+          placeholder="Review text"
+        />
+        <div className="add-review__submit">
+          <button className="add-review__btn" type="submit">Post</button>
         </div>
-
-        <div className="add-review__text">
-          <textarea onChange={setField} className="add-review__textarea" name="review-text" id="review-text"
-            placeholder="Review text"></textarea>
-          <div className="add-review__submit">
-            <button className="add-review__btn" type="submit">Post</button>
-          </div>
-        </div>
-      </form>
-    </>
+      </div>
+    </form>
   );
 };
 
-export default CommentForm;
+const mapStateToProps = (state) => ({
+  id: state.currentMovie.data.id
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(comment) {
+    dispatch(sendComment(comment));
+  }
+});
+
+CommentForm.propTypes = {
+  ...commentFormType
+};
+
+export {CommentForm};
+export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);

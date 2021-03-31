@@ -1,12 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {moviesType} from "../../validation";
 import Tabs from "../tabs/tabs";
 import MoreMovies from "../more-movies/more-movies";
+import LoadingScreen from "../loading-screen/loading-screen";
+import {fetchCurrentMovie} from "../../store/api-actions";
+import User from "../user/user";
 
-const Movie = ({movie = {}, history}) => {
+const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match}) => {
+  const movieId = match.params.id;
+
+  useEffect((isLoad) => {
+    if (!isLoad) {
+      onLoadMovie(movieId);
+    }
+  }, [movieId]);
+
+  if (!isLoaded) {
+    return <LoadingScreen/>;
+  }
+
   return (
     <>
       <section className="movie-card movie-card--full">
@@ -27,9 +42,7 @@ const Movie = ({movie = {}, history}) => {
             </div>
 
             <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
+              <User isAuthorized={isAuthorized}/>
             </div>
           </header>
 
@@ -54,7 +67,10 @@ const Movie = ({movie = {}, history}) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to={`${history.location.pathname}/review`} className="btn movie-card__button">Add review</Link>
+                {
+                  isAuthorized &&
+                  <Link to={`${history.location.pathname}/review`} className="btn movie-card__button">Add review</Link>
+                }
               </div>
             </div>
           </div>
@@ -67,7 +83,7 @@ const Movie = ({movie = {}, history}) => {
                 height="327"/>
             </div>
 
-            <Tabs movie={movie}/>
+            <Tabs movie={movie} match={match}/>
           </div>
         </div>
       </section>
@@ -75,7 +91,7 @@ const Movie = ({movie = {}, history}) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <MoreMovies currentMovie={movie}></MoreMovies>
+          <MoreMovies></MoreMovies>
         </section>
 
         <footer className="page-footer">
@@ -97,7 +113,15 @@ const Movie = ({movie = {}, history}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movie: state.movies.data[0],
+  isLoaded: state.currentMovie.isLoaded,
+  movie: state.currentMovie.data,
+  isAuthorized: state.isAuthorized
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadMovie(movieId) {
+    dispatch(fetchCurrentMovie(movieId));
+  }
 });
 
 Movie.propTypes = {
@@ -105,4 +129,4 @@ Movie.propTypes = {
 };
 
 export {Movie};
-export default connect(mapStateToProps, null)(Movie);
+export default connect(mapStateToProps, mapDispatchToProps)(Movie);
