@@ -11,6 +11,7 @@ import User from "../user/user";
 
 const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match}) => {
   const movieId = match.params.id;
+
   useEffect(() => {
     if (!isLoaded) {
       onLoadMovie(movieId);

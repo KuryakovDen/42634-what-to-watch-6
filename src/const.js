@@ -5,6 +5,7 @@ const DEFAULT_PAGE_COUNT = 1;
 const DEFAULT_TIMEOUT = 5000;
 const MIN_REVIEW_LENGTH = 50;
 const MAX_REVIEW_LENGTH = 400;
+const RATING_STARS_COUNT = 10;
 
 const DEFAULT_GENRE = `All genres`;
 const BACKEND_URL = `https://6.react.pages.academy/wtw`;
@@ -21,6 +22,7 @@ export {
   DEFAULT_TIMEOUT,
   MIN_REVIEW_LENGTH,
   MAX_REVIEW_LENGTH,
+  RATING_STARS_COUNT,
   DEFAULT_GENRE,
   BACKEND_URL,
   HttpCode
