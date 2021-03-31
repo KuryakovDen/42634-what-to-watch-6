@@ -4,6 +4,7 @@ const ActionType = {
   SET_PROMO_MOVIE: `data/setPromoMovie`,
   SET_CURRENT_MOVIE: `data/setCurrentMovie`,
   SET_COMMENTS_MOVIE: `data/setCommentsMovie`,
+  REDIRECT_TO_ROUTE: `data/redirectToRoute`,
   REQUIRE_AUTH: `user/requireAuth`
 };
 
@@ -37,6 +38,11 @@ const requireAuth = (status) => ({
   payload: status
 });
 
+const redirectToRoute = (status) => ({
+  type: ActionType.REDIRECT_TO_ROUTE,
+  payload: status
+});
+
 export {
   ActionType,
   getMoviesForGenre,
@@ -44,5 +50,6 @@ export {
   setPromoMovie,
   setCurrentMovie,
   setCommentsMovie,
-  requireAuth
+  requireAuth,
+  redirectToRoute
 };

@@ -1,5 +1,5 @@
 import {browserHistory} from "../utils";
-import {setMovies, setPromoMovie, setCurrentMovie, setCommentsMovie, requireAuth} from "./action";
+import {setMovies, setPromoMovie, setCurrentMovie, setCommentsMovie, requireAuth, redirectToRoute} from "./action";
 import {HttpCode} from "../const";
 
 const fetchMoviesList = () => (dispatch, _getState, api) => (
@@ -17,13 +17,8 @@ const fetchPromoMovie = () => (dispatch, _getState, api) => (
 const fetchCurrentMovie = (movieId) => (dispatch, _getState, api) => (
   api.get(`/films/${movieId}`)
     .then(({data}) => dispatch(setCurrentMovie({isFetching: false, isLoaded: true, data})))
-    .catch((error) => {
-      if (error.response.status === HttpCode.NOT_FOUND) {
-        browserHistory.push(`/not-found`);
-      }
-
-      return error;
-    })
+    .then(() => dispatch(redirectToRoute(false)))
+    .catch(() => dispatch(redirectToRoute(true)))
 );
 
 const fetchCommentsList = (movieId) => (dispatch, _getState, api) => (

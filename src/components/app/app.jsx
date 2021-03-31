@@ -21,6 +21,7 @@ const App = () => (
         <Route exact path={`/films/:id`} component = {Movie}/>
         <PrivateRoute exact path={`/films/:id/review`} render={() => <Review/>}/>
         <Route exact path={`/player/:id`} component = {Player}/>
+        <Route exact path={`/not-found`} component = {NotFound}/>
         <Route component = {NotFound}/>
       </Switch>
     </BrowserRouter>

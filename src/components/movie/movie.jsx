@@ -8,10 +8,10 @@ import MoreMovies from "../more-movies/more-movies";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchCurrentMovie} from "../../store/api-actions";
 import User from "../user/user";
-import {checkLoadingMovie, getMovie} from "../../store/data/selectors";
+import {checkLoadingMovie, checkNotFoundMovie, getMovie} from "../../store/data/selectors";
 import {checkUserAuth} from "../../store/user/selectors";
 
-const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match}) => {
+const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match, isNotFound}) => {
   const movieId = match.params.id;
 
   useEffect((isLoad) => {
@@ -19,6 +19,12 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match}) => 
       onLoadMovie(movieId);
     }
   }, [movieId]);
+
+  useEffect(() => {
+    if (isNotFound) {
+      history.push(`/not-found`);
+    }
+  }, [isNotFound]);
 
   if (!isLoaded) {
     return <LoadingScreen/>;
@@ -117,7 +123,8 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match}) => 
 const mapStateToProps = (state) => ({
   isLoaded: checkLoadingMovie(state),
   movie: getMovie(state),
-  isAuthorized: checkUserAuth(state)
+  isAuthorized: checkUserAuth(state),
+  isNotFound: checkNotFoundMovie(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

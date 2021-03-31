@@ -20,7 +20,8 @@ const initialState = {
     isFetching: true,
     isLoaded: false,
     data: []
-  }
+  },
+  isNotFoundMovie: false
 };
 
 const data = (state = initialState, action) => {
@@ -44,6 +45,11 @@ const data = (state = initialState, action) => {
       return {
         ...state,
         comments: action.payload
+      };
+    case ActionType.REDIRECT_TO_ROUTE:
+      return {
+        ...state,
+        isNotFoundMovie: action.payload
       };
   }
 

@@ -12,6 +12,7 @@ const getReviews = (state) => state[NameSpace.DATA].comments.data;
 const checkLoadingReviews = (state) => state[NameSpace.DATA].comments.isLoaded;
 const getPromo = (state) => state[NameSpace.DATA].promo.data;
 const checkLoadingPromo = (state) => state[NameSpace.DATA].promo.isLoaded;
+const checkNotFoundMovie = (state) => state[NameSpace.DATA].isNotFoundMovie;
 
 const filteredMovies = createSelector(
     getMovies,
@@ -29,5 +30,6 @@ export {
   checkLoadingReviews,
   getPromo,
   checkLoadingPromo,
+  checkNotFoundMovie,
   filteredMovies
 };
