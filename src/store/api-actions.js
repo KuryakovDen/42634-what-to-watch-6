@@ -3,6 +3,7 @@ import {setMovies, setPromoMovie, setCurrentMovie, setCommentsMovie, requireAuth
 const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
     .then(({data}) => dispatch(setMovies({isFetching: false, isLoaded: true, data})))
+    .then(() => dispatch(redirectToRoute(false)))
     .catch(() => dispatch(setMovies({isFetching: false, isLoaded: false, data: null})))
 );
 
