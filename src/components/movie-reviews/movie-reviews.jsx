@@ -9,14 +9,10 @@ import {fetchCommentsList} from "../../store/api-actions";
 const MovieReviews = ({isLoaded, reviews, onLoadReviews, match}) => {
   const movieId = match.params.id;
 
-  useEffect(() => {
-    if (!isLoaded) {
+  useEffect((isLoad) => {
+    if (!isLoad) {
       onLoadReviews(movieId);
     }
-  }, [isLoaded]);
-
-  useEffect(() => {
-    onLoadReviews(movieId);
   }, [movieId]);
 
   if (!isLoaded) {
