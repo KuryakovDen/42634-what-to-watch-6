@@ -5,7 +5,7 @@ import {moviesType} from "../../validation";
 import {getRatingName} from "../../utils";
 import {getMovie} from "../../store/data/selectors";
 
-const MovieOverview = ({movie = {}}) => {
+const MovieOverview = ({movie}) => {
   return (
     <>
       <div className="movie-rating">

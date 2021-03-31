@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useMemo} from "react";
 import {connect} from 'react-redux';
 
 import {genresType, moviesType} from "../../validation";
@@ -8,7 +8,7 @@ import {getActiveGenre} from "../../store/movie/selectors";
 import {getMovies} from "../../store/data/selectors";
 
 const GenresList = ({activeGenre, movies, setGenreAction = {}}) => {
-  const genres = getAllGenres(movies);
+  const genres = useMemo(() => getAllGenres(movies), [movies]);
 
   const genreHandler = (evt, currentGenre) => {
     evt.preventDefault();
