@@ -1,6 +1,4 @@
-import {browserHistory} from "../utils";
 import {setMovies, setPromoMovie, setCurrentMovie, setCommentsMovie, requireAuth, redirectToRoute} from "./action";
-import {HttpCode} from "../const";
 
 const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
