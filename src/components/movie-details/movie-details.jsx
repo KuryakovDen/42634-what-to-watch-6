@@ -5,7 +5,7 @@ import {moviesType} from "../../validation";
 import {getMovieRuntime} from "../../utils";
 import {getMovie} from "../../store/data/selectors";
 
-const MovieDetails = ({movie = {}}) => {
+const MovieDetails = ({movie}) => {
   return (
     <>
       <div className="movie-card__text movie-card__row">

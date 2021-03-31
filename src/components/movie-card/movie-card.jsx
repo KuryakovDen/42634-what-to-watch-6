@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, memo} from 'react';
 import {Link} from "react-router-dom";
 import {useHistory} from "react-router-dom";
 
 import {promoMovieType} from "../../validation";
 import Videoplayer from "../videoplayer/videoplayer";
 
-const MovieCard = ({movie = {}}) => {
+const MovieCard = ({movie}) => {
   const history = useHistory();
   const [isPlaying, setActiveVideo] = useState(false);
 
@@ -40,4 +40,4 @@ const MovieCard = ({movie = {}}) => {
 
 MovieCard.propTypes = {...promoMovieType};
 
-export default MovieCard;
+export default memo(MovieCard);
