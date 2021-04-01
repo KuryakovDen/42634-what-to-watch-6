@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 import MovieCard from "../movie-card/movie-card";
 import {moviesType} from "../../validation";
-import {checkLoadingFavorites, getFavorites, getMovies} from "../../store/data/selectors";
+import {getFavorites} from "../../store/data/selectors";
 
 const MyList = ({favoriteMovies}) => {
   return (

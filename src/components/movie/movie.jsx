@@ -6,7 +6,7 @@ import {moviesType} from "../../validation";
 import Tabs from "../tabs/tabs";
 import MoreMovies from "../more-movies/more-movies";
 import LoadingScreen from "../loading-screen/loading-screen";
-import {fetchCurrentMovie, sendFavoritesList} from "../../store/api-actions";
+import {fetchCurrentMovie, fetchFavoritesList, sendFavoritesList} from "../../store/api-actions";
 import User from "../user/user";
 import {checkLoadingMovie, checkNotFoundMovie, getMovie} from "../../store/data/selectors";
 import {checkUserAuth} from "../../store/user/selectors";
@@ -82,7 +82,7 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match, isNo
                 </Link>
                 <button className="btn btn--list movie-card__button" type="button" onClick={myListHandler}>
                   <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
+                    {movie.is_favorite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
                   </svg>
                   <span>My list</span>
                 </button>
