@@ -8,6 +8,8 @@ const getMovieId = (state) => state[NameSpace.DATA].currentMovie.data.id;
 const checkLoadingMovie = (state) => state[NameSpace.DATA].currentMovie.isLoaded;
 const getMovies = (state) => state[NameSpace.DATA].movies.data;
 const checkLoadingMovies = (state) => state[NameSpace.DATA].movies.isLoaded;
+const getFavorites = (state) => state[NameSpace.DATA].favoriteMovies.data;
+const checkLoadingFavorites = (state) => state[NameSpace.DATA].favoriteMovies.isLoaded;
 const getReviews = (state) => state[NameSpace.DATA].comments.data;
 const checkLoadingReviews = (state) => state[NameSpace.DATA].comments.isLoaded;
 const getPromo = (state) => state[NameSpace.DATA].promo.data;
@@ -26,6 +28,8 @@ export {
   checkLoadingMovie,
   getMovies,
   checkLoadingMovies,
+  getFavorites,
+  checkLoadingFavorites,
   getReviews,
   checkLoadingReviews,
   getPromo,

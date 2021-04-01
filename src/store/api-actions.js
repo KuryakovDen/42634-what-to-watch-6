@@ -1,4 +1,12 @@
-import {setMovies, setPromoMovie, setCurrentMovie, setCommentsMovie, requireAuth, redirectToRoute} from "./action";
+import {
+  setMovies,
+  setPromoMovie,
+  setCurrentMovie,
+  setCommentsMovie,
+  requireAuth,
+  redirectToRoute,
+  setFavoriteMovies,
+} from "./action";
 import {HttpCode} from "../const";
 
 const fetchMoviesList = () => (dispatch, _getState, api) => (
@@ -31,6 +39,12 @@ const fetchCommentsList = (movieId) => (dispatch, _getState, api) => (
     .catch(() => dispatch(setCommentsMovie({isFetching: false, isLoaded: false, data: null})))
 );
 
+const fetchFavoritesList = () => (dispatch, _getState, api) => (
+  api.get(`/favorite`)
+    .then(({data}) => dispatch(setFavoriteMovies({isFetching: false, isLoaded: true, data})))
+    // .catch(() => dispatch(setFavoriteMovies({isFetching: false, isLoaded: false, data: null})))
+);
+
 const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
     .then(() => dispatch(requireAuth(true)))
@@ -54,6 +68,7 @@ export {
   fetchPromoMovie,
   fetchCurrentMovie,
   fetchCommentsList,
+  fetchFavoritesList,
   checkAuth,
   sendComment,
   login

@@ -4,6 +4,7 @@ const ActionType = {
   SET_PROMO_MOVIE: `data/setPromoMovie`,
   SET_CURRENT_MOVIE: `data/setCurrentMovie`,
   SET_COMMENTS_MOVIE: `data/setCommentsMovie`,
+  SET_FAVORITE_MOVIES: `data/SetFavoriteMovies`,
   REDIRECT_TO_ROUTE: `data/redirectToRoute`,
   REQUIRE_AUTH: `user/requireAuth`
 };
@@ -33,6 +34,11 @@ const setCommentsMovie = ({isFetching, isLoaded, data}) => ({
   payload: {isFetching, isLoaded, data}
 });
 
+const setFavoriteMovies = ({isFetching, isLoaded, data}) => ({
+  type: ActionType.SET_FAVORITE_MOVIES,
+  payload: {isFetching, isLoaded, data}
+});
+
 const requireAuth = (status) => ({
   type: ActionType.REQUIRE_AUTH,
   payload: status
@@ -50,6 +56,7 @@ export {
   setPromoMovie,
   setCurrentMovie,
   setCommentsMovie,
+  setFavoriteMovies,
   requireAuth,
   redirectToRoute
 };

@@ -21,6 +21,11 @@ const initialState = {
     isLoaded: false,
     data: []
   },
+  favoriteMovies: {
+    isFetching: true,
+    isLoaded: false,
+    data: []
+  },
   isNotFoundMovie: false
 };
 
@@ -45,6 +50,11 @@ const data = (state = initialState, action) => {
       return {
         ...state,
         comments: action.payload
+      };
+    case ActionType.SET_FAVORITE_MOVIES:
+      return {
+        ...state,
+        favoriteMovies: action.payload
       };
     case ActionType.REDIRECT_TO_ROUTE:
       return {

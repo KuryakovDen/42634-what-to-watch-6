@@ -1,13 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 import MovieCard from "../movie-card/movie-card";
 import {moviesType} from "../../validation";
-import {getMovies} from "../../store/data/selectors";
+import {checkLoadingFavorites, getMovies} from "../../store/data/selectors";
+import LoadingScreen from "../loading-screen/loading-screen";
+import {fetchFavoritesList} from "../../store/api-actions";
 
-const MyList = ({movies}) => {
-  const favoriteMovies = movies.filter((movie) => movie.is_favorite);
+const MyList = ({favoriteMovies, onLoadFavorites, isLoaded}) => {
+  // const favoriteMovies = movies.filter((movie) => movie.is_favorite);
+
+  useEffect(() => {
+    if (!isLoaded) {
+      onLoadFavorites();
+    }
+  }, [isLoaded]);
+
+  if (!isLoaded) {
+    return <LoadingScreen/>;
+  }
 
   return (
     <div className="user-page">
@@ -31,10 +43,13 @@ const MyList = ({movies}) => {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-        <div className="catalog__movies-list">
-          {favoriteMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
-        </div>
+        {
+          favoriteMovies
+          &&
+          <div className="catalog__movies-list">
+            {favoriteMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
+          </div>
+        }
       </section>
 
       <footer className="page-footer">
@@ -55,7 +70,13 @@ const MyList = ({movies}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movies: getMovies(state)
+  movies: getMovies(state),
+  isLoaded: checkLoadingFavorites(state)
+});
+const mapDispatchToProps = (dispatch) => ({
+  onLoadFavorites() {
+    dispatch(fetchFavoritesList());
+  }
 });
 
 MyList.propTypes = {
@@ -63,4 +84,4 @@ MyList.propTypes = {
 };
 
 export {MyList};
-export default connect(mapStateToProps, null)(MyList);
+export default connect(mapStateToProps, mapDispatchToProps)(MyList);
