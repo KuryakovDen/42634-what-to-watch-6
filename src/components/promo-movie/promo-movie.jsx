@@ -6,6 +6,7 @@ import {fetchPromoMovie} from "../../store/api-actions";
 import {promoMovieType} from "../../validation";
 import {checkLoadingPromo, getPromo} from "../../store/data/selectors";
 import {checkUserAuth} from "../../store/user/selectors";
+import {Link} from "react-router-dom";
 
 const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized}) => {
   useEffect(() => {
@@ -51,12 +52,12 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized}) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button">
+              <Link to={`/player/${promo.id}`} className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
-              </button>
+              </Link>
               <button className="btn btn--list movie-card__button" type="button">
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>

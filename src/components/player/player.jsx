@@ -2,12 +2,13 @@ import React from 'react';
 import {connect} from "react-redux";
 
 import {moviesType} from "../../validation";
+import Videoplayer from "../videoplayer/videoplayer";
 import {getMovie} from "../../store/data/selectors";
 
 const Player = ({movie}) => {
   return (
     <div className="player">
-      <video src={movie.video_link} className="player__video" poster={movie.poster_image}></video>
+      <Videoplayer movie={movie}/>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -15,12 +16,7 @@ const Player = ({movie}) => {
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler"
-              style={{
-                left: `30%`
-              }}
-            >Toggler
-            </div>
+            <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
           </div>
           <div className="player__time-value">1:30:29</div>
         </div>
