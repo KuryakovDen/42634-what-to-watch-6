@@ -5,6 +5,7 @@ import MovieReview from "../movie-review/movie-review";
 import {reviewsType} from "../../validation";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchCommentsList} from "../../store/api-actions";
+import {checkLoadingReviews, getReviews} from "../../store/data/selectors";
 
 const MovieReviews = ({isLoaded, reviews, onLoadReviews, match}) => {
   const movieId = match.params.id;
@@ -35,9 +36,8 @@ const MovieReviews = ({isLoaded, reviews, onLoadReviews, match}) => {
 };
 
 const mapStateToProps = (state) => ({
-  isLoaded: state.comments.isLoaded,
-  reviews: state.comments.data,
-  movie: state.currentMovie.data.id
+  isLoaded: checkLoadingReviews(state),
+  reviews: getReviews(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

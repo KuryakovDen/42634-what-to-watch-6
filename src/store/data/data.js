@@ -1,9 +1,6 @@
-import {ActionType} from "./action";
-import {DEFAULT_GENRE} from "../const";
+import {ActionType} from "../action";
 
 const initialState = {
-  activeGenre: DEFAULT_GENRE,
-  isAuthorized: false,
   movies: {
     isFetching: true,
     isLoaded: false,
@@ -15,6 +12,7 @@ const initialState = {
     data: {}
   },
   currentMovie: {
+    isNotFoundMovie: false,
     isFetching: true,
     isLoaded: false,
     data: {}
@@ -26,13 +24,8 @@ const initialState = {
   }
 };
 
-const reducer = (state = initialState, action) => {
+const data = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.GET_MOVIES_FOR_GENRE:
-      return {
-        ...state,
-        activeGenre: action.payload
-      };
     case ActionType.SET_MOVIES:
       return {
         ...state,
@@ -53,14 +46,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         comments: action.payload
       };
-    case ActionType.REQUIRE_AUTH:
+    case ActionType.REDIRECT_TO_ROUTE:
       return {
         ...state,
-        isAuthorized: action.payload
+        isNotFoundMovie: action.payload
       };
   }
 
   return state;
 };
 
-export {reducer};
+export {data};

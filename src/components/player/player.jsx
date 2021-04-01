@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 
 import {moviesType} from "../../validation";
+import {getMovie} from "../../store/data/selectors";
 
 const Player = ({movie}) => {
   return (
@@ -46,7 +47,7 @@ const Player = ({movie}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movie: state.currentMovie.data
+  movie: getMovie(state)
 });
 
 Player.propTypes = {

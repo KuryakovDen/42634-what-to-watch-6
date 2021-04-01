@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 import User from "../user/user";
 import {fetchPromoMovie} from "../../store/api-actions";
 import {promoMovieType} from "../../validation";
+import {checkLoadingPromo, getPromo} from "../../store/data/selectors";
+import {checkUserAuth} from "../../store/user/selectors";
 
 const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized}) => {
   useEffect(() => {
@@ -15,7 +17,7 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized}) => {
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src={promo.preview_image} alt={promo.name}/>
+        <img src={promo.background_image} alt={promo.name}/>
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -71,9 +73,9 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized}) => {
 
 
 const mapStateToProps = (state) => ({
-  isLoaded: state.promo.isLoaded,
-  promo: state.promo.data,
-  isAuthorized: state.isAuthorized
+  isLoaded: checkLoadingPromo(state),
+  promo: getPromo(state),
+  isAuthorized: checkUserAuth(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

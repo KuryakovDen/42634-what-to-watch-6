@@ -4,10 +4,11 @@ import {connect} from "react-redux";
 
 import {moviesType} from "../../validation";
 import CommentForm from "../comment-form/comment-form";
+import {getMovie} from "../../store/data/selectors";
 
 const Review = ({movie}) => {
   return (
-    <section className="movie-card movie-card--full">
+    <section className="movie-card movie-card--full" style={{background: `${movie.background_color}`}}>
       <div className="movie-card__header">
         <div className="movie-card__bg">
           <img src={movie.background_image} alt={movie.name}/>
@@ -56,7 +57,7 @@ const Review = ({movie}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movie: state.currentMovie.data
+  movie: getMovie(state)
 });
 
 Review.propTypes = {

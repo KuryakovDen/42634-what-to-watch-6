@@ -3,8 +3,9 @@ import {connect} from "react-redux";
 
 import {moviesType} from "../../validation";
 import {getRatingName} from "../../utils";
+import {getMovie} from "../../store/data/selectors";
 
-const MovieOverview = ({movie = {}}) => {
+const MovieOverview = ({movie}) => {
   return (
     <>
       <div className="movie-rating">
@@ -24,7 +25,7 @@ const MovieOverview = ({movie = {}}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movie: state.currentMovie.data
+  movie: getMovie(state)
 });
 
 MovieOverview.propTypes = {

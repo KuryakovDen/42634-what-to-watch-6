@@ -4,8 +4,9 @@ import {connect} from 'react-redux';
 import MovieCard from "../movie-card/movie-card";
 import ShowMore from "../show-more/show-more";
 import {moviesType} from "../../validation";
-import {filterMoviesOnGenre} from "../../utils";
 import {DEFAULT_MOVIES_COUNT, DEFAULT_PAGE_COUNT} from "../../const";
+import {getActiveGenre} from "../../store/movie/selectors";
+import {filteredMovies} from "../../store/data/selectors";
 
 const MoviesList = ({movies, genre}) => {
   const [page, setPage] = useState(DEFAULT_PAGE_COUNT);
@@ -33,8 +34,8 @@ const MoviesList = ({movies, genre}) => {
 };
 
 const mapStateToProps = (state) => ({
-  genre: state.activeGenre,
-  movies: filterMoviesOnGenre(state.movies.data, state.activeGenre)
+  genre: getActiveGenre(state),
+  movies: filteredMovies(state)
 });
 
 MoviesList.propTypes = {

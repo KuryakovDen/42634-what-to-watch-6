@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 
 import MovieCard from "../movie-card/movie-card";
 import {moviesType} from "../../validation";
+import {getMovies} from "../../store/data/selectors";
 
 const MyList = ({movies}) => {
   const favoriteMovies = movies.filter((movie) => movie.is_favorite);
@@ -54,7 +55,7 @@ const MyList = ({movies}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.movies.data
+  movies: getMovies(state)
 });
 
 MyList.propTypes = {

@@ -4,6 +4,7 @@ import {moviesType} from "../../validation";
 import MovieCard from "../movie-card/movie-card";
 import {MAX_LIKE_MOVIES_LENGTH} from "../../const";
 import {connect} from "react-redux";
+import {getMovie, getMovies} from "../../store/data/selectors";
 
 const MoreMovies = ({movies, currentMovie}) => {
   const moreLikeThisMovies = movies
@@ -20,8 +21,8 @@ const MoreMovies = ({movies, currentMovie}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.movies.data,
-  currentMovie: state.currentMovie.data
+  movies: getMovies(state),
+  currentMovie: getMovie(state)
 });
 
 MoreMovies.propTypes = {

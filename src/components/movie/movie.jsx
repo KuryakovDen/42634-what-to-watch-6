@@ -8,8 +8,10 @@ import MoreMovies from "../more-movies/more-movies";
 import LoadingScreen from "../loading-screen/loading-screen";
 import {fetchCurrentMovie} from "../../store/api-actions";
 import User from "../user/user";
+import {checkLoadingMovie, checkNotFoundMovie, getMovie} from "../../store/data/selectors";
+import {checkUserAuth} from "../../store/user/selectors";
 
-const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match}) => {
+const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match, isNotFound}) => {
   const movieId = match.params.id;
 
   useEffect((isLoad) => {
@@ -18,16 +20,22 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match}) => 
     }
   }, [movieId]);
 
+  useEffect(() => {
+    if (isNotFound) {
+      history.push(`/not-found`);
+    }
+  }, [isNotFound]);
+
   if (!isLoaded) {
     return <LoadingScreen/>;
   }
 
   return (
     <>
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full" style={{background: `${movie.background_color}`}}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={movie.preview_image} alt={movie.name}/>
+            <img src={movie.background_image} alt={movie.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -113,9 +121,10 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match}) => 
 };
 
 const mapStateToProps = (state) => ({
-  isLoaded: state.currentMovie.isLoaded,
-  movie: state.currentMovie.data,
-  isAuthorized: state.isAuthorized
+  isLoaded: checkLoadingMovie(state),
+  movie: getMovie(state),
+  isAuthorized: checkUserAuth(state),
+  isNotFound: checkNotFoundMovie(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

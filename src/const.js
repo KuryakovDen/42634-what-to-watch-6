@@ -14,6 +14,12 @@ const HttpCode = {
   NOT_FOUND: 404
 };
 
+const NameSpace = {
+  DATA: `DATA`,
+  MOVIE: `MOVIE`,
+  USER: `USER`
+};
+
 export {
   MAX_LIKE_MOVIES_LENGTH,
   DELAY_VIDEO,
@@ -25,5 +31,6 @@ export {
   RATING_STARS_COUNT,
   DEFAULT_GENRE,
   BACKEND_URL,
-  HttpCode
+  HttpCode,
+  NameSpace
 };

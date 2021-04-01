@@ -4,34 +4,52 @@ const ActionType = {
   SET_PROMO_MOVIE: `data/setPromoMovie`,
   SET_CURRENT_MOVIE: `data/setCurrentMovie`,
   SET_COMMENTS_MOVIE: `data/setCommentsMovie`,
+  REDIRECT_TO_ROUTE: `data/redirectToRoute`,
   REQUIRE_AUTH: `user/requireAuth`
 };
 
-const ActionCreator = {
-  getMoviesForGenre: (genre) => ({
-    type: ActionType.GET_MOVIES_FOR_GENRE,
-    payload: genre
-  }),
-  setMovies: ({isFetching, isLoaded, data}) => ({
-    type: ActionType.SET_MOVIES,
-    payload: {isFetching, isLoaded, data}
-  }),
-  setPromoMovie: ({isFetching, isLoaded, data}) => ({
-    type: ActionType.SET_PROMO_MOVIE,
-    payload: {isFetching, isLoaded, data}
-  }),
-  setCurrentMovie: ({isFetching, isLoaded, data}) => ({
-    type: ActionType.SET_CURRENT_MOVIE,
-    payload: {isFetching, isLoaded, data}
-  }),
-  setCommentsMovie: ({isFetching, isLoaded, data}) => ({
-    type: ActionType.SET_COMMENTS_MOVIE,
-    payload: {isFetching, isLoaded, data}
-  }),
-  requireAuth: (status) => ({
-    type: ActionType.REQUIRE_AUTH,
-    payload: status
-  })
-};
+const getMoviesForGenre = (genre) => ({
+  type: ActionType.GET_MOVIES_FOR_GENRE,
+  payload: genre
+});
 
-export {ActionType, ActionCreator};
+const setMovies = ({isFetching, isLoaded, data}) => ({
+  type: ActionType.SET_MOVIES,
+  payload: {isFetching, isLoaded, data}
+});
+
+const setPromoMovie = ({isFetching, isLoaded, data}) => ({
+  type: ActionType.SET_PROMO_MOVIE,
+  payload: {isFetching, isLoaded, data}
+});
+
+const setCurrentMovie = ({isFetching, isLoaded, data}) => ({
+  type: ActionType.SET_CURRENT_MOVIE,
+  payload: {isFetching, isLoaded, data}
+});
+
+const setCommentsMovie = ({isFetching, isLoaded, data}) => ({
+  type: ActionType.SET_COMMENTS_MOVIE,
+  payload: {isFetching, isLoaded, data}
+});
+
+const requireAuth = (status) => ({
+  type: ActionType.REQUIRE_AUTH,
+  payload: status
+});
+
+const redirectToRoute = (status) => ({
+  type: ActionType.REDIRECT_TO_ROUTE,
+  payload: status
+});
+
+export {
+  ActionType,
+  getMoviesForGenre,
+  setMovies,
+  setPromoMovie,
+  setCurrentMovie,
+  setCommentsMovie,
+  requireAuth,
+  redirectToRoute
+};
