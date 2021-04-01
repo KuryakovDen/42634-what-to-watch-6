@@ -25,7 +25,6 @@ const fetchPromoMovie = () => (dispatch, _getState, api) => (
 const fetchCurrentMovie = (movieId) => (dispatch, _getState, api) => (
   api.get(`/films/${movieId}`)
     .then(({data}) => dispatch(setCurrentMovie({isFetching: false, isLoaded: true, data})))
-    .then(() => dispatch(redirectToRoute(false)))
     .catch((error) => {
       if (error.response.status === HttpCode.NOT_FOUND) {
         dispatch(redirectToRoute(true));

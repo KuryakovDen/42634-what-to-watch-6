@@ -12,6 +12,7 @@ const initialState = {
     data: {}
   },
   currentMovie: {
+    isNotFoundMovie: false,
     isFetching: true,
     isLoaded: false,
     data: {}
@@ -25,8 +26,7 @@ const initialState = {
     isFetching: true,
     isLoaded: false,
     data: []
-  },
-  isNotFoundMovie: false
+  }
 };
 
 const data = (state = initialState, action) => {

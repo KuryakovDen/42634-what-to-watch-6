@@ -1,15 +1,12 @@
-import React, {useMemo} from "react";
+import React from "react";
 import {connect} from 'react-redux';
 
 import {genresType, moviesType} from "../../validation";
 import {getMoviesForGenre} from "../../store/action";
-import {getAllGenres} from "../../utils";
 import {getActiveGenre} from "../../store/movie/selectors";
-import {getMovies} from "../../store/data/selectors";
+import {genres, getMovies} from "../../store/data/selectors";
 
-const GenresList = ({activeGenre, movies, setGenreAction = {}}) => {
-  const genres = useMemo(() => getAllGenres(movies), [movies]);
-
+const GenresList = ({activeGenre, movieGenres, setGenreAction = {}}) => {
   const genreHandler = (evt, currentGenre) => {
     evt.preventDefault();
     setGenreAction(currentGenre);
@@ -18,7 +15,7 @@ const GenresList = ({activeGenre, movies, setGenreAction = {}}) => {
   return (
     <ul className="catalog__genres-list">
       {
-        genres.map((genre) => {
+        movieGenres.map((genre) => {
           return <li key={genre} className={genre === activeGenre ? `catalog__genres-item--active` : `catalog__genres-item`}>
             <a href="#" className="catalog__genres-link" onClick={(evt) => {
               genreHandler(evt, genre);
@@ -32,6 +29,7 @@ const GenresList = ({activeGenre, movies, setGenreAction = {}}) => {
 
 const mapStateToProps = (state) => ({
   activeGenre: getActiveGenre(state),
+  movieGenres: genres(state),
   movies: getMovies(state)
 });
 
