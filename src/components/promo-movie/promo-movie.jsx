@@ -2,13 +2,24 @@ import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 
 import User from "../user/user";
-import {fetchPromoMovie} from "../../store/api-actions";
+import {fetchPromoMovie, sendFavoritesList} from "../../store/api-actions";
 import {promoMovieType} from "../../validation";
 import {checkLoadingPromo, getPromo} from "../../store/data/selectors";
 import {checkUserAuth} from "../../store/user/selectors";
 import {Link} from "react-router-dom";
 
-const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized}) => {
+const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized, onFavoriteSubmit}) => {
+  const myListHandler = (evt) => {
+    evt.preventDefault();
+
+    const favoriteData = {
+      id: promo.id,
+      status: 1
+    };
+
+    onFavoriteSubmit(favoriteData);
+  };
+
   useEffect(() => {
     if (!isLoaded) {
       onLoadPromo();
@@ -58,7 +69,7 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized}) => {
                 </svg>
                 <span>Play</span>
               </Link>
-              <button className="btn btn--list movie-card__button" type="button">
+              <button className="btn btn--list movie-card__button" type="button" onClick={myListHandler}>
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>
                 </svg>
@@ -82,6 +93,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onLoadPromo() {
     dispatch(fetchPromoMovie());
+  },
+
+  onFavoriteSubmit(favoriteMovie) {
+    dispatch(sendFavoritesList(favoriteMovie));
   }
 });
 

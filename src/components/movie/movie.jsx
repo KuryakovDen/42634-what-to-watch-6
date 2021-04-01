@@ -6,13 +6,24 @@ import {moviesType} from "../../validation";
 import Tabs from "../tabs/tabs";
 import MoreMovies from "../more-movies/more-movies";
 import LoadingScreen from "../loading-screen/loading-screen";
-import {fetchCurrentMovie} from "../../store/api-actions";
+import {fetchCurrentMovie, sendFavoritesList} from "../../store/api-actions";
 import User from "../user/user";
 import {checkLoadingMovie, checkNotFoundMovie, getMovie} from "../../store/data/selectors";
 import {checkUserAuth} from "../../store/user/selectors";
 
-const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match, isNotFound}) => {
+const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match, isNotFound, onFavoriteSubmit}) => {
   const movieId = match.params.id;
+
+  const myListHandler = (evt) => {
+    evt.preventDefault();
+
+    const favoriteData = {
+      id: movie.id,
+      status: 1
+    };
+
+    onFavoriteSubmit(favoriteData);
+  };
 
   useEffect((isLoad) => {
     if (!isLoad) {
@@ -69,7 +80,7 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match, isNo
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button className="btn btn--list movie-card__button" type="button">
+                <button className="btn btn--list movie-card__button" type="button" onClick={myListHandler}>
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
@@ -130,6 +141,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onLoadMovie(movieId) {
     dispatch(fetchCurrentMovie(movieId));
+  },
+
+  onFavoriteSubmit(favoriteMovie) {
+    dispatch(sendFavoritesList(favoriteMovie));
   }
 });
 

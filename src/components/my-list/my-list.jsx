@@ -1,26 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 import MovieCard from "../movie-card/movie-card";
 import {moviesType} from "../../validation";
-import {checkLoadingFavorites, getMovies} from "../../store/data/selectors";
-import LoadingScreen from "../loading-screen/loading-screen";
-import {fetchFavoritesList} from "../../store/api-actions";
+import {checkLoadingFavorites, getFavorites, getMovies} from "../../store/data/selectors";
 
-const MyList = ({favoriteMovies, onLoadFavorites, isLoaded}) => {
-  // const favoriteMovies = movies.filter((movie) => movie.is_favorite);
-
-  useEffect(() => {
-    if (!isLoaded) {
-      onLoadFavorites();
-    }
-  }, [isLoaded]);
-
-  if (!isLoaded) {
-    return <LoadingScreen/>;
-  }
-
+const MyList = ({favoriteMovies}) => {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -70,13 +56,7 @@ const MyList = ({favoriteMovies, onLoadFavorites, isLoaded}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movies: getMovies(state),
-  isLoaded: checkLoadingFavorites(state)
-});
-const mapDispatchToProps = (dispatch) => ({
-  onLoadFavorites() {
-    dispatch(fetchFavoritesList());
-  }
+  favoriteMovies: getFavorites(state)
 });
 
 MyList.propTypes = {
@@ -84,4 +64,4 @@ MyList.propTypes = {
 };
 
 export {MyList};
-export default connect(mapStateToProps, mapDispatchToProps)(MyList);
+export default connect(mapStateToProps, null)(MyList);

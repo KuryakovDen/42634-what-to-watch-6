@@ -42,7 +42,7 @@ const fetchCommentsList = (movieId) => (dispatch, _getState, api) => (
 const fetchFavoritesList = () => (dispatch, _getState, api) => (
   api.get(`/favorite`)
     .then(({data}) => dispatch(setFavoriteMovies({isFetching: false, isLoaded: true, data})))
-    // .catch(() => dispatch(setFavoriteMovies({isFetching: false, isLoaded: false, data: null})))
+    .catch(() => dispatch(setFavoriteMovies({isFetching: false, isLoaded: false, data: null})))
 );
 
 const checkAuth = () => (dispatch, _getState, api) => (
@@ -54,6 +54,11 @@ const checkAuth = () => (dispatch, _getState, api) => (
 const sendComment = ({id, rating, comment}) => (dispatch, _getState, api) => (
   api.post(`comments/${id}`, {rating, comment})
     .then(() => (window.location.href = `/films/${id}`))
+    .catch(({error}) => error)
+);
+
+const sendFavoritesList = ({id, status}) => (dispatch, _getState, api) => (
+  api.post(`/favorite/${id}/${status}`, {id, status})
     .catch(({error}) => error)
 );
 
@@ -71,5 +76,6 @@ export {
   fetchFavoritesList,
   checkAuth,
   sendComment,
+  sendFavoritesList,
   login
 };
