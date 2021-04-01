@@ -1,7 +1,7 @@
 import {NameSpace} from "../../const";
 import {createSelector} from "reselect";
 import {getActiveGenre} from "../movie/selectors";
-import {filterMoviesOnGenre} from "../../utils";
+import {filterMoviesOnGenre, getAllGenres} from "../../utils";
 
 const getMovie = (state) => state[NameSpace.DATA].currentMovie.data;
 const getMovieId = (state) => state[NameSpace.DATA].currentMovie.data.id;
@@ -20,6 +20,11 @@ const filteredMovies = createSelector(
     (movies, activeGenre) => filterMoviesOnGenre(movies, activeGenre)
 );
 
+const genres = createSelector(
+    getMovies,
+    (movies) => getAllGenres(movies)
+);
+
 export {
   getMovie,
   getMovieId,
@@ -31,5 +36,6 @@ export {
   getPromo,
   checkLoadingPromo,
   checkNotFoundMovie,
-  filteredMovies
+  filteredMovies,
+  genres
 };
