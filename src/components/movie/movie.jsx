@@ -6,7 +6,7 @@ import {moviesType} from "../../validation";
 import Tabs from "../tabs/tabs";
 import MoreMovies from "../more-movies/more-movies";
 import LoadingScreen from "../loading-screen/loading-screen";
-import {fetchCurrentMovie, fetchFavoritesList, sendFavoritesList} from "../../store/api-actions";
+import {fetchCurrentMovie, sendFavoritesList} from "../../store/api-actions";
 import User from "../user/user";
 import {checkLoadingMovie, checkNotFoundMovie, getMovie} from "../../store/data/selectors";
 import {checkUserAuth} from "../../store/user/selectors";
@@ -19,7 +19,7 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match, isNo
 
     const favoriteData = {
       id: movie.id,
-      status: 1
+      status: +!movie.is_favorite
     };
 
     onFavoriteSubmit(favoriteData);

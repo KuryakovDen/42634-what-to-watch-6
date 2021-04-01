@@ -14,7 +14,7 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized, onFavoriteSubmi
 
     const favoriteData = {
       id: promo.id,
-      status: 1
+      status: +!promo.is_favorite
     };
 
     onFavoriteSubmit(favoriteData);
