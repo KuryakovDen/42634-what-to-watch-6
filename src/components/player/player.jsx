@@ -4,13 +4,16 @@ import {connect} from "react-redux";
 import {moviesType} from "../../validation";
 import Videoplayer from "../videoplayer/videoplayer";
 import {getMovie} from "../../store/data/selectors";
+import {Link} from "react-router-dom";
 
 const Player = ({movie}) => {
+  console.log(movie)
+
   return (
     <div className="player">
-      <Videoplayer movie={movie}/>
+      <Videoplayer movie={movie} poster={movie.poster_image} isPlaying={true}/>
 
-      <button type="button" className="player__exit">Exit</button>
+      <Link to={`/`} className="player__exit">Exit</Link>
 
       <div className="player__controls">
         <div className="player__controls-row">

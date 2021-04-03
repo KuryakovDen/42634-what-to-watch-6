@@ -97,6 +97,7 @@ const mapDispatchToProps = (dispatch) => ({
 
   onFavoriteSubmit(favoriteMovie) {
     dispatch(sendFavoritesList(favoriteMovie));
+    dispatch(fetchPromoMovie());
   }
 });
 

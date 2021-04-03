@@ -143,7 +143,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchCurrentMovie(movieId));
   },
 
-  onFavoriteSubmit(favoriteMovie) {
+  onFavoriteSubmit(favoriteMovie, movieId) {
     dispatch(sendFavoritesList(favoriteMovie));
   }
 });
