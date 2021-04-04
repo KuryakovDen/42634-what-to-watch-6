@@ -64,7 +64,6 @@ const sendComment = ({id, rating, comment}) => (dispatch, _getState, api) => (
 const setFavorites = ({id, status}) => (dispatch, _getState, api) => (
   api.post(`/favorite/${id}/${status}`, {id, status})
     .then(({data}) => dispatch(setCurrentMovie({isFetching: false, isLoaded: true, data})))
-    // .then(({data}) => dispatch(setPromoMovie({isFetching: false, isLoaded: true, data})))
     .catch(({error}) => error)
 );
 
