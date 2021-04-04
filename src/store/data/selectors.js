@@ -15,6 +15,7 @@ const checkLoadingReviews = (state) => state[NameSpace.DATA].comments.isLoaded;
 const getPromo = (state) => state[NameSpace.DATA].promo.data;
 const checkLoadingPromo = (state) => state[NameSpace.DATA].promo.isLoaded;
 const checkNotFoundMovie = (state) => state[NameSpace.DATA].isNotFoundMovie;
+const getPlayingMovie = (state) => state[NameSpace.DATA].playingMovie.data;
 
 const filteredMovies = createSelector(
     getMovies,
@@ -40,6 +41,7 @@ export {
   getPromo,
   checkLoadingPromo,
   checkNotFoundMovie,
+  getPlayingMovie,
   filteredMovies,
   genres
 };

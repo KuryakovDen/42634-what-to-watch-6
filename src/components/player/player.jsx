@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 import {moviesType} from "../../validation";
 import Videoplayer from "../videoplayer/videoplayer";
-import {getMovie} from "../../store/data/selectors";
+import {getPlayingMovie} from "../../store/data/selectors";
 import {Link} from "react-router-dom";
 
 const Player = ({movie}) => {
@@ -46,7 +46,7 @@ const Player = ({movie}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movie: getMovie(state)
+  movie: getPlayingMovie(state)
 });
 
 Player.propTypes = {

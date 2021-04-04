@@ -1,18 +1,23 @@
 import React, {useEffect} from 'react';
-import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 import {moviesType} from "../../validation";
 import Tabs from "../tabs/tabs";
 import MoreMovies from "../more-movies/more-movies";
 import LoadingScreen from "../loading-screen/loading-screen";
-import {fetchCurrentMovie, sendFavoritesList} from "../../store/api-actions";
+import {fetchCurrentMovie, fetchPlayingMovie, setFavorites} from "../../store/api-actions";
 import User from "../user/user";
 import {checkLoadingMovie, checkNotFoundMovie, getMovie} from "../../store/data/selectors";
 import {checkUserAuth} from "../../store/user/selectors";
 
 const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match, isNotFound, onFavoriteSubmit}) => {
   const movieId = match.params.id;
+
+  const setPlayingMovie = (id) => {
+    history.push(`/player/${id}`);
+    onLoadMovie(id);
+  };
 
   const myListHandler = (evt) => {
     evt.preventDefault();
@@ -115,11 +120,11 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match, isNo
 
         <footer className="page-footer">
           <div className="logo">
-            <Link to={`/`} className="logo__link logo__link--light">
+            <button onClick={() => setPlayingMovie(movie.id)} className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </Link>
+            </button>
           </div>
 
           <div className="copyright">
@@ -141,10 +146,11 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onLoadMovie(movieId) {
     dispatch(fetchCurrentMovie(movieId));
+    dispatch(fetchPlayingMovie(movieId));
   },
 
-  onFavoriteSubmit(favoriteMovie, movieId) {
-    dispatch(sendFavoritesList(favoriteMovie));
+  onFavoriteSubmit(favoriteMovie) {
+    dispatch(setFavorites(favoriteMovie));
   }
 });
 

@@ -1,14 +1,21 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
+import {useHistory} from "react-router-dom";
 
 import User from "../user/user";
-import {fetchPromoMovie, sendFavoritesList} from "../../store/api-actions";
+import {fetchPlayingMovie, fetchPromoMovie, setFavorites} from "../../store/api-actions";
 import {promoMovieType} from "../../validation";
 import {checkLoadingPromo, getPromo} from "../../store/data/selectors";
 import {checkUserAuth} from "../../store/user/selectors";
-import {Link} from "react-router-dom";
 
-const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized, onFavoriteSubmit}) => {
+const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized, onFavoriteSubmit, onLoadMovie}) => {
+  const history = useHistory();
+
+  const setPlayingMovie = (id) => {
+    history.push(`/player/${id}`);
+    onLoadMovie(id);
+  };
+
   const myListHandler = (evt) => {
     evt.preventDefault();
 
@@ -63,12 +70,12 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized, onFavoriteSubmi
             </p>
 
             <div className="movie-card__buttons">
-              <Link to={`/player/${promo.id}`} className="btn btn--play movie-card__button" type="button">
+              <button onClick={() => setPlayingMovie(promo.id)} className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
-              </Link>
+              </button>
               <button className="btn btn--list movie-card__button" type="button" onClick={myListHandler}>
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   {promo.is_favorite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
@@ -96,8 +103,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   onFavoriteSubmit(favoriteMovie) {
-    dispatch(sendFavoritesList(favoriteMovie));
+    dispatch(setFavorites(favoriteMovie));
     dispatch(fetchPromoMovie());
+  },
+
+  onLoadMovie(id) {
+    dispatch(fetchPlayingMovie(id));
   }
 });
 

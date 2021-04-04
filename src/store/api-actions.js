@@ -5,7 +5,7 @@ import {
   setCommentsMovie,
   requireAuth,
   redirectToRoute,
-  setFavoriteMovies,
+  setFavoriteMovies, setPlayingMovie,
 } from "./action";
 import {HttpCode} from "../const";
 
@@ -32,6 +32,11 @@ const fetchCurrentMovie = (movieId) => (dispatch, _getState, api) => (
     })
 );
 
+const fetchPlayingMovie = (movieId) => (dispatch, _getState, api) => (
+  api.get(`/films/${movieId}`)
+    .then(({data}) => dispatch(setPlayingMovie({isFetching: false, isLoaded: true, data})))
+);
+
 const fetchCommentsList = (movieId) => (dispatch, _getState, api) => (
   api.get(`/comments/${movieId}`)
     .then(({data}) => dispatch(setCommentsMovie({isFetching: false, isLoaded: true, data})))
@@ -56,7 +61,7 @@ const sendComment = ({id, rating, comment}) => (dispatch, _getState, api) => (
     .catch(({error}) => error)
 );
 
-const sendFavoritesList = ({id, status}) => (dispatch, _getState, api) => (
+const setFavorites = ({id, status}) => (dispatch, _getState, api) => (
   api.post(`/favorite/${id}/${status}`, {id, status})
     // .then(({data}) => dispatch(setCurrentMovie({isFetching: false, isLoaded: true, data})))
     // .then(({data}) => dispatch(setPromoMovie({isFetching: false, isLoaded: true, data})))
@@ -77,6 +82,7 @@ export {
   fetchFavoritesList,
   checkAuth,
   sendComment,
-  sendFavoritesList,
+  setFavorites,
+  fetchPlayingMovie,
   login
 };
