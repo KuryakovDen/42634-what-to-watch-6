@@ -26,10 +26,6 @@ const Player = ({movie}) => {
     }
   };
 
-  setInterval(() => {
-    console.log(`a`);
-  }, 2000)
-
   return (
     <div className="player">
       <Videoplayer movie={movie} poster={movie.poster_image} isPlaying={true} ref={playerRef}/>
