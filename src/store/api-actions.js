@@ -74,6 +74,11 @@ const login = ({email, password}) => (dispatch, _getState, api) => (
     .then(() => (window.location.href = `/`))
 );
 
+const logout = () => (dispatch, _getState, api) => (
+  api.get(`/logout`)
+    .then(() => dispatch(requireAuth(false)))
+);
+
 export {
   fetchMoviesList,
   fetchPromoMovie,
@@ -84,5 +89,6 @@ export {
   sendComment,
   setFavorites,
   fetchPlayingMovie,
-  login
+  login,
+  logout
 };
