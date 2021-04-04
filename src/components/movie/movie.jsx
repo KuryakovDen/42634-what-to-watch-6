@@ -11,7 +11,18 @@ import User from "../user/user";
 import {checkLoadingMovie, checkNotFoundMovie, getMovie} from "../../store/data/selectors";
 import {checkUserAuth} from "../../store/user/selectors";
 
-const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match, isNotFound, onFavoriteSubmit}) => {
+const Movie = (
+    {
+      isLoaded,
+      onLoadMovie,
+      movie,
+      history,
+      isAuthorized,
+      match,
+      isNotFound,
+      onFavoriteSubmit
+    }
+) => {
   const movieId = match.params.id;
 
   const setPlayingMovie = (id) => {

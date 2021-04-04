@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 import {moviesType} from "../../validation";
 import Videoplayer from "../videoplayer/videoplayer";
 import {getPlayingMovie} from "../../store/data/selectors";
-import {Link} from "react-router-dom";
+import {getPlayMovieRuntime} from "../../utils";
 
 const Player = ({movie}) => {
   console.log(movie)
@@ -21,7 +22,7 @@ const Player = ({movie}) => {
             <progress className="player__progress" value="30" max="100"></progress>
             <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">{getPlayMovieRuntime(movie.run_time)}</div>
         </div>
 
         <div className="player__controls-row">
