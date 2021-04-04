@@ -3,7 +3,15 @@ import React, {useEffect, forwardRef} from "react";
 import {moviesType} from "../../validation";
 import {DELAY_VIDEO} from "../../const";
 
-const Videoplayer = forwardRef(({movie = {}, isMuted = true, isAutoPlay = true, isPlaying}, videoRef) => {
+const Videoplayer = forwardRef((
+    {
+      movie = {},
+      isMuted = true,
+      isAutoPlay = true,
+      isPlaying,
+      onTimeUpdate
+    },
+    videoRef) => {
   useEffect(() => {
     let timeoutId;
 
@@ -27,6 +35,7 @@ const Videoplayer = forwardRef(({movie = {}, isMuted = true, isAutoPlay = true, 
       ref={videoRef}
       muted={isMuted}
       autoPlay={isAutoPlay}
+      onTimeUpdate={onTimeUpdate}
     />
   );
 });

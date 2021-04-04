@@ -11,6 +11,8 @@ const Player = ({movie}) => {
   const playerRef = useRef();
 
   const [playingButton, setPlaying] = useState(<use xlinkHref="#pause"/>);
+  const [progressBar, setProgressBar] = useState(0);
+  const [movieTime, setTime] = useState(`00:00:00`);
 
   const onClickFullScreen = () => {
     playerRef.current.requestFullscreen();
@@ -26,19 +28,30 @@ const Player = ({movie}) => {
     }
   };
 
+  const onTimeUpdate = () => {
+    setProgressBar((playerRef.current.currentTime / playerRef.current.duration) * 100);
+    setTime(getPlayMovieRuntime((playerRef.current.duration - playerRef.current.currentTime)));
+  };
+
   return (
     <div className="player">
-      <Videoplayer movie={movie} poster={movie.poster_image} isPlaying={true} ref={playerRef}/>
+      <Videoplayer
+        movie={movie}
+        poster={movie.poster_image}
+        isPlaying={true}
+        ref={playerRef}
+        onTimeUpdate={onTimeUpdate}
+      />
 
       <Link to={`/`} className="player__exit">Exit</Link>
 
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
+            <progress className="player__progress" value={progressBar} max="100"></progress>
+            <div className="player__toggler" style={{left: `${progressBar}%`}}>Toggler</div>
           </div>
-          <div className="player__time-value">{getPlayMovieRuntime(movie.run_time)}</div>
+          <div className="player__time-value">{movieTime}</div>
         </div>
 
         <div className="player__controls-row">

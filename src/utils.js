@@ -27,11 +27,13 @@ const getMovieRuntime = (runtime) => {
   return `${hours}h ${minutes}min`;
 };
 
-const getPlayMovieRuntime = (runtime) => {
-  const hours = Math.floor(runtime / 60);
-  const minutes = runtime - 60 * hours;
+const getPlayMovieRuntime = (seconds) => {
+  let time = Math.floor(seconds / 60);
+  let hours = Math.floor(time / 60);
+  let minutes = time % 60;
+  let sec = Math.floor((seconds - (time * 60) - (hours * 60) - minutes) % 60);
 
-  return `${hours}:${minutes}:00`;
+  return `${hours}:${minutes}:${sec}`;
 };
 
 const convertReviewDate = (date) => {
