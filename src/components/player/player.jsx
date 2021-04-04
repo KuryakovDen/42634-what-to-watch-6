@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
@@ -8,11 +8,27 @@ import {getPlayingMovie} from "../../store/data/selectors";
 import {getPlayMovieRuntime} from "../../utils";
 
 const Player = ({movie}) => {
-  console.log(movie)
+  const playerRef = useRef();
+
+  const [playingButton, setPlaying] = useState(<use xlinkHref="#play-s"/>);
+
+  const onClickFullScreen = () => {
+    playerRef.current.requestFullscreen();
+  };
+
+  const onClickPause = () => {
+    if (playerRef.current.paused) {
+      setPlaying(<use xlinkHref="#pause"/>);
+      playerRef.current.play();
+    } else {
+      setPlaying(<use xlinkHref="#play-s"/>);
+      playerRef.current.pause();
+    }
+  };
 
   return (
     <div className="player">
-      <Videoplayer movie={movie} poster={movie.poster_image} isPlaying={true}/>
+      <Videoplayer movie={movie} poster={movie.poster_image} isPlaying={true} ref={playerRef}/>
 
       <Link to={`/`} className="player__exit">Exit</Link>
 
@@ -26,15 +42,15 @@ const Player = ({movie}) => {
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play">
+          <button type="button" className="player__play" onClick={onClickPause}>
             <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
+              {playingButton}
             </svg>
             <span>Play</span>
           </button>
           <div className="player__name">Transpotting</div>
 
-          <button type="button" className="player__full-screen">
+          <button type="button" className="player__full-screen" onClick={onClickFullScreen}>
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
             </svg>
