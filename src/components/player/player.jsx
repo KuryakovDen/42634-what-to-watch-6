@@ -1,40 +1,69 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 import {moviesType} from "../../validation";
-import {getMovie} from "../../store/data/selectors";
+import Videoplayer from "../videoplayer/videoplayer";
+import {getPlayingMovie} from "../../store/data/selectors";
+import {getPlayMovieRuntime} from "../../utils";
 
 const Player = ({movie}) => {
+  const playerRef = useRef();
+
+  const [playingButton, setPlaying] = useState(<use xlinkHref="#pause"/>);
+  const [progressBar, setProgressBar] = useState(0);
+  const [movieTime, setTime] = useState(`00:00:00`);
+
+  const onClickFullScreen = () => {
+    playerRef.current.requestFullscreen();
+  };
+
+  const onClickPause = () => {
+    if (playerRef.current.paused) {
+      setPlaying(<use xlinkHref="#pause"/>);
+      playerRef.current.play();
+    } else {
+      setPlaying(<use xlinkHref="#play-s"/>);
+      playerRef.current.pause();
+    }
+  };
+
+  const onTimeUpdate = () => {
+    setProgressBar((playerRef.current.currentTime / playerRef.current.duration) * 100);
+    setTime(getPlayMovieRuntime((playerRef.current.duration - playerRef.current.currentTime)));
+  };
+
   return (
     <div className="player">
-      <video src={movie.video_link} className="player__video" poster={movie.poster_image}></video>
+      <Videoplayer
+        movie={movie}
+        poster={movie.poster_image}
+        isPlaying={true}
+        ref={playerRef}
+        onTimeUpdate={onTimeUpdate}
+      />
 
-      <button type="button" className="player__exit">Exit</button>
+      <Link to={`/`} className="player__exit">Exit</Link>
 
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler"
-              style={{
-                left: `30%`
-              }}
-            >Toggler
-            </div>
+            <progress className="player__progress" value={progressBar} max="100"></progress>
+            <div className="player__toggler" style={{left: `${progressBar}%`}}>Toggler</div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">{movieTime}</div>
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play">
+          <button type="button" className="player__play" onClick={onClickPause}>
             <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
+              {playingButton}
             </svg>
             <span>Play</span>
           </button>
           <div className="player__name">Transpotting</div>
 
-          <button type="button" className="player__full-screen">
+          <button type="button" className="player__full-screen" onClick={onClickFullScreen}>
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
             </svg>
@@ -47,7 +76,7 @@ const Player = ({movie}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movie: getMovie(state)
+  movie: getPlayingMovie(state)
 });
 
 Player.propTypes = {

@@ -4,11 +4,9 @@ import {connect} from "react-redux";
 
 import MovieCard from "../movie-card/movie-card";
 import {moviesType} from "../../validation";
-import {getMovies} from "../../store/data/selectors";
+import {getFavorites} from "../../store/data/selectors";
 
-const MyList = ({movies}) => {
-  const favoriteMovies = movies.filter((movie) => movie.is_favorite);
-
+const MyList = ({favoriteMovies}) => {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -31,10 +29,13 @@ const MyList = ({movies}) => {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-        <div className="catalog__movies-list">
-          {favoriteMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
-        </div>
+        {
+          favoriteMovies
+          &&
+          <div className="catalog__movies-list">
+            {favoriteMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
+          </div>
+        }
       </section>
 
       <footer className="page-footer">
@@ -55,7 +56,7 @@ const MyList = ({movies}) => {
 };
 
 const mapStateToProps = (state) => ({
-  movies: getMovies(state)
+  favoriteMovies: getFavorites(state)
 });
 
 MyList.propTypes = {
