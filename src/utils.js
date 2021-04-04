@@ -27,6 +27,15 @@ const getMovieRuntime = (runtime) => {
   return `${hours}h ${minutes}min`;
 };
 
+const getPlayMovieRuntime = (seconds) => {
+  let time = Math.floor(seconds / 60);
+  let hours = Math.floor(time / 60);
+  let minutes = time % 60;
+  let sec = Math.floor((seconds - (time * 60) - (hours * 60) - minutes) % 60);
+
+  return `${hours}:${minutes}:${sec}`;
+};
+
 const convertReviewDate = (date) => {
   const Months = {
     "01": `January`,
@@ -68,6 +77,7 @@ const browserHistory = createBrowserHistory();
 export {
   getRatingName,
   getMovieRuntime,
+  getPlayMovieRuntime,
   convertReviewDate,
   filterMoviesOnGenre,
   getAllGenres,

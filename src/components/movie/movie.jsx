@@ -1,18 +1,45 @@
 import React, {useEffect} from 'react';
-import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 import {moviesType} from "../../validation";
 import Tabs from "../tabs/tabs";
 import MoreMovies from "../more-movies/more-movies";
 import LoadingScreen from "../loading-screen/loading-screen";
-import {fetchCurrentMovie} from "../../store/api-actions";
+import {fetchCurrentMovie, fetchPlayingMovie, setFavorites} from "../../store/api-actions";
 import User from "../user/user";
 import {checkLoadingMovie, checkNotFoundMovie, getMovie} from "../../store/data/selectors";
 import {checkUserAuth} from "../../store/user/selectors";
 
-const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match, isNotFound}) => {
+const Movie = (
+    {
+      isLoaded,
+      onLoadMovie,
+      movie,
+      history,
+      isAuthorized,
+      match,
+      isNotFound,
+      onFavoriteSubmit
+    }
+) => {
   const movieId = match.params.id;
+
+  const setPlayingMovie = (id) => {
+    history.push(`/player/${id}`);
+    onLoadMovie(id);
+  };
+
+  const myListHandler = (evt) => {
+    evt.preventDefault();
+
+    const favoriteData = {
+      id: movie.id,
+      status: +!movie.is_favorite
+    };
+
+    onFavoriteSubmit(favoriteData, favoriteData.id);
+  };
 
   useEffect((isLoad) => {
     if (!isLoad) {
@@ -63,15 +90,15 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match, isNo
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <Link to={`/player/${movie.id}`} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
+                </Link>
+                <button className="btn btn--list movie-card__button" type="button" onClick={myListHandler}>
                   <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
+                    {movie.is_favorite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
                   </svg>
                   <span>My list</span>
                 </button>
@@ -104,11 +131,11 @@ const Movie = ({isLoaded, onLoadMovie, movie, history, isAuthorized, match, isNo
 
         <footer className="page-footer">
           <div className="logo">
-            <Link to={`/`} className="logo__link logo__link--light">
+            <button onClick={() => setPlayingMovie(movie.id)} className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </Link>
+            </button>
           </div>
 
           <div className="copyright">
@@ -129,6 +156,12 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadMovie(movieId) {
+    dispatch(fetchCurrentMovie(movieId));
+    dispatch(fetchPlayingMovie(movieId));
+  },
+
+  onFavoriteSubmit(favoriteMovie, movieId) {
+    dispatch(setFavorites(favoriteMovie));
     dispatch(fetchCurrentMovie(movieId));
   }
 });
