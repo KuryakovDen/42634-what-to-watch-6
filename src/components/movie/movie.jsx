@@ -38,7 +38,7 @@ const Movie = (
       status: +!movie.is_favorite
     };
 
-    onFavoriteSubmit(favoriteData);
+    onFavoriteSubmit(favoriteData, favoriteData.id);
   };
 
   useEffect((isLoad) => {
@@ -160,8 +160,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchPlayingMovie(movieId));
   },
 
-  onFavoriteSubmit(favoriteMovie) {
+  onFavoriteSubmit(favoriteMovie, movieId) {
     dispatch(setFavorites(favoriteMovie));
+    dispatch(fetchCurrentMovie(movieId));
   }
 });
 

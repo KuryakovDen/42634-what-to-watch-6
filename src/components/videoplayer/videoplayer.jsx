@@ -31,6 +31,8 @@ const Videoplayer = forwardRef(({movie = {}, isMuted = true, isAutoPlay = true, 
   );
 });
 
+Videoplayer.displayName = `Videoplayer`;
+
 Videoplayer.propTypes = {
   ...moviesType
 };

@@ -10,7 +10,7 @@ import {getPlayMovieRuntime} from "../../utils";
 const Player = ({movie}) => {
   const playerRef = useRef();
 
-  const [playingButton, setPlaying] = useState(<use xlinkHref="#play-s"/>);
+  const [playingButton, setPlaying] = useState(<use xlinkHref="#pause"/>);
 
   const onClickFullScreen = () => {
     playerRef.current.requestFullscreen();
@@ -25,6 +25,10 @@ const Player = ({movie}) => {
       playerRef.current.pause();
     }
   };
+
+  setInterval(() => {
+    console.log(`a`);
+  }, 2000)
 
   return (
     <div className="player">
