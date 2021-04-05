@@ -10,6 +10,14 @@ const RATING_STARS_COUNT = 10;
 const DEFAULT_GENRE = `All genres`;
 const BACKEND_URL = `https://6.react.pages.academy/wtw`;
 
+const MovieRating = {
+  BAD: `Bad`,
+  NORMAL: `Normal`,
+  GOOD: `Good`,
+  VERY_GOOD: `Very good`,
+  AWESOME: `Awesome`
+};
+
 const HttpCode = {
   NOT_FOUND: 404
 };
@@ -32,5 +40,6 @@ export {
   DEFAULT_GENRE,
   BACKEND_URL,
   HttpCode,
-  NameSpace
+  NameSpace,
+  MovieRating
 };

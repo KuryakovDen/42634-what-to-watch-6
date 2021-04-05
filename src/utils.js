@@ -1,20 +1,20 @@
-import {DEFAULT_GENRE} from "./const";
+import {DEFAULT_GENRE, MovieRating} from "./const";
 import {createBrowserHistory} from "history";
 
 const getRatingName = (rating) => {
   let ratingName = ``;
 
   switch (true) {
-    case rating > 0 && rating <= 3: ratingName = `Bad`;
+    case rating > 0 && rating <= 3: ratingName = MovieRating.BAD;
       break;
-    case rating > 3 && rating <= 5: ratingName = `Normal`;
+    case rating > 3 && rating <= 5: ratingName = MovieRating.NORMAL;
       break;
-    case rating > 5 && rating <= 8: ratingName = `Good`;
+    case rating > 5 && rating <= 8: ratingName = MovieRating.GOOD;
       break;
-    case rating > 8 && rating < 10: ratingName = `Very good`;
+    case rating > 8 && rating < 10: ratingName = MovieRating.VERY_GOOD;
       break;
 
-    default: ratingName = `Awesome`;
+    default: ratingName = MovieRating.AWESOME;
   }
 
   return ratingName;
