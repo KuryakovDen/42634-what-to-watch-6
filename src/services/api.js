@@ -1,7 +1,6 @@
 import axios from "axios";
 
 import {BACKEND_URL, DEFAULT_TIMEOUT} from "../const";
-import {browserHistory} from "../utils";
 
 const createAPI = () => {
   const api = axios.create({
@@ -13,7 +12,6 @@ const createAPI = () => {
   const onSuccess = (response) => response;
 
   const onFail = (error) => {
-    browserHistory.push(`/error`);
     throw error;
   };
 

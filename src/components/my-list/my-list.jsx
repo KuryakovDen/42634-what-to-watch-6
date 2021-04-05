@@ -55,13 +55,13 @@ const MyList = ({favoriteMovies}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  favoriteMovies: getFavorites(state)
-});
-
 MyList.propTypes = {
   ...moviesType
 };
+
+const mapStateToProps = (state) => ({
+  favoriteMovies: getFavorites(state)
+});
 
 export {MyList};
 export default connect(mapStateToProps, null)(MyList);

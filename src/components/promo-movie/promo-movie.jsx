@@ -92,6 +92,9 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized, onFavoriteSubmi
   );
 };
 
+PromoMovie.propTypes = {
+  ...promoMovieType
+};
 
 const mapStateToProps = (state) => ({
   isLoaded: checkLoadingPromo(state),
@@ -113,10 +116,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchPlayingMovie(id));
   }
 });
-
-PromoMovie.propTypes = {
-  ...promoMovieType
-};
 
 export {PromoMovie};
 export default connect(mapStateToProps, mapDispatchToProps)(PromoMovie);

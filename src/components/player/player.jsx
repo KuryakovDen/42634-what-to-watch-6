@@ -77,13 +77,13 @@ const Player = ({movie}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  movie: getPlayingMovie(state)
-});
-
 Player.propTypes = {
   ...moviesType
 };
+
+const mapStateToProps = (state) => ({
+  movie: getPlayingMovie(state)
+});
 
 export {Player};
 export default connect(mapStateToProps, null)(Player);

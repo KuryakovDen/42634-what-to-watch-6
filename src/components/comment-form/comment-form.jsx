@@ -68,6 +68,10 @@ const CommentForm = ({onSubmit, id}) => {
   );
 };
 
+CommentForm.propTypes = {
+  ...commentFormType
+};
+
 const mapStateToProps = (state) => ({
   id: getMovieId(state)
 });
@@ -78,10 +82,6 @@ const mapDispatchToProps = (dispatch) => ({
     browserHistory.push(`/films/${id}`);
   }
 });
-
-CommentForm.propTypes = {
-  ...commentFormType
-};
 
 export {CommentForm};
 export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);

@@ -42,13 +42,13 @@ const MovieDetails = ({movie}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  movie: getMovie(state)
-});
-
 MovieDetails.propTypes = {
   ...moviesType
 };
+
+const mapStateToProps = (state) => ({
+  movie: getMovie(state)
+});
 
 export {MovieDetails};
 export default connect(mapStateToProps, null)(MovieDetails);

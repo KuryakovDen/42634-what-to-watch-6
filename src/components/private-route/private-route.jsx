@@ -19,13 +19,13 @@ const PrivateRoute = ({render, path, exact, isAuthorized}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  isAuthorized: checkUserAuth(state)
-});
-
 PrivateRoute.propTypes = {
   ...privateRouteType
 };
+
+const mapStateToProps = (state) => ({
+  isAuthorized: checkUserAuth(state)
+});
 
 export {PrivateRoute};
 export default connect(mapStateToProps, null)(PrivateRoute);

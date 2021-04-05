@@ -20,14 +20,14 @@ const MoreMovies = ({movies, currentMovie}) => {
   );
 };
 
+MoreMovies.propTypes = {
+  ...moviesType
+};
+
 const mapStateToProps = (state) => ({
   movies: getMovies(state),
   currentMovie: getMovie(state)
 });
-
-MoreMovies.propTypes = {
-  ...moviesType
-};
 
 export {MoreMovies};
 export default connect(mapStateToProps, null)(MoreMovies);

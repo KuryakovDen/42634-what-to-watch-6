@@ -128,11 +128,11 @@ const Movie = (
 
         <footer className="page-footer">
           <div className="logo">
-            <button className="logo__link logo__link--light">
+            <Link to={`/`} className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </button>
+            </Link>
           </div>
 
           <div className="copyright">
@@ -142,6 +142,10 @@ const Movie = (
       </div>
     </>
   );
+};
+
+Movie.propTypes = {
+  ...moviesType
 };
 
 const mapStateToProps = (state) => ({
@@ -161,10 +165,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setFavorites(favoriteMovie));
   }
 });
-
-Movie.propTypes = {
-  ...moviesType
-};
 
 export {Movie};
 export default connect(mapStateToProps, mapDispatchToProps)(Movie);

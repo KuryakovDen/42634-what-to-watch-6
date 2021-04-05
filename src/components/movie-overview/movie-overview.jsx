@@ -27,13 +27,13 @@ const MovieOverview = ({movie}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  movie: getMovie(state)
-});
-
 MovieOverview.propTypes = {
   ...moviesType
 };
+
+const mapStateToProps = (state) => ({
+  movie: getMovie(state)
+});
 
 export {MovieOverview};
 export default connect(mapStateToProps, null)(MovieOverview);

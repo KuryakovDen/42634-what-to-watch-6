@@ -33,14 +33,14 @@ const MoviesList = ({movies, genre}) => {
   );
 };
 
+MoviesList.propTypes = {
+  ...moviesType
+};
+
 const mapStateToProps = (state) => ({
   genre: getActiveGenre(state),
   movies: filteredMovies(state)
 });
-
-MoviesList.propTypes = {
-  ...moviesType
-};
 
 export {MoviesList};
 export default connect(mapStateToProps, null)(MoviesList);

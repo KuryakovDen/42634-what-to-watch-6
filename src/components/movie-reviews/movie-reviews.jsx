@@ -35,6 +35,10 @@ const MovieReviews = ({isLoaded, reviews, onLoadReviews, match}) => {
   );
 };
 
+MovieReviews.propTypes = {
+  ...reviewsType
+};
+
 const mapStateToProps = (state) => ({
   isLoaded: checkLoadingReviews(state),
   reviews: getReviews(state)
@@ -45,10 +49,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchCommentsList(movieId));
   }
 });
-
-MovieReviews.propTypes = {
-  ...reviewsType
-};
 
 export {MovieReviews};
 export default connect(mapStateToProps, mapDispatchToProps)(MovieReviews);

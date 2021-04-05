@@ -91,6 +91,11 @@ const MainScreen = ({isLoaded, onLoadData, isAuthorized}) => {
   );
 };
 
+MainScreen.propTypes = {
+  ...moviesType,
+  ...promoMovieType
+};
+
 const mapStateToProps = (state) => ({
   isLoaded: checkLoadingMovies(state),
   isAuthorized: checkUserAuth(state)
@@ -101,11 +106,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchMoviesList());
   }
 });
-
-MainScreen.propTypes = {
-  ...moviesType,
-  ...promoMovieType
-};
 
 export {MainScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

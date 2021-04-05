@@ -59,13 +59,13 @@ const Review = ({movie}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  movie: getMovie(state)
-});
-
 Review.propTypes = {
   ...moviesType
 };
+
+const mapStateToProps = (state) => ({
+  movie: getMovie(state)
+});
 
 export {Review};
 export default connect(mapStateToProps, null)(Review);

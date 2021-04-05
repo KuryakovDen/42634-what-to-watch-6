@@ -45,6 +45,7 @@ const SignIn = ({onSubmit}) => {
                 type="email"
                 placeholder="Email address"
                 name="user-email"
+                required
                 id="user-email"/>
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
@@ -55,6 +56,7 @@ const SignIn = ({onSubmit}) => {
                 type="password"
                 placeholder="Password"
                 name="user-password"
+                required
                 id="user-password"/>
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
@@ -82,16 +84,16 @@ const SignIn = ({onSubmit}) => {
   );
 };
 
+SignIn.propTypes = {
+  ...signInType
+};
+
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
     dispatch(login(authData));
     browserHistory.push(`/`);
   }
 });
-
-SignIn.propTypes = {
-  ...signInType
-};
 
 export {SignIn};
 export default connect(null, mapDispatchToProps)(SignIn);

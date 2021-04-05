@@ -23,15 +23,15 @@ const User = ({isAuthorized, onUserClick}) => {
   );
 };
 
+User.propTypes = {
+  ...userType
+};
+
 const mapDispatchToProps = (dispatch) => ({
   onUserClick() {
     dispatch(fetchFavoritesList());
   }
 });
-
-User.propTypes = {
-  ...userType
-};
 
 export {User};
 export default connect(null, mapDispatchToProps)(User);
