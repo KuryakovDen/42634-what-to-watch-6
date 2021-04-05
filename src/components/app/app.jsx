@@ -7,6 +7,7 @@ import MyList from "../my-list/my-list";
 import Movie from "../movie/movie";
 import Review from "../review/review";
 import Player from "../player/player";
+import ServerError from "../server-error/server-error";
 import NotFound from "../not-found/not-found";
 import PrivateRoute from "../private-route/private-route";
 import {browserHistory} from "../../utils";
@@ -21,6 +22,7 @@ const App = () => (
         <Route exact path={`/films/:id`} component = {Movie}/>
         <PrivateRoute exact path={`/films/:id/review`} render={() => <Review/>}/>
         <Route exact path={`/player/:id`} component = {Player}/>
+        <Route exact path={`/error`} component = {ServerError}/>
         <Route component = {NotFound}/>
       </Switch>
     </Router>
