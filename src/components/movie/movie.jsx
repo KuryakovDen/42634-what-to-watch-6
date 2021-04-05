@@ -27,17 +27,12 @@ const Movie = (
   const adaptedMovie = adaptMovie(movie);
   const movieId = match.params.id;
 
-  const setPlayingMovie = (id) => {
-    history.push(`/player/${id}`);
-    onLoadMovie(id);
-  };
-
   const myListHandler = (evt) => {
     evt.preventDefault();
 
     const favoriteData = {
       id: adaptedMovie.id,
-      status: +!adaptedMovie.is_favorite
+      status: +!adaptedMovie.isFavorite
     };
 
     onFavoriteSubmit(favoriteData, favoriteData.id);
@@ -133,7 +128,7 @@ const Movie = (
 
         <footer className="page-footer">
           <div className="logo">
-            <button onClick={() => setPlayingMovie(adaptedMovie.id)} className="logo__link logo__link--light">
+            <button className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -162,9 +157,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchPlayingMovie(movieId));
   },
 
-  onFavoriteSubmit(favoriteMovie, movieId) {
+  onFavoriteSubmit(favoriteMovie) {
     dispatch(setFavorites(favoriteMovie));
-    dispatch(fetchCurrentMovie(movieId));
   }
 });
 
