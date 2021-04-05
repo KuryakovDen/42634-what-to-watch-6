@@ -6,9 +6,11 @@ import {moviesType} from "../../validation";
 import Videoplayer from "../videoplayer/videoplayer";
 import {getPlayingMovie} from "../../store/data/selectors";
 import {getPlayMovieRuntime} from "../../utils";
+import {adaptMovie} from "../../adapter";
 
 const Player = ({movie}) => {
   const playerRef = useRef();
+  const adaptedMovie = adaptMovie(movie);
 
   const [playingButton, setPlaying] = useState(<use xlinkHref="#pause"/>);
   const [progressBar, setProgressBar] = useState(0);
@@ -36,8 +38,8 @@ const Player = ({movie}) => {
   return (
     <div className="player">
       <Videoplayer
-        movie={movie}
-        poster={movie.poster_image}
+        movie={adaptedMovie}
+        poster={adaptedMovie.posterImage}
         isPlaying={true}
         ref={playerRef}
         onTimeUpdate={onTimeUpdate}
