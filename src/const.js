@@ -18,6 +18,13 @@ const MovieRating = {
   AWESOME: `Awesome`
 };
 
+const MovieRatingValue = {
+  BAD: 3,
+  NORMAL: 5,
+  GOOD: 8,
+  VERY_GOOD: 10
+};
+
 const HttpCode = {
   NOT_FOUND: 404
 };
@@ -41,5 +48,6 @@ export {
   BACKEND_URL,
   HttpCode,
   NameSpace,
-  MovieRating
+  MovieRating,
+  MovieRatingValue
 };
