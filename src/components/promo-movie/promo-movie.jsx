@@ -7,8 +7,10 @@ import {fetchPlayingMovie, fetchPromoMovie, setFavorites} from "../../store/api-
 import {promoMovieType} from "../../validation";
 import {checkLoadingPromo, getPromo} from "../../store/data/selectors";
 import {checkUserAuth} from "../../store/user/selectors";
+import {adaptMovie} from "../../adapter";
 
 const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized, onFavoriteSubmit, onLoadMovie}) => {
+  const adaptedPromo = adaptMovie(promo);
   const history = useHistory();
 
   const setPlayingMovie = (id) => {
@@ -20,8 +22,8 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized, onFavoriteSubmi
     evt.preventDefault();
 
     const favoriteData = {
-      id: promo.id,
-      status: +!promo.is_favorite
+      id: adaptedPromo.id,
+      status: +!adaptedPromo.isFavorite
     };
 
     onFavoriteSubmit(favoriteData);
@@ -36,7 +38,7 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized, onFavoriteSubmi
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src={promo.background_image} alt={promo.name}/>
+        <img src={adaptedPromo.backgroundImage} alt={adaptedPromo.name}/>
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -58,19 +60,19 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized, onFavoriteSubmi
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src={promo.poster_image} alt={promo.name} width="218"
+            <img src={adaptedPromo.posterImage} alt={adaptedPromo.name} width="218"
               height="327"/>
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{promo.name}</h2>
+            <h2 className="movie-card__title">{adaptedPromo.name}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{promo.genre}</span>
-              <span className="movie-card__year">{promo.released}</span>
+              <span className="movie-card__genre">{adaptedPromo.genre}</span>
+              <span className="movie-card__year">{adaptedPromo.released}</span>
             </p>
 
             <div className="movie-card__buttons">
-              <button onClick={() => setPlayingMovie(promo.id)} className="btn btn--play movie-card__button" type="button">
+              <button onClick={() => setPlayingMovie(adaptedPromo.id)} className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
@@ -78,7 +80,7 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized, onFavoriteSubmi
               </button>
               <button className="btn btn--list movie-card__button" type="button" onClick={myListHandler}>
                 <svg viewBox="0 0 19 20" width="19" height="20">
-                  {promo.is_favorite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
+                  {adaptedPromo.isFavorite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
                 </svg>
                 <span>My list</span>
               </button>

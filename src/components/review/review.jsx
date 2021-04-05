@@ -5,13 +5,16 @@ import {connect} from "react-redux";
 import {moviesType} from "../../validation";
 import CommentForm from "../comment-form/comment-form";
 import {getMovie} from "../../store/data/selectors";
+import {adaptMovie} from "../../adapter";
 
 const Review = ({movie}) => {
+  const adaptedMovie = adaptMovie(movie);
+
   return (
-    <section className="movie-card movie-card--full" style={{background: `${movie.background_color}`}}>
+    <section className="movie-card movie-card--full" style={{background: `${adaptedMovie.backgroundColor}`}}>
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src={movie.background_image} alt={movie.name}/>
+          <img src={adaptedMovie.backgroundImage} alt={adaptedMovie.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -28,7 +31,7 @@ const Review = ({movie}) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/films/${movie.id}`} className="breadcrumbs__link">{movie.name}</Link>
+                <Link to={`/films/${adaptedMovie.id}`} className="breadcrumbs__link">{adaptedMovie.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -44,7 +47,7 @@ const Review = ({movie}) => {
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src={movie.poster_image} alt={movie.name} width="218"
+          <img src={adaptedMovie.posterImage} alt={adaptedMovie.name} width="218"
             height="327"/>
         </div>
       </div>

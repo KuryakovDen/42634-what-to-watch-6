@@ -10,6 +10,7 @@ import {fetchCurrentMovie, fetchPlayingMovie, setFavorites} from "../../store/ap
 import User from "../user/user";
 import {checkLoadingMovie, checkNotFoundMovie, getMovie} from "../../store/data/selectors";
 import {checkUserAuth} from "../../store/user/selectors";
+import {adaptMovie} from "../../adapter";
 
 const Movie = (
     {
@@ -23,6 +24,7 @@ const Movie = (
       onFavoriteSubmit
     }
 ) => {
+  const adaptedMovie = adaptMovie(movie);
   const movieId = match.params.id;
 
   const setPlayingMovie = (id) => {
@@ -34,8 +36,8 @@ const Movie = (
     evt.preventDefault();
 
     const favoriteData = {
-      id: movie.id,
-      status: +!movie.is_favorite
+      id: adaptedMovie.id,
+      status: +!adaptedMovie.is_favorite
     };
 
     onFavoriteSubmit(favoriteData, favoriteData.id);
@@ -59,10 +61,10 @@ const Movie = (
 
   return (
     <>
-      <section className="movie-card movie-card--full" style={{background: `${movie.background_color}`}}>
+      <section className="movie-card movie-card--full" style={{background: `${adaptedMovie.backgroundColor}`}}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={movie.background_image} alt={movie.name}/>
+            <img src={adaptedMovie.backgroundImage} alt={adaptedMovie.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -83,14 +85,14 @@ const Movie = (
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{movie.name}</h2>
+              <h2 className="movie-card__title">{adaptedMovie.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{movie.genre}</span>
-                <span className="movie-card__year">{movie.released}</span>
+                <span className="movie-card__genre">{adaptedMovie.genre}</span>
+                <span className="movie-card__year">{adaptedMovie.released}</span>
               </p>
 
               <div className="movie-card__buttons">
-                <Link to={`/player/${movie.id}`} className="btn btn--play movie-card__button" type="button">
+                <Link to={`/player/${adaptedMovie.id}`} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -98,7 +100,7 @@ const Movie = (
                 </Link>
                 <button className="btn btn--list movie-card__button" type="button" onClick={myListHandler}>
                   <svg viewBox="0 0 19 20" width="19" height="20">
-                    {movie.is_favorite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
+                    {adaptedMovie.isFavorite ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
                   </svg>
                   <span>My list</span>
                 </button>
@@ -114,7 +116,7 @@ const Movie = (
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={movie.poster_image} alt={movie.name} width="218"
+              <img src={adaptedMovie.posterImage} alt={adaptedMovie.name} width="218"
                 height="327"/>
             </div>
 
@@ -131,7 +133,7 @@ const Movie = (
 
         <footer className="page-footer">
           <div className="logo">
-            <button onClick={() => setPlayingMovie(movie.id)} className="logo__link logo__link--light">
+            <button onClick={() => setPlayingMovie(adaptedMovie.id)} className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>

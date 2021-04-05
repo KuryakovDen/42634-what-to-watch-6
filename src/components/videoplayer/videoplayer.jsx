@@ -2,6 +2,7 @@ import React, {useEffect, forwardRef} from "react";
 
 import {moviesType} from "../../validation";
 import {DELAY_VIDEO} from "../../const";
+import {adaptMovie} from "../../adapter";
 
 const Videoplayer = forwardRef((
     {
@@ -12,6 +13,8 @@ const Videoplayer = forwardRef((
       onTimeUpdate
     },
     videoRef) => {
+  const adaptedMovie = adaptMovie(movie);
+
   useEffect(() => {
     let timeoutId;
 
@@ -29,9 +32,9 @@ const Videoplayer = forwardRef((
 
   return (
     <video
-      src={movie.video_link}
+      src={adaptedMovie.videoLink}
       className="player__video"
-      poster={movie.poster_image}
+      poster={adaptedMovie.posterImage}
       ref={videoRef}
       muted={isMuted}
       autoPlay={isAutoPlay}

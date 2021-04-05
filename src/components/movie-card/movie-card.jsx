@@ -3,9 +3,12 @@ import {Link} from "react-router-dom";
 import {useHistory} from "react-router-dom";
 
 import {promoMovieType} from "../../validation";
+import {adaptMovie} from "../../adapter";
 import Videoplayer from "../videoplayer/videoplayer";
 
 const MovieCard = ({movie}) => {
+  const cardMovie = adaptMovie(movie);
+
   const history = useHistory();
   const [isPlaying, setActiveVideo] = useState(false);
 
@@ -28,10 +31,10 @@ const MovieCard = ({movie}) => {
         onMouseEnter={mouseEnterHandler}
         onMouseLeave={mouseLeaveHandler}>
         <div className="small-movie-card__image">
-          {isPlaying ? <Videoplayer movie={movie} isPlaying = {isPlaying}></Videoplayer> : <video poster={movie.preview_image} width="280" height="175"/>}
+          {isPlaying ? <Videoplayer movie={cardMovie} isPlaying = {isPlaying}></Videoplayer> : <video poster={cardMovie.previewImage} width="280" height="175"/>}
         </div>
         <h3 className="small-movie-card__title">
-          <Link className="small-movie-card__link" to={`/films/${movie.id}`} onClick={(evt) => movieClickHandler(evt)}>{movie.name}</Link>
+          <Link className="small-movie-card__link" to={`/films/${cardMovie.id}`} onClick={(evt) => movieClickHandler(evt)}>{cardMovie.name}</Link>
         </h3>
       </article>
     </>
