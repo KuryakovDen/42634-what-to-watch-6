@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {Router, Switch, Route} from "react-router-dom";
 
 import MainScreen from "../main/main";
 import SignIn from "../sign-in/sign-in";
@@ -13,7 +13,7 @@ import {browserHistory} from "../../utils";
 
 const App = () => (
   <>
-    <BrowserRouter history={browserHistory}>
+    <Router history={browserHistory}>
       <Switch>
         <Route exact path={`/`} component = {MainScreen}/>
         <Route exact path={`/login`} component = {SignIn}/>
@@ -23,7 +23,7 @@ const App = () => (
         <Route exact path={`/player/:id`} component = {Player}/>
         <Route component = {NotFound}/>
       </Switch>
-    </BrowserRouter>
+    </Router>
   </>
 );
 

@@ -57,7 +57,6 @@ const checkAuth = () => (dispatch, _getState, api) => (
 
 const sendComment = ({id, rating, comment}) => (dispatch, _getState, api) => (
   api.post(`comments/${id}`, {rating, comment})
-    .then(() => (window.location.href = `/films/${id}`))
     .catch(({error}) => error)
 );
 
@@ -70,7 +69,6 @@ const setFavorites = ({id, status}) => (dispatch, _getState, api) => (
 const login = ({email, password}) => (dispatch, _getState, api) => (
   api.post(`/login`, {email, password})
     .then(() => dispatch(requireAuth(true)))
-    .then(() => (window.location.href = `/`))
 );
 
 const logout = () => (dispatch, _getState, api) => (

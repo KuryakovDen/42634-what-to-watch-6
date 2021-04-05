@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 
 import {signInType} from "../../validation";
 import {login} from "../../store/api-actions";
+import {browserHistory} from "../../utils";
 
 const SignIn = ({onSubmit}) => {
   const emailRef = useRef();
@@ -80,9 +81,11 @@ const SignIn = ({onSubmit}) => {
     </div>
   );
 };
+
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
     dispatch(login(authData));
+    browserHistory.push(`/`);
   }
 });
 

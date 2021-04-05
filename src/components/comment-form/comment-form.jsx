@@ -5,6 +5,7 @@ import {MIN_REVIEW_LENGTH, MAX_REVIEW_LENGTH, RATING_STARS_COUNT} from "../../co
 import {sendComment} from "../../store/api-actions";
 import {commentFormType} from "../../validation";
 import {getMovieId} from "../../store/data/selectors";
+import {browserHistory} from "../../utils";
 
 const CommentForm = ({onSubmit, id}) => {
   const [commentForm, submitCommentForm] = React.useState({
@@ -40,7 +41,7 @@ const CommentForm = ({onSubmit, id}) => {
       comment: commentRef.current.value
     };
 
-    onSubmit(movieComment);
+    onSubmit(movieComment, movieComment.id);
   };
 
   return (
@@ -72,8 +73,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit(comment) {
+  onSubmit(comment, id) {
     dispatch(sendComment(comment));
+    browserHistory.push(`/films/${id}`);
   }
 });
 
