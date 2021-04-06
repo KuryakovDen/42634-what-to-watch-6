@@ -1,4 +1,4 @@
-import React, {Fragment, useRef} from 'react';
+import React, {Fragment, useRef, useState} from 'react';
 import {connect} from "react-redux";
 
 import {MIN_REVIEW_LENGTH, MAX_REVIEW_LENGTH, RATING_STARS_COUNT} from "../../const";
@@ -13,6 +13,8 @@ const CommentForm = ({onSubmit, id}) => {
     comment: ``
   });
 
+  const [isDisabledForm, setIsDisabledForm] = useState(false);
+
   const commentRef = useRef();
   const setField = ({target}) => submitCommentForm((prevState) => ({...prevState, [target.name]: target.value}));
 
@@ -25,6 +27,7 @@ const CommentForm = ({onSubmit, id}) => {
           type="radio" name="rating"
           value={index + 1}
           defaultChecked={index === 0}
+          disabled={isDisabledForm}
           onChange={setField}
         />
         <label className="rating__label" htmlFor={`star-${index}`}>Rating {index + 1} </label>
@@ -41,6 +44,7 @@ const CommentForm = ({onSubmit, id}) => {
       comment: commentRef.current.value
     };
 
+    setIsDisabledForm(true);
     onSubmit(movieComment, movieComment.id);
   };
 
@@ -59,10 +63,11 @@ const CommentForm = ({onSubmit, id}) => {
           name="review-text"
           id="review-text"
           placeholder="Review text"
+          disabled={isDisabledForm}
           required={true}
         />
         <div className="add-review__submit">
-          <button className="add-review__btn" type="submit">Post</button>
+          <button className="add-review__btn" type="submit" disabled={isDisabledForm}>Post</button>
         </div>
       </div>
     </form>

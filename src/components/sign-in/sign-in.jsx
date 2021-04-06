@@ -48,7 +48,7 @@ const SignIn = ({onSubmit, authStatus}) => {
                 className="sign-in__input"
                 ref={emailRef}
                 type="email"
-                placeholder="Email address"
+                placeholder="user@mail.ru"
                 name="user-email"
                 required
                 id="user-email"/>
