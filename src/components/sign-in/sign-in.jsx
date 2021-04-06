@@ -46,7 +46,7 @@ const SignIn = ({onSubmit, authStatus, errorMessage}) => {
             <div className="sign-in__field">
               {
                 errorMessage ?
-                  <div style={{textAlign: `center`, fontSize: `20px`, marginBottom: `10px`, color: `red`}}>{errorMessage} <br/>
+                  <div className="sign-in__message">{errorMessage} <br/>
                     We can’t recognize this email
                     and password combination. Please try again.
                   </div>
