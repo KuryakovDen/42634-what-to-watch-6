@@ -1,12 +1,17 @@
 import React, {useRef} from 'react';
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
 import {signInType} from "../../validation";
 import {login} from "../../store/api-actions";
 import {browserHistory} from "../../utils";
+import {checkUserAuth} from "../../store/user/selectors";
 
-const SignIn = ({onSubmit}) => {
+const SignIn = ({onSubmit, authStatus}) => {
+  if (authStatus) {
+    return <Redirect to={`/`}/>;
+  }
+
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -88,6 +93,10 @@ SignIn.propTypes = {
   ...signInType
 };
 
+const mapStateToProps = (state) => ({
+  authStatus: checkUserAuth(state)
+});
+
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(authData) {
     dispatch(login(authData));
@@ -96,4 +105,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {SignIn};
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
