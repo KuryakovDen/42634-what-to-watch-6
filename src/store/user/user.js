@@ -2,6 +2,7 @@ import {ActionType} from "../action";
 
 const initialState = {
   isAuthorized: false,
+  errorMessage: null
 };
 
 const user = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         isAuthorized: action.payload
+      };
+    case ActionType.CATCH_AUTH_ERROR:
+      return {
+        ...state,
+        errorMessage: action.payload
       };
   }
 

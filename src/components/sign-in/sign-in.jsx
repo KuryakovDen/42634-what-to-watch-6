@@ -5,9 +5,9 @@ import {connect} from "react-redux";
 import {signInType} from "../../validation";
 import {login} from "../../store/api-actions";
 import {browserHistory} from "../../utils";
-import {checkUserAuth} from "../../store/user/selectors";
+import {checkUserAuth, getErrorMessage} from "../../store/user/selectors";
 
-const SignIn = ({onSubmit, authStatus}) => {
+const SignIn = ({onSubmit, authStatus, errorMessage}) => {
   if (authStatus) {
     return <Redirect to={`/`}/>;
   }
@@ -44,6 +44,14 @@ const SignIn = ({onSubmit, authStatus}) => {
         <form action="#" className="sign-in__form" onSubmit={handleSubmit}>
           <div className="sign-in__fields">
             <div className="sign-in__field">
+              {
+                errorMessage ?
+                  <div style={{textAlign: `center`, fontSize: `20px`, marginBottom: `10px`, color: `red`}}>{errorMessage} <br/>
+                    We can’t recognize this email
+                    and password combination. Please try again.
+                  </div>
+                  : ``
+              }
               <input
                 className="sign-in__input"
                 ref={emailRef}
@@ -94,7 +102,8 @@ SignIn.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  authStatus: checkUserAuth(state)
+  authStatus: checkUserAuth(state),
+  errorMessage: getErrorMessage(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

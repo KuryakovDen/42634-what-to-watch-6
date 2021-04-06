@@ -5,7 +5,7 @@ import {
   setCommentsMovie,
   requireAuth,
   redirectToRoute,
-  setFavoriteMovies, setPlayingMovie,
+  setFavoriteMovies, setPlayingMovie, catchAuthError,
 } from "./action";
 import {HttpCode} from "../const";
 import {browserHistory} from "../utils";
@@ -73,6 +73,10 @@ const setFavorites = ({id, status}) => (dispatch, _getState, api) => (
 const login = ({email, password}) => (dispatch, _getState, api) => (
   api.post(`/login`, {email, password})
     .then(() => dispatch(requireAuth(true)))
+    .catch((error) => {
+      dispatch(catchAuthError(error.message));
+      browserHistory.push(`/login`);
+    })
 );
 
 const logout = () => (dispatch, _getState, api) => (

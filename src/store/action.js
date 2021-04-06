@@ -7,7 +7,8 @@ const ActionType = {
   SET_FAVORITE_MOVIES: `data/SetFavoriteMovies`,
   SET_PLAYING_MOVIE: `data/SetPlayingMovie`,
   REDIRECT_TO_ROUTE: `data/redirectToRoute`,
-  REQUIRE_AUTH: `user/requireAuth`
+  REQUIRE_AUTH: `user/requireAuth`,
+  CATCH_AUTH_ERROR: `user/catchError`
 };
 
 const getMoviesForGenre = (genre) => ({
@@ -50,6 +51,11 @@ const requireAuth = (status) => ({
   payload: status
 });
 
+const catchAuthError = (error) => ({
+  type: ActionType.CATCH_AUTH_ERROR,
+  payload: error
+});
+
 const redirectToRoute = (status) => ({
   type: ActionType.REDIRECT_TO_ROUTE,
   payload: status
@@ -65,5 +71,6 @@ export {
   setFavoriteMovies,
   setPlayingMovie,
   requireAuth,
+  catchAuthError,
   redirectToRoute
 };
