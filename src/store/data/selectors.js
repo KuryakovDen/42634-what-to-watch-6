@@ -1,4 +1,4 @@
-import {NameSpace} from "../../const";
+import {MAX_LIKE_MOVIES_LENGTH, NameSpace} from "../../const";
 import {createSelector} from "reselect";
 import {getActiveGenre} from "../movie/selectors";
 import {filterMoviesOnGenre, getAllGenres} from "../../utils";
@@ -25,6 +25,14 @@ const filteredMovies = createSelector(
     (movies, activeGenre) => filterMoviesOnGenre(movies, activeGenre)
 );
 
+const similarMovies = createSelector(
+    getMovies,
+    getMovie,
+    (movies, currentMovie) => movies
+    .filter((movie) => movie.genre === currentMovie.genre && movie.name !== currentMovie.name)
+    .slice(0, MAX_LIKE_MOVIES_LENGTH)
+);
+
 const genres = createSelector(
     getMovies,
     (movies) => getAllGenres(movies)
@@ -46,6 +54,7 @@ export {
   checkNotFoundMovie,
   getPlayingMovie,
   getCommentError,
+  similarMovies,
   filteredMovies,
   genres
 };

@@ -2,21 +2,14 @@ import React from 'react';
 
 import {moviesType} from "../../validation";
 import MovieCard from "../movie-card/movie-card";
-import {MAX_LIKE_MOVIES_LENGTH} from "../../const";
 import {connect} from "react-redux";
-import {getMovie, getMovies} from "../../store/data/selectors";
+import {similarMovies} from "../../store/data/selectors";
 
-const MoreMovies = ({movies, currentMovie}) => {
-  const moreLikeThisMovies = movies
-    .filter((movie) => movie.genre === currentMovie.genre && movie.name !== currentMovie.name)
-    .slice(0, MAX_LIKE_MOVIES_LENGTH);
-
+const MoreMovies = ({moreLikeThisMovies}) => {
   return (
-    <>
-      <div className="catalog__movies-list">
-        {moreLikeThisMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
-      </div>
-    </>
+    <div className="catalog__movies-list">
+      {moreLikeThisMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
+    </div>
   );
 };
 
@@ -25,8 +18,7 @@ MoreMovies.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movies: getMovies(state),
-  currentMovie: getMovie(state)
+  moreLikeThisMovies: similarMovies(state)
 });
 
 export {MoreMovies};
