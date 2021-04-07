@@ -5,10 +5,11 @@ import {connect} from "react-redux";
 import MovieCard from "../movie-card/movie-card";
 import {moviesType} from "../../validation";
 import {getFavorites} from "../../store/data/selectors";
+import {fetchFavoritesList} from "../../store/api-actions";
 
-const MyList = ({favoriteMovies}) => {
+const MyList = ({favoriteMovies, onLoad}) => {
   return (
-    <div className="user-page">
+    <div className="user-page" onLoad={onLoad}>
       <header className="page-header user-page__head">
         <div className="logo">
           <Link to={`/`} className="logo__link">
@@ -63,5 +64,11 @@ const mapStateToProps = (state) => ({
   favoriteMovies: getFavorites(state)
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onLoad() {
+    dispatch(fetchFavoritesList());
+  }
+});
+
 export {MyList};
-export default connect(mapStateToProps, null)(MyList);
+export default connect(mapStateToProps, mapDispatchToProps)(MyList);
