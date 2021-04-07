@@ -8,7 +8,7 @@ import {checkDisablingForm, getCommentError, getMovieId} from "../../store/data/
 import {browserHistory} from "../../utils";
 import {setCommentFormDisable} from "../../store/action";
 
-const CommentForm = ({onSubmit, id, commentError, isFormDisabled, onClickPost}) => {
+const CommentForm = ({onSubmit, id, commentError, isFormDisabled}) => {
   const [commentForm, submitCommentForm] = useState({
     rating: 0,
     comment: ``
@@ -50,8 +50,8 @@ const CommentForm = ({onSubmit, id, commentError, isFormDisabled, onClickPost}) 
     <form onSubmit={handleSubmit} action="#" className="add-review__form">
       {
         commentError ?
-          <div className="sign-in__message">{commentError} <br/>
-            You should set rating and comment necessarily. Please try again.
+          <div style={{color: `red`, textAlign: `center`}}>{commentError} <br/>
+            You should set rating and comment necessarily. <br/> Please try again.
           </div>
           : ``
       }
@@ -72,7 +72,7 @@ const CommentForm = ({onSubmit, id, commentError, isFormDisabled, onClickPost}) 
           required={true}
         />
         <div className="add-review__submit">
-          <button className="add-review__btn" type="submit" disabled={isFormDisabled} onClick={onClickPost}>Post</button>
+          <button className="add-review__btn" type="submit" disabled={isFormDisabled}>Post</button>
         </div>
       </div>
     </form>
@@ -91,12 +91,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(comment, id) {
+    dispatch(setCommentFormDisable(true));
     dispatch(sendComment(comment));
     browserHistory.push(`/films/${id}`);
-  }
-
-  onClickPost() {
-    dispatch(setCommentFormDisable(true));
   }
 });
 
