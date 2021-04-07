@@ -1,7 +1,7 @@
 import React, {Fragment, useRef, useState} from 'react';
 import {connect} from "react-redux";
 
-import {MIN_REVIEW_LENGTH, MAX_REVIEW_LENGTH, RATING_STARS_COUNT} from "../../const";
+import {RATING_STARS_COUNT, Review} from "../../const";
 import {sendComment} from "../../store/api-actions";
 import {commentFormType} from "../../validation";
 import {getMovieId} from "../../store/data/selectors";
@@ -58,8 +58,8 @@ const CommentForm = ({onSubmit, id}) => {
         <textarea
           className="add-review__textarea"
           ref={commentRef}
-          minLength={MIN_REVIEW_LENGTH}
-          maxLength={MAX_REVIEW_LENGTH}
+          minLength={Review.MIN_REVIEW_LENGTH}
+          maxLength={Review.MAX_REVIEW_LENGTH}
           name="review-text"
           id="review-text"
           placeholder="Review text"

@@ -10,6 +10,11 @@ const RATING_STARS_COUNT = 10;
 const DEFAULT_GENRE = `All genres`;
 const BACKEND_URL = `https://6.react.pages.academy/wtw`;
 
+const Review = {
+  MIN_REVIEW_LENGTH: 50,
+  MAX_REVIEW_LENGTH: 400
+};
+
 const MovieRating = {
   BAD: `Bad`,
   NORMAL: `Normal`,
@@ -49,5 +54,6 @@ export {
   HttpCode,
   NameSpace,
   MovieRating,
-  MovieRatingValue
+  MovieRatingValue,
+  Review
 };
