@@ -5,7 +5,11 @@ import {
   setCommentsMovie,
   requireAuth,
   redirectToRoute,
-  setFavoriteMovies, setPlayingMovie, catchAuthError, catchCommentError, setCommentFormDisable,
+  setFavoriteMovies,
+  setPlayingMovie,
+  catchAuthError,
+  catchCommentError,
+  setCommentFormDisable
 } from "./action";
 import {AuthorizationStatus, HttpCode} from "../const";
 import {browserHistory} from "../utils";
