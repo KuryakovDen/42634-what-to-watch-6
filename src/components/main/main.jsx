@@ -10,7 +10,7 @@ import PromoMovie from "../promo-movie/promo-movie";
 import {checkLoadingMovies} from "../../store/data/selectors";
 import {checkUserAuth} from "../../store/user/selectors";
 
-const MainScreen = ({isLoaded, onLoadData, isAuthorized}) => {
+const MainScreen = ({isLoaded, onLoadData, authorizationStatus}) => {
   useEffect(() => {
     if (!isLoaded) {
       onLoadData();
@@ -65,7 +65,7 @@ const MainScreen = ({isLoaded, onLoadData, isAuthorized}) => {
           </symbol>
         </svg>
       </div>
-      <PromoMovie isAuthorized={isAuthorized}/>
+      <PromoMovie authorizationStatus={authorizationStatus}/>
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
@@ -98,7 +98,7 @@ MainScreen.propTypes = {
 
 const mapStateToProps = (state) => ({
   isLoaded: checkLoadingMovies(state),
-  isAuthorized: checkUserAuth(state)
+  authorizationStatus: checkUserAuth(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

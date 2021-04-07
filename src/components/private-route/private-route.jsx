@@ -6,8 +6,8 @@ import {privateRouteType} from "../../validation";
 import {checkUserAuth} from "../../store/user/selectors";
 import {AuthorizationStatus} from "../../const";
 
-const PrivateRoute = ({render, path, exact, isAuthorized}) => {
-  if (isAuthorized === AuthorizationStatus.WAIT) {
+const PrivateRoute = ({render, path, exact, authorizationStatus}) => {
+  if (authorizationStatus === AuthorizationStatus.WAIT) {
     return null;
   }
 
@@ -17,7 +17,7 @@ const PrivateRoute = ({render, path, exact, isAuthorized}) => {
       exact={exact}
       render={(routeProps) => {
         return (
-          isAuthorized === AuthorizationStatus.AUTH ? render(routeProps) : <Redirect to={`/login`} />
+          authorizationStatus === AuthorizationStatus.AUTH ? render(routeProps) : <Redirect to={`/login`} />
         );
       }}
     />
@@ -29,7 +29,7 @@ PrivateRoute.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  isAuthorized: checkUserAuth(state)
+  authorizationStatus: checkUserAuth(state)
 });
 
 export {PrivateRoute};

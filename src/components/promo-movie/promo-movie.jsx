@@ -9,7 +9,7 @@ import {checkLoadingPromo, getPromo} from "../../store/data/selectors";
 import {checkUserAuth} from "../../store/user/selectors";
 import {adaptMovie} from "../../adapter";
 
-const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized, onFavoriteSubmit, onLoadMovie}) => {
+const PromoMovie = ({isLoaded, onLoadPromo, promo, authorizationStatus, onFavoriteSubmit, onLoadMovie}) => {
   const adaptedPromo = adaptMovie(promo);
   const history = useHistory();
 
@@ -53,7 +53,7 @@ const PromoMovie = ({isLoaded, onLoadPromo, promo, isAuthorized, onFavoriteSubmi
         </div>
 
         <div className="user-block">
-          <User isAuthorized={isAuthorized}/>
+          <User authorizationStatus={authorizationStatus}/>
         </div>
       </header>
 
@@ -99,7 +99,7 @@ PromoMovie.propTypes = {
 const mapStateToProps = (state) => ({
   isLoaded: checkLoadingPromo(state),
   promo: getPromo(state),
-  isAuthorized: checkUserAuth(state)
+  authorizationStatus: checkUserAuth(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

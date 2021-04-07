@@ -6,8 +6,8 @@ import {connect} from "react-redux";
 import {fetchFavoritesList} from "../../store/api-actions";
 import {AuthorizationStatus} from "../../const";
 
-const User = ({isAuthorized, onUserClick}) => {
-  if (isAuthorized === AuthorizationStatus.AUTH) {
+const User = ({authorizationStatus, onUserClick}) => {
+  if (authorizationStatus === AuthorizationStatus.AUTH) {
     return (
       <div className="user-block__avatar" onClick={onUserClick}>
         <Link to={`/mylist`}>

@@ -2,7 +2,7 @@ import {ActionType} from "../action";
 import {AuthorizationStatus} from "../../const";
 
 const initialState = {
-  isAuthorized: AuthorizationStatus.WAIT,
+  authorizationStatus: AuthorizationStatus.WAIT,
   errorMessage: null
 };
 
@@ -11,7 +11,7 @@ const user = (state = initialState, action) => {
     case ActionType.REQUIRE_AUTH:
       return {
         ...state,
-        isAuthorized: action.payload
+        authorizationStatus: action.payload
       };
     case ActionType.CATCH_AUTH_ERROR:
       return {

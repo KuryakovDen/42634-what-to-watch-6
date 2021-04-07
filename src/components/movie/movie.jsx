@@ -10,6 +10,7 @@ import {fetchCurrentMovie, fetchPlayingMovie, setFavorites} from "../../store/ap
 import User from "../user/user";
 import {checkLoadingMovie, checkNotFoundMovie, getMovie} from "../../store/data/selectors";
 import {checkUserAuth} from "../../store/user/selectors";
+import {AuthorizationStatus} from "../../const";
 import {adaptMovie} from "../../adapter";
 
 const Movie = (
@@ -18,7 +19,7 @@ const Movie = (
       onLoadMovie,
       movie,
       history,
-      isAuthorized,
+      authorizationStatus,
       match,
       isNotFound,
       onFavoriteSubmit
@@ -74,7 +75,7 @@ const Movie = (
             </div>
 
             <div className="user-block">
-              <User isAuthorized={isAuthorized}/>
+              <User authorizationStatus={authorizationStatus}/>
             </div>
           </header>
 
@@ -100,7 +101,7 @@ const Movie = (
                   <span>My list</span>
                 </button>
                 {
-                  isAuthorized &&
+                  authorizationStatus === AuthorizationStatus.AUTH &&
                   <Link to={`${history.location.pathname}/review`} className="btn movie-card__button">Add review</Link>
                 }
               </div>
@@ -151,7 +152,7 @@ Movie.propTypes = {
 const mapStateToProps = (state) => ({
   isLoaded: checkLoadingMovie(state),
   movie: getMovie(state),
-  isAuthorized: checkUserAuth(state),
+  authorizationStatus: checkUserAuth(state),
   isNotFound: checkNotFoundMovie(state)
 });
 
