@@ -4,15 +4,20 @@ import {connect} from "react-redux";
 
 import {privateRouteType} from "../../validation";
 import {checkUserAuth} from "../../store/user/selectors";
+import {AuthorizationStatus} from "../../const";
 
 const PrivateRoute = ({render, path, exact, isAuthorized}) => {
+  if (isAuthorized === AuthorizationStatus.WAIT) {
+    return null;
+  }
+
   return (
     <Route
       path={path}
       exact={exact}
       render={(routeProps) => {
         return (
-          isAuthorized ? render(routeProps) : <Redirect to={`/login`} />
+          isAuthorized === AuthorizationStatus.AUTH ? render(routeProps) : <Redirect to={`/login`} />
         );
       }}
     />

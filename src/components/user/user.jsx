@@ -4,9 +4,10 @@ import {Link} from "react-router-dom";
 import {userType} from "../../validation";
 import {connect} from "react-redux";
 import {fetchFavoritesList} from "../../store/api-actions";
+import {AuthorizationStatus} from "../../const";
 
 const User = ({isAuthorized, onUserClick}) => {
-  if (isAuthorized) {
+  if (isAuthorized === AuthorizationStatus.AUTH) {
     return (
       <div className="user-block__avatar" onClick={onUserClick}>
         <Link to={`/mylist`}>

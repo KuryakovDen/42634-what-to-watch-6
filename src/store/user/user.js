@@ -1,7 +1,8 @@
 import {ActionType} from "../action";
+import {AuthorizationStatus} from "../../const";
 
 const initialState = {
-  isAuthorized: false,
+  isAuthorized: AuthorizationStatus.WAIT,
   errorMessage: null
 };
 

@@ -7,7 +7,7 @@ import {
   redirectToRoute,
   setFavoriteMovies, setPlayingMovie, catchAuthError, catchCommentError,
 } from "./action";
-import {HttpCode} from "../const";
+import {AuthorizationStatus, HttpCode} from "../const";
 import {browserHistory} from "../utils";
 
 const fetchMoviesList = () => (dispatch, _getState, api) => (
@@ -55,7 +55,7 @@ const fetchFavoritesList = () => (dispatch, _getState, api) => (
 
 const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
-    .then(() => dispatch(requireAuth(true)))
+    .then(() => dispatch(requireAuth(AuthorizationStatus.AUTH)))
     .catch(() => {})
 );
 
@@ -75,7 +75,7 @@ const setFavorites = ({id, status}) => (dispatch, _getState, api) => (
 
 const login = ({email, password}) => (dispatch, _getState, api) => (
   api.post(`/login`, {email, password})
-    .then(() => dispatch(requireAuth(true)))
+    .then(() => dispatch(requireAuth(AuthorizationStatus.AUTH)))
     .catch((error) => {
       dispatch(catchAuthError(error.message));
       browserHistory.push(`/login`);
@@ -84,7 +84,7 @@ const login = ({email, password}) => (dispatch, _getState, api) => (
 
 const logout = () => (dispatch, _getState, api) => (
   api.get(`/logout`)
-    .then(() => dispatch(requireAuth(false)))
+    .then(() => dispatch(requireAuth(AuthorizationStatus.NO_AUTH)))
 );
 
 export {

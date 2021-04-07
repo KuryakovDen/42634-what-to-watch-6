@@ -9,11 +9,15 @@ import App from "./components/app/app";
 import rootReducer from "./store/root-reducer";
 import createAPI from "./services/api";
 import {checkAuth} from "./store/api-actions";
+import {requireAuth} from "./store/action";
+import {AuthorizationStatus} from "./const";
 
 const store = createStore(
     rootReducer,
     composeWithDevTools(
-        applyMiddleware(thunk.withExtraArgument(createAPI()))
+        applyMiddleware(thunk.withExtraArgument(createAPI(
+            () => store.dispatch(requireAuth(AuthorizationStatus.NO_AUTH))
+        )))
     )
 );
 

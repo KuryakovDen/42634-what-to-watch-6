@@ -6,9 +6,10 @@ import {signInType} from "../../validation";
 import {login} from "../../store/api-actions";
 import {browserHistory} from "../../utils";
 import {checkUserAuth, getErrorMessage} from "../../store/user/selectors";
+import {AuthorizationStatus} from "../../const";
 
 const SignIn = ({onSubmit, authStatus, errorMessage}) => {
-  if (authStatus) {
+  if (authStatus === AuthorizationStatus.AUTH) {
     return <Redirect to={`/`}/>;
   }
 
