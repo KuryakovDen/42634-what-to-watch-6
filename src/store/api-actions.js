@@ -65,7 +65,10 @@ const checkAuth = () => (dispatch, _getState, api) => (
 
 const sendComment = ({id, rating, comment}) => (dispatch, _getState, api) => (
   api.post(`comments/${id}`, {rating, comment})
-    .then(() => dispatch(setCommentFormDisable(false)))
+    .then(() => {
+      dispatch(setCommentFormDisable(false));
+      dispatch(catchCommentError(null));
+    })
     .catch((error) => {
       dispatch(catchCommentError(error.message));
       dispatch(setCommentFormDisable(false));
