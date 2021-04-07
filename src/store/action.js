@@ -4,6 +4,7 @@ const ActionType = {
   SET_PROMO_MOVIE: `data/setPromoMovie`,
   SET_CURRENT_MOVIE: `data/setCurrentMovie`,
   SET_COMMENTS_MOVIE: `data/setCommentsMovie`,
+  CATCH_COMMENT_ERROR: `data/catchCommentError`,
   SET_FAVORITE_MOVIES: `data/SetFavoriteMovies`,
   SET_PLAYING_MOVIE: `data/SetPlayingMovie`,
   REDIRECT_TO_ROUTE: `data/redirectToRoute`,
@@ -34,6 +35,11 @@ const setCurrentMovie = ({isFetching, isLoaded, data}) => ({
 const setCommentsMovie = ({isFetching, isLoaded, data}) => ({
   type: ActionType.SET_COMMENTS_MOVIE,
   payload: {isFetching, isLoaded, data}
+});
+
+const catchCommentError = (error) => ({
+  type: ActionType.CATCH_COMMENT_ERROR,
+  payload: error
 });
 
 const setFavoriteMovies = ({isFetching, isLoaded, data}) => ({
@@ -68,6 +74,7 @@ export {
   setPromoMovie,
   setCurrentMovie,
   setCommentsMovie,
+  catchCommentError,
   setFavoriteMovies,
   setPlayingMovie,
   requireAuth,

@@ -4,10 +4,10 @@ import {connect} from "react-redux";
 import {RATING_STARS_COUNT, Review} from "../../const";
 import {sendComment} from "../../store/api-actions";
 import {commentFormType} from "../../validation";
-import {getMovieId} from "../../store/data/selectors";
+import {getCommentError, getMovieId} from "../../store/data/selectors";
 import {browserHistory} from "../../utils";
 
-const CommentForm = ({onSubmit, id}) => {
+const CommentForm = ({onSubmit, id, commentError}) => {
   const [commentForm, submitCommentForm] = React.useState({
     rating: 0,
     comment: ``
@@ -50,6 +50,13 @@ const CommentForm = ({onSubmit, id}) => {
 
   return (
     <form onSubmit={handleSubmit} action="#" className="add-review__form">
+      {
+        commentError ?
+          <div className="sign-in__message">{commentError} <br/>
+            You should set rating and comment necessarily. Please try again.
+          </div>
+          : ``
+      }
       <div className="rating">
         <div className="rating__stars">{ratingStars}</div>
       </div>
@@ -79,7 +86,8 @@ CommentForm.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  id: getMovieId(state)
+  id: getMovieId(state),
+  commentError: getCommentError(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

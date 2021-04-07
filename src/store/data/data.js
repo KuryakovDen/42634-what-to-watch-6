@@ -20,7 +20,8 @@ const initialState = {
   comments: {
     isFetching: true,
     isLoaded: false,
-    data: []
+    data: [],
+    errorMessage: null
   },
   favoriteMovies: {
     isFetching: true,
@@ -55,6 +56,11 @@ const data = (state = initialState, action) => {
       return {
         ...state,
         comments: action.payload
+      };
+    case ActionType.CATCH_COMMENT_ERROR:
+      return {
+        ...state,
+        errorMessage: action.payload
       };
     case ActionType.SET_FAVORITE_MOVIES:
       return {
