@@ -10,6 +10,7 @@ const getMovies = (state) => state[NameSpace.DATA].movies.data;
 const checkLoadingMovies = (state) => state[NameSpace.DATA].movies.isLoaded;
 const getFavorites = (state) => state[NameSpace.DATA].favoriteMovies.data;
 const checkLoadingFavorites = (state) => state[NameSpace.DATA].favoriteMovies.isLoaded;
+const checkDisablingForm = (state) => state[NameSpace.DATA].isFormDisabled;
 const getReviews = (state) => state[NameSpace.DATA].comments.data;
 const getCommentError = (state) => state[NameSpace.DATA].errorMessage;
 const checkLoadingReviews = (state) => state[NameSpace.DATA].comments.isLoaded;
@@ -40,6 +41,7 @@ export {
   getReviews,
   checkLoadingReviews,
   getPromo,
+  checkDisablingForm,
   checkLoadingPromo,
   checkNotFoundMovie,
   getPlayingMovie,

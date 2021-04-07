@@ -4,16 +4,15 @@ import {connect} from "react-redux";
 import {RATING_STARS_COUNT, Review} from "../../const";
 import {sendComment} from "../../store/api-actions";
 import {commentFormType} from "../../validation";
-import {getCommentError, getMovieId} from "../../store/data/selectors";
+import {checkDisablingForm, getCommentError, getMovieId} from "../../store/data/selectors";
 import {browserHistory} from "../../utils";
+import {setCommentFormDisable} from "../../store/action";
 
-const CommentForm = ({onSubmit, id, commentError}) => {
-  const [commentForm, submitCommentForm] = React.useState({
+const CommentForm = ({onSubmit, id, commentError, isFormDisabled, onClickPost}) => {
+  const [commentForm, submitCommentForm] = useState({
     rating: 0,
     comment: ``
   });
-
-  const [isDisabledForm, setIsDisabledForm] = useState(false);
 
   const commentRef = useRef();
   const setField = ({target}) => submitCommentForm((prevState) => ({...prevState, [target.name]: target.value}));
@@ -27,7 +26,7 @@ const CommentForm = ({onSubmit, id, commentError}) => {
           type="radio" name="rating"
           value={index + 1}
           defaultChecked={index === 0}
-          disabled={isDisabledForm}
+          disabled={isFormDisabled}
           onChange={setField}
         />
         <label className="rating__label" htmlFor={`star-${index}`}>Rating {index + 1} </label>
@@ -44,7 +43,6 @@ const CommentForm = ({onSubmit, id, commentError}) => {
       comment: commentRef.current.value
     };
 
-    setIsDisabledForm(true);
     onSubmit(movieComment, movieComment.id);
   };
 
@@ -70,11 +68,11 @@ const CommentForm = ({onSubmit, id, commentError}) => {
           name="review-text"
           id="review-text"
           placeholder="Review text"
-          disabled={isDisabledForm}
+          disabled={isFormDisabled}
           required={true}
         />
         <div className="add-review__submit">
-          <button className="add-review__btn" type="submit" disabled={isDisabledForm}>Post</button>
+          <button className="add-review__btn" type="submit" disabled={isFormDisabled} onClick={onClickPost}>Post</button>
         </div>
       </div>
     </form>
@@ -87,13 +85,18 @@ CommentForm.propTypes = {
 
 const mapStateToProps = (state) => ({
   id: getMovieId(state),
-  commentError: getCommentError(state)
+  commentError: getCommentError(state),
+  isFormDisabled: checkDisablingForm(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(comment, id) {
     dispatch(sendComment(comment));
     browserHistory.push(`/films/${id}`);
+  }
+
+  onClickPost() {
+    dispatch(setCommentFormDisable(true));
   }
 });
 

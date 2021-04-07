@@ -6,12 +6,13 @@ import {moviesType} from "../../validation";
 import CommentForm from "../comment-form/comment-form";
 import {getMovie} from "../../store/data/selectors";
 import {adaptMovie} from "../../adapter";
+import {fetchCurrentMovie} from "../../store/api-actions";
 
-const Review = ({movie}) => {
+const Review = ({movie, match, onLoad}) => {
   const adaptedMovie = adaptMovie(movie);
 
   return (
-    <section className="movie-card movie-card--full" style={{background: `${adaptedMovie.backgroundColor}`}}>
+    <section className="movie-card movie-card--full" style={{background: `${adaptedMovie.backgroundColor}`}} onLoad={() => onLoad(match.params.id)}>
       <div className="movie-card__header">
         <div className="movie-card__bg">
           <img src={adaptedMovie.backgroundImage} alt={adaptedMovie.name}/>
@@ -67,5 +68,11 @@ const mapStateToProps = (state) => ({
   movie: getMovie(state)
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onLoad(id) {
+    dispatch(fetchCurrentMovie(id));
+  }
+});
+
 export {Review};
-export default connect(mapStateToProps, null)(Review);
+export default connect(mapStateToProps, mapDispatchToProps)(Review);

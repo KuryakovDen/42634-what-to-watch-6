@@ -32,7 +32,8 @@ const initialState = {
     isFetching: true,
     isLoaded: false,
     data: {}
-  }
+  },
+  isFormDisabled: false
 };
 
 const data = (state = initialState, action) => {
@@ -56,6 +57,11 @@ const data = (state = initialState, action) => {
       return {
         ...state,
         comments: action.payload
+      };
+    case ActionType.SET_COMMENT_FORM_DISABLE:
+      return {
+        ...state,
+        isFormDisabled: action.payload
       };
     case ActionType.CATCH_COMMENT_ERROR:
       return {

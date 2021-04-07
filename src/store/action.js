@@ -4,6 +4,7 @@ const ActionType = {
   SET_PROMO_MOVIE: `data/setPromoMovie`,
   SET_CURRENT_MOVIE: `data/setCurrentMovie`,
   SET_COMMENTS_MOVIE: `data/setCommentsMovie`,
+  SET_COMMENT_FORM_DISABLE: `data/setCommentFormDisable`,
   CATCH_COMMENT_ERROR: `data/catchCommentError`,
   SET_FAVORITE_MOVIES: `data/SetFavoriteMovies`,
   SET_PLAYING_MOVIE: `data/SetPlayingMovie`,
@@ -35,6 +36,11 @@ const setCurrentMovie = ({isFetching, isLoaded, data}) => ({
 const setCommentsMovie = ({isFetching, isLoaded, data}) => ({
   type: ActionType.SET_COMMENTS_MOVIE,
   payload: {isFetching, isLoaded, data}
+});
+
+const setCommentFormDisable = (flag) => ({
+  type: ActionType.SET_COMMENT_FORM_DISABLE,
+  payload: flag
 });
 
 const catchCommentError = (error) => ({
@@ -74,6 +80,7 @@ export {
   setPromoMovie,
   setCurrentMovie,
   setCommentsMovie,
+  setCommentFormDisable,
   catchCommentError,
   setFavoriteMovies,
   setPlayingMovie,

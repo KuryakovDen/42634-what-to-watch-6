@@ -5,7 +5,7 @@ import {
   setCommentsMovie,
   requireAuth,
   redirectToRoute,
-  setFavoriteMovies, setPlayingMovie, catchAuthError, catchCommentError,
+  setFavoriteMovies, setPlayingMovie, catchAuthError, catchCommentError, setCommentFormDisable,
 } from "./action";
 import {AuthorizationStatus, HttpCode} from "../const";
 import {browserHistory} from "../utils";
@@ -61,8 +61,10 @@ const checkAuth = () => (dispatch, _getState, api) => (
 
 const sendComment = ({id, rating, comment}) => (dispatch, _getState, api) => (
   api.post(`comments/${id}`, {rating, comment})
+    .then(() => dispatch(setCommentFormDisable(false)))
     .catch((error) => {
       dispatch(catchCommentError(error.message));
+      dispatch(setCommentFormDisable(false));
       browserHistory.push(`${id}/review`);
     })
 );
